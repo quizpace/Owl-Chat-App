@@ -110,7 +110,7 @@ async function getTextFromServer() {
             // Create a message format with line breaks
             const clientChatDiv = document.createElement("div");
             clientChatDiv.classList.add("client-chat");
-            clientChatDiv.innerHTML = `<span class="username-style">${username}:</span> <br> <span class="message-time">${time}</span> ${message.text}`;
+            clientChatDiv.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${message.text}`;
 
             // Create a separate div for each message ID
             const messageDiv = document.createElement("div");
@@ -158,7 +158,7 @@ window.onload = async () => {
 function createMyChat(chatsDiv, text, userName, time) {
   const myChatDiv = document.createElement("div");
   myChatDiv.classList.add("my-chat");
-  myChatDiv.innerHTML = `<span class="username-style">${userName}:</span> <br> <span class="message-time">${time}</span> ${text}`;
+  myChatDiv.innerHTML = `<span class="username-style">${userName}</span> <br> <span class="message-time">${time}</span> ${text}`;
   chatsDiv.appendChild(myChatDiv);
 
   // Scroll the new message into view
@@ -281,6 +281,9 @@ window.onload = async () => {
   // Start the interval after loading all messages
   setInterval(() => {
     getTextFromServer();
-    scrollChatBoxDown();
+    const chatBox = document.querySelector(".chat-box");
+    if (!chatBox.classList.contains("expanded")) {
+      scrollChatBoxDown();
+    }
   }, 10); // Set the interval to 1000 milliseconds (1 second)
 };
