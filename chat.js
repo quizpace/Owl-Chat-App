@@ -103,10 +103,25 @@ async function getTextFromServer() {
         if (!processedMessageIds.has(messageId)) {
           const username = message.user;
 
-          // Parse the time string to create a Date object
-          const time = parseMessageTime(message.time, username);
 
-          if (username !== myUserName) {
+            // ...
+
+// Parse the time string to create a Date object
+const time = parseMessageTime(message.time, username);
+
+// Extract hours and minutes from the Date object
+const hours = time.getHours();
+const minutes = time.getMinutes();
+
+if (username !== myUserName) {
+  // Create a message format with line breaks
+  const clientChatDiv = document.createElement("div");
+  clientChatDiv.classList.add("client-chat");
+  clientChatDiv.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${hours}:${minutes}</span> ${message.text}`;
+
+  // ...
+}
+
             // Create a message format with line breaks
             const clientChatDiv = document.createElement("div");
             clientChatDiv.classList.add("client-chat");
