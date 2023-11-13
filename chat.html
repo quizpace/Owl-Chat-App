@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="chat.css" />
+    <title>Owl Chat</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Modal for username -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Please enter your name:</p>
+          <input type="text" id="userNameInput" />
+          <button id="submitNameBtn">Submit</button>
+        </div>
+      </div>
+
+      <!--chat box--->
+      <div class="chat-box">
+        <!--client--->
+        <div class="client">
+          <img src="/img/logo-owl.png" alt="logo-owl" id="logo-owl" />
+          <img
+            src="/img/book-scroll.png"
+            class="scroll-btn"
+            alt="scroll-button"
+            id="scroll-button"
+          />
+          <div class="client-info">
+            <h2>Owl Chat</h2>
+            <p>x online</p>
+          </div>
+        </div>
+        <!--main chat section-->
+        <div class="chats"></div>
+        <!--input field section-->
+        <div class="chat-input">
+          <input class="msg" type="text" placeholder="Enter Message" />
+          <button class="send-btn">
+            <img src="img/sendpurp1.png" alt="send-btn" />
+          </button>
+        </div>
+      </div>
+
+      <!-- button -->
+      <div class="chat-btn">
+        <img src="img/sendpurp6.png" alt="chat box icon btn" />
+      </div>
+    </div>
+
+    <div class="container-users">
+      <!--chat box--->
+      <div class="users-box">
+        <!--client--->
+        <div class="users-list">
+          <div class="users-info">
+            <h2>Owl Users</h2>
+            <p>x online</p>
+          </div>
+        </div>
+        <!--main chat section-->
+        <div class="users">
+          <ul>
+            <!-- <li></li>
+            <li></li>
+            <li></li> -->
+          </ul>
+        </div>
+      </div>
+      <!-- button -->
+      <div class="users-btn">
+        <img src="img/users-owl.png" alt="chat box icon btn" />
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="chat.js"></script>
+  </body>
+</html>
