@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+
+
+/* Your additional CSS rules here */
+
+
+/* Your additional CSS rules here */
 
 *,
 *::after,
@@ -321,4 +329,19 @@ position: sticky;
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* users list */
+
+li {
+  padding: 5px;
+  font-size: 1.2rem;
+  background-color: rgba(255, 209, 144, 0.575);
+  color: #35012c;
+  font-family: 'Kanit', sans-serif;
+}
+
+li:hover {
+  background-color: rgba(207, 255, 144, 0.575);
+  color: #35012c;
 }
