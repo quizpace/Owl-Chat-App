@@ -1,0 +1,50 @@
+/* Style for YouTube modal */
+#youtubeModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: -13%;
+  top: -15%;
+  width: 70%;
+  height: 90%;
+  overflow: auto;
+  background-color: rgb(224, 90, 90);
+  background-color: rgba(87, 244, 255, 0);
+  border-radius: 25%;
+}
+
+.youtube-modal-content {
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 14% auto;
+    padding: 15px;
+    width: 80%;
+    max-width: 592px;
+    /* Adding gradient to background color */
+    background-image: linear-gradient(to bottom right, rgb(181, 225, 38), rgb(242, 144, 246));
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+
+.closeY {
+  position: absolute;
+  top: 15%;
+  right:15%;
+  font-size: 90px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+}
+.closeY:hover {
+
+    color: #e34141;
+
+  }
+
+/* Add more styles as needed */
+
+a {
+  cursor: pointer; /* You can use "pointer" or other cursor values as needed */
+}

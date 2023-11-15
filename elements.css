@@ -1,0 +1,99 @@
+.message-time {
+  float: right;
+  font-size: 0.8em; /* Adjust the font size as needed */
+  color: #888; /* Adjust the color as needed */
+}
+
+.username-style {
+  color: rgb(147, 250, 43);
+}
+
+#scroll-button {
+  position: absolute;
+  top: 25%;
+  left: 36%;
+  width: 10%; /* Adjust the width as needed */
+  z-index: 1;
+  /* You can also add height if needed, e.g., height: 50%; */
+}
+
+#scroll-button:hover {
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8); /* Adjust the values as needed */
+}
+
+.send-btn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  overflow: hidden;
+  position: relative;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+.send-btn:active {
+  transform: scale(0.85);
+}
+
+.send-btn img {
+  width: 100%;
+  height: 100%;
+}
+
+/* chat box button section */
+.chat-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  position: fixed;
+  bottom: 20px;
+}
+.chat-btn img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  transition: 0.4s ease-in-out;
+}
+.chat-btn:hover img {
+  transform: rotate(30deg);
+}
+
+.tvIcon {
+  position: relative;
+  width: 30%;
+  cursor: url("cursors/owl.cur"), auto;
+}
+
+/* links style */
+
+.youtube-link {
+  font-size: 1rem;
+  color: rgb(255, 183, 0); /* For example */
+  /* Add other styles */
+}
+
+.youtube-link:visited {
+  /* Your styles for visited YouTube links */
+  color: rgb(243, 209, 150); /* For example */
+  /* Add other styles */
+}
+
+.other-link {
+  /* Your styles for other links */
+  color: rgb(221, 255, 0); /* For example */
+  /* Add other styles */
+}
+
+.other-link:visited {
+  /* Your styles for visited other links */
+  color: rgb(127, 158, 13); /* For example */
+  /* Add other styles */
+}

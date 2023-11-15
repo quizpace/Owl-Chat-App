@@ -1,11 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
-
-
-/* Your additional CSS rules here */
-
-
 /* Your additional CSS rules here */
 
 *,
@@ -17,7 +12,7 @@
   outline: none;
   border: none;
   font-family: "Raleway", sans-serif;
-  cursor: url("cursors/purple-cursor.cur"), auto;
+  /* cursor: url("cursors/purplehand.cur"), auto; */
 }
 
 body {
@@ -49,19 +44,6 @@ body {
   /* width: 600px;
   height: 600px; */
   overflow: scroll;
-}
-
-#scroll-button {
-  position: absolute;
-  top: 25%;
-  left: 36%;
-  width: 10%; /* Adjust the width as needed */
-  z-index: 1;
-  /* You can also add height if needed, e.g., height: 50%; */
-}
-
-#scroll-button:hover {
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8); /* Adjust the values as needed */
 }
 
 /* about client */
@@ -126,16 +108,6 @@ body {
   margin: 5px 0 5px auto;
 }
 
-.message-time {
-  float: right;
-  font-size: 0.8em; /* Adjust the font size as needed */
-  color: #888; /* Adjust the color as needed */
-}
-
-.username-style {
-  color: rgb(147, 250, 43);
-}
-
 /* input section */
 
 /* .chats {
@@ -167,181 +139,4 @@ position: sticky;
 
 .chat-input input:hover {
   cursor: url("cursors/but-pur.cur"), auto;
-}
-
-.send-btn {
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  overflow: hidden;
-  position: relative;
-  margin-left: 5px;
-  cursor: pointer;
-  transition: 0.4s ease-in-out;
-}
-
-.send-btn:active {
-  transform: scale(0.85);
-}
-
-.send-btn img {
-  width: 100%;
-  height: 100%;
-}
-
-/* chat box button section */
-.chat-btn {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: #fff;
-  cursor: pointer;
-  overflow: hidden;
-  position: fixed;
-  bottom: 20px;
-}
-.chat-btn img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 5px;
-  transition: 0.4s ease-in-out;
-}
-.chat-btn:hover img {
-  transform: rotate(30deg);
-}
-
-/* -- users section -- */
-
-.container-users {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-}
-
-/* chat box section */
-
-.users-box {
-  width: 200px;
-  height: 550px;
-  background-color: rgb(255, 255, 255);
-  overflow: hidden;
-  border-radius: 10px;
-  position: relative;
-  left: 290%;
-}
-
-/* about client */
-
-.users-list {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  height: 80px;
-  background-color: rgb(88, 63, 111);
-  padding: 15px;
-}
-
-.users-info {
-  color: rgb(236, 225, 247);
-  padding: 15px;
-}
-.users-info p {
-  color: rgb(222, 255, 187);
-  font-weight: bold;
-  font-size: 0.8em;
-}
-
-.user {
-  width: 60%;
-  word-wrap: break-word;
-  /* background-color: #e0b1cb; */
-  /* background-color: #4d194d; */
-  background-color: #35012c;
-  /* background-color: #5f4b66; */
-  padding: 7px 10px;
-  border-radius: 10px 10px 10px 0;
-  margin: 10px 0;
-}
-
-/* chat box button section */
-.users-btn {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: #fff;
-  cursor: pointer;
-  overflow: hidden;
-  position: fixed;
-  bottom: 20px;
-  right: 7%;
-}
-.users-btn img {
-  width: 100%; /* Adjust the percentage to your preference */
-  height: 100%; /* Adjust the percentage to your preference */
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0px;
-  transition: 0.4s ease-in-out;
-}
-
-.users-btn:hover img {
-  transform: rotate(30deg);
-}
-
-/* modal for username */
-
-/* Add this to your CSS */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 2;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* users list */
-
-li {
-  padding: 5px;
-  font-size: 1.2rem;
-  background-color: rgba(255, 209, 144, 0.575);
-  color: #35012c;
-  font-family: 'Kanit', sans-serif;
-}
-
-li:hover {
-  background-color: rgba(207, 255, 144, 0.575);
-  color: #35012c;
 }

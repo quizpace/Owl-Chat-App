@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="chat.css" />
+    <link rel="stylesheet" type="text/css" href="users.css" />
+    <link rel="stylesheet" type="text/css" href="video-modals.css" />
+    <link rel="stylesheet" type="text/css" href="modals.css" />
+    <link rel="stylesheet" type="text/css" href="elements.css" />
     <title>Owl Chat</title>
   </head>
   <body>
     <div class="container">
       <!-- Modal for username -->
-      <div id="myModal" class="modal">
+      <div id="myModal" class="modalStart">
         <div class="modal-content">
           <span class="close">&times;</span>
           <p>Please enter your name:</p>
@@ -17,7 +21,6 @@
           <button id="submitNameBtn">Submit</button>
         </div>
       </div>
-
       <!--chat box--->
       <div class="chat-box">
         <!--client--->
@@ -63,11 +66,7 @@
         </div>
         <!--main chat section-->
         <div class="users">
-          <ul>
-            <!-- <li></li>
-            <li></li>
-            <li></li> -->
-          </ul>
+          <ul></ul>
         </div>
       </div>
       <!-- button -->
@@ -75,8 +74,32 @@
         <img src="img/psy-owl.png" alt="chat box icon btn" />
       </div>
     </div>
+    <!--Links-->
+    <!-- <img src="/img/tvp.png" class="tvIcon" alt="tvlink" /> -->
+    <!-- Modal for YouTube video -->
+    <div id="youtubeModal" class="modal">
+      <span class="closeY" onclick="closeYouTubeModal()">&times;</span>
+      <div class="youtube-modal-content">
+        <iframe
+          class="youtubeIframe"
+          width="560"
+          height="415"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script src="users.js"></script>
+    <script src="msg.js"></script>
+    <script src="server.js"></script>
     <script src="chat.js"></script>
+    <script src="onload.js"></script>
+    <script src="grab.js"></script>
+    <script src="links.js"></script>
+    <script src="ui.js"></script>
+    <script src="time.js"></script>
   </body>
 </html>
