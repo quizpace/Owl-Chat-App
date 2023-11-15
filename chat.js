@@ -23,4 +23,7 @@ function createMyChat(chatsDiv, text, userName, time) {
 
   // Scroll the new message into view
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
+
+
+  
 }

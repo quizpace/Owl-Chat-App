@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.style.display = "none";
       // Now you can use the userName when sending messages
       createUsersList(userName);
-      sendchatInputToServer(`${userName} joined the chat!`);
+      createBubble(`${userName} joined the chat!`);
     } else {
       alert("Please enter a valid name.");
     }

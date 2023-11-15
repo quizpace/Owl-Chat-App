@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
 
 /* Your additional CSS rules here */
 
@@ -41,6 +42,21 @@ body {
 }
 
 .chat-box.expanded {
+  /* width: 600px;
+  height: 600px; */
+  overflow: scroll;
+}
+
+.chat-box.bigger {
+  width: 400px;
+  height: 450px;
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+
+.chat-box.bigger.expanded {
   /* width: 600px;
   height: 600px; */
   overflow: scroll;
