@@ -1,0 +1,99 @@
+/* -- users section -- */
+
+.container-emojis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+/* chat box section */
+
+.emoji-box {
+  width: 380px;
+  height: 410px;
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+  border-radius: 50px;
+  position: relative;
+  left: -135%;
+  z-index: 1;
+}
+
+/* about client */
+
+.emoji-bank {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 80px;
+  background-color: rgb(88, 63, 111);
+  padding: 15px;
+}
+
+.emoji-info {
+  color: rgb(236, 225, 247);
+  padding: 15px;
+}
+.emoji-info p {
+  color: rgb(222, 255, 187);
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.emoji {
+  width: 60%;
+  word-wrap: break-word;
+  /* background-color: #e0b1cb; */
+  /* background-color: #4d194d; */
+  background-color: #35012c;
+  /* background-color: #5f4b66; */
+  padding: 7px 10px;
+  border-radius: 10px 10px 10px 0;
+  margin: 10px 0;
+}
+
+/* chat box button section */
+.emoji-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  position: fixed;
+  bottom: 20px;
+  right: 83%;
+}
+.emoji-btn img {
+  width: 100%; /* Adjust the percentage to your preference */
+  height: 100%; /* Adjust the percentage to your preference */
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0px;
+  transition: 0.4s ease-in-out;
+}
+
+.emoji-btn:hover img {
+  transform: rotate(30deg);
+}
+
+.emoji-table {
+  display: grid;
+
+}
+
+.emoji-table td {
+  background-color: white;
+  /* צביעת כל תא לצבע לבן */
+}
+
+td {
+  width: 30px; /* Adjust the width of each cell */
+  height: 30px; /* Adjust the height of each cell */
+  text-align: center;
+  border: 1px solid #ccc;
+}
+

@@ -9,6 +9,12 @@ $(document).ready(() => {
     $(".users-box").slideToggle("slow");
   });
 });
+$(document).ready(() => {
+  $(".emoji-btn").click(() => {
+    $(".emoji-box").slideToggle("slow");
+  });
+});
+
 
 // Call the function when the page loads
 window.onload = async () => {
