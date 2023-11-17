@@ -1,6 +1,5 @@
 #bubble {
   /* background-image: url('/img/bub.png'); */
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,35 +52,42 @@
 
 .bubbleText {
   font-family: "Caveat", cursive;
-  background: linear-gradient(to right, rgb(246, 143, 246), rgb(139, 60, 196), rgb(77, 77, 188), rgb(145, 231, 16), rgba(255, 255, 0, 0.836), orange, rgb(213, 9, 9));
+  background: linear-gradient(
+    to right,
+    rgb(246, 143, 246),
+    rgb(139, 60, 196),
+    rgb(77, 77, 188),
+    rgb(145, 231, 16),
+    rgba(255, 255, 0, 0.836),
+    orange,
+    rgb(213, 9, 9)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   z-index: 3;
 }
 
-
 @keyframes rise {
-    0% {
-      transform: translateY(500px) scale(0.5); /* Start from the bottom with a small size */
-      opacity: 0; /* Gradually appear */
-    }
-    10% {
-      opacity: 1; /* Start to appear */
-    }
-    30% {
-      transform: translateY(300px) scale(1.4); /* Begin to rise and increase in size */
-    }
-    50% {
-      transform: translateY(100px) scale(1.8); /* Continue rising and increase in size */
-    }
-    75% {
-      transform: translateY(0px) scale(2.2); /* Further rise and increase in size */
-      opacity: 0.4;
-    }
-    100% {
-      transform: translateY(-400px) scale(2.6); /* End at the top with the largest size */
-      opacity: 0.1;
-    }
+  0% {
+    transform: translateY(500px) scale(0.5); /* Start from the bottom with a small size */
+    opacity: 0; /* Gradually appear */
   }
-  
+  10% {
+    opacity: 1; /* Start to appear */
+  }
+  30% {
+    transform: translateY(300px) scale(1.4); /* Begin to rise and increase in size */
+  }
+  50% {
+    transform: translateY(100px) scale(1.8); /* Continue rising and increase in size */
+  }
+  75% {
+    transform: translateY(0px) scale(2.2); /* Further rise and increase in size */
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-400px) scale(2.6); /* End at the top with the largest size */
+    opacity: 0.1;
+  }
+}

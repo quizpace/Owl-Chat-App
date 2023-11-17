@@ -8,6 +8,16 @@
   color: rgb(147, 250, 43);
 }
 
+.fullscreen {
+  position: absolute;
+  cursor: pointer;
+  top: 2%;
+  left: 0%;
+  width: 8%; /* Adjust the width as needed */
+  opacity: 1;
+  z-index: 1;
+}
+
 #scroll-button {
   position: absolute;
   top: 25%;

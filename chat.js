@@ -38,19 +38,37 @@ document.addEventListener("DOMContentLoaded", function () {
       chatBox.style.height = "600px";
       clientImg.style.top = "-350%";
       clientImg.style.width = "184%";
-      scrollButton.style.left = "25%"; 
-      scrollButton.style.top = "20%"; 
+      scrollButton.style.left = "25%";
+      scrollButton.style.top = "20%";
       isExpanded = true;
     } else {
       chatBox.style.width = "400px";
       chatBox.style.height = "450px";
       clientImg.style.top = "-225%";
       clientImg.style.width = "190%";
-      scrollButton.style.left = "36%"; 
-      scrollButton.style.top = "25%"; 
+      scrollButton.style.left = "36%";
+      scrollButton.style.top = "25%";
       isExpanded = false;
     }
   });
 });
 
+// FullScreen Button!
 
+
+
+
+const fullscreenButton = document.getElementById("fullscreen");
+fullscreenButton.addEventListener("click", () => {
+  if (document.fullscreenElement) {
+    // Exit fullscreen mode
+    document.exitFullscreen().catch((err) => {
+      console.error("Error exiting fullscreen:", err);
+    });
+  } else {
+    // Enter fullscreen mode
+    document.documentElement.requestFullscreen().catch((err) => {
+      console.error("Error entering fullscreen:", err);
+    });
+  }
+});
