@@ -1,0 +1,17 @@
+#canvas1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.youtubeLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 15px;
+  max-width: 40%;
+}
+.youtubeLabel a {
+  color: navy;
+}
