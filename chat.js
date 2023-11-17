@@ -23,7 +23,34 @@ function createMyChat(chatsDiv, text, userName, time) {
 
   // Scroll the new message into view
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
-
-
-  
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const chatBox = document.querySelector(".chat-box");
+  const clientImg = document.querySelector(".client img");
+  const scrollButton = document.getElementById("scroll-button"); // Assuming you have an element with ID "scroll-button"
+
+  let isExpanded = false;
+
+  clientImg.addEventListener("click", function () {
+    if (!isExpanded) {
+      chatBox.style.width = "600px";
+      chatBox.style.height = "600px";
+      clientImg.style.top = "-350%";
+      clientImg.style.width = "184%";
+      scrollButton.style.left = "25%"; 
+      scrollButton.style.top = "20%"; 
+      isExpanded = true;
+    } else {
+      chatBox.style.width = "400px";
+      chatBox.style.height = "450px";
+      clientImg.style.top = "-225%";
+      clientImg.style.width = "190%";
+      scrollButton.style.left = "36%"; 
+      scrollButton.style.top = "25%"; 
+      isExpanded = false;
+    }
+  });
+});
+
+

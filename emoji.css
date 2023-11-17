@@ -11,10 +11,10 @@
 
 .emoji-box {
   width: 380px;
-  height: 410px;
+  height: 388px;
   background-color: rgb(255, 255, 255);
   overflow: hidden;
-  border-radius: 50px;
+  border-radius: 12px;
   position: relative;
   left: -135%;
   z-index: 1;
@@ -87,13 +87,29 @@
 
 .emoji-table td {
   background-color: white;
-  /* צביעת כל תא לצבע לבן */
-}
-
-td {
   width: 30px; /* Adjust the width of each cell */
   height: 30px; /* Adjust the height of each cell */
   text-align: center;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(155, 100, 183, 0.416);
+  border-radius: 5px;
+  /* צביעת כל תא לצבע לבן */
+  cursor: pointer;
 }
 
+
+.emojis-icons {
+  border-collapse: collapse;
+  width: 100%; /* Adjust the width of the table */
+  margin-left: auto; /* Push the table to the right */
+  cursor: pointer;
+  
+}
+
+.emojis-icons td {
+  padding: 5px; /* Adjust spacing between cells */
+}
+
+.emojis-icons img {
+  width: 22px; /* Adjust the width of the images */
+  height: 22px; /* Adjust the height of the images */
+}

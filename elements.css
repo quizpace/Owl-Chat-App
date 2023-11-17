@@ -70,6 +70,7 @@
   position: relative;
   width: 30%;
   cursor: url("cursors/owl.cur"), auto;
+  z-index: 1; /* Adjust z-index as necessary */
 }
 
 /* links style */

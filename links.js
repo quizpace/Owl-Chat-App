@@ -1,18 +1,16 @@
 function convertURLsToLinks(text, chatType) {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-  
-    const textWithLinks = text.replace(urlRegex, (url) => {
-      if (isYouTubeLink(url)) {
-        return `<div class="${chatType}-chat"><div class="link-container"><a href="#" class="youtube-link" onclick="openYouTubeModal('${url}')">${url}</a><img src="/img/tv6.png" class="tvIcon" alt="tvlink" onclick="openYouTubeModal('${url}')" /></div></div>`;
-      } else {
-        return `<div class="${chatType}-chat"><a href="${url}" target="_blank" class="other-link">${url}</a></div>`;
-      }
-    });
-  
-    return textWithLinks;
-  }
-  
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
 
+  const textWithLinks = text.replace(urlRegex, (url) => {
+    if (isYouTubeLink(url)) {
+      return `<div class="${chatType}-chat"><div class="link-container"><a href="#" class="youtube-link" onclick="openYouTubeModal('${url}')">${url}</a><img src="/img/tv6.png" class="tvIcon" alt="tvlink" onclick="openYouTubeModal('${url}')" /></div></div>`;
+    } else {
+      return `<div class="${chatType}-chat"><a href="${url}" target="_blank" class="other-link">${url}</a></div>`;
+    }
+  });
+
+  return textWithLinks;
+}
 
 // YOU TUBE LINKS
 
@@ -74,18 +72,17 @@ function openYouTubeModal(url) {
   }
 }
 
-// Rest of your existing functions for handling YouTube links and displaying the modal
-// ...
 
-// Function to open YouTube modal with the video link
-function openYouTubeModal(url) {
-  const youtubeRegex =
-    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-  const youtubeMatch = url.match(youtubeRegex);
 
-  if (youtubeMatch) {
-    const videoId = youtubeMatch[1];
-    const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-    displayYouTubeVideo(embedUrl);
-  }
-}
+// // Function to open YouTube modal with the video link
+// function openYouTubeModal(url) {
+//   const youtubeRegex =
+//     /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+//   const youtubeMatch = url.match(youtubeRegex);
+
+//   if (youtubeMatch) {
+//     const videoId = youtubeMatch[1];
+//     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+//     displayYouTubeVideo(embedUrl);
+//   }
+// }
