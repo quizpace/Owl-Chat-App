@@ -92,7 +92,8 @@ async function getTextFromServer() {
             const clientChatDiv = document.createElement("div");
             clientChatDiv.classList.add("client-chat");
             if (message.imageUrl) {
-              clientChatDiv.style.background = "linear-gradient(to right, #584460, white)";
+              clientChatDiv.style.background =
+                "linear-gradient(to right, #584460, white)";
             }
             clientChatDiv.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
 
@@ -124,7 +125,6 @@ async function getTextFromServer() {
     console.error("Error fetching data:", error);
   }
 }
-
 
 // Call the function when the page loads
 window.onload = async () => {

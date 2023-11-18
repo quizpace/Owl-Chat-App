@@ -127,7 +127,6 @@ $(document).ready(function () {
 // For Stickers
 async function sendPngMessageToServer(userName, imageUrl) {
   try {
-    console.log("Sending PNG message to the server...");
     const response = await fetch("https://db-vkyv.onrender.com/chats", {
       method: "POST",
       headers: {
@@ -139,7 +138,7 @@ async function sendPngMessageToServer(userName, imageUrl) {
         time: new Date().toISOString(),
       }),
     });
-
+    // console.log("Sending PNG message to the server...");
     if (!response.ok) {
       throw new Error(`Error sending PNG message: ${response.statusText}`);
     }
@@ -179,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create the chat only if the clicked image is in the stickers table
         const chatsContainer = document.getElementById("chatsContainer");
         createMyChat2(chatsContainer, myUserName, formattedTime, pngUrl);
+        sendPngMessageToServer(myUserName, pngUrl);
       }
     }
   });

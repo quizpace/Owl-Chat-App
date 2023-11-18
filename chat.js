@@ -28,7 +28,6 @@ function createMyChat(chatsDiv, text, userName, time) {
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
 }
 
-
 function createMyChat2(chatsDiv, userName, time, imageUrl) {
   const myChatDiv = document.createElement("div");
   myChatDiv.classList.add("my-chat-sticker");
@@ -42,11 +41,10 @@ function createMyChat2(chatsDiv, userName, time, imageUrl) {
   imageElement.style.width = "100px";
   imageElement.style.height = "100px";
 
-  imageElement.addEventListener("click", function(event) {
+  imageElement.addEventListener("click", function (event) {
     console.log("Clicked Image Source:", event.target.src);
     // Perform actions with the image source when clicked
   });
-
   // Set the background gradient style
   // myChatDiv.style.background = "linear-gradient(to right, #584460, #0f0c29)";
 
@@ -58,10 +56,6 @@ function createMyChat2(chatsDiv, userName, time, imageUrl) {
   // Scroll the new message into view
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
 }
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const chatBox = document.querySelector(".chat-box");
