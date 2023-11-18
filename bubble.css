@@ -14,17 +14,17 @@
 
   background: linear-gradient(
     to right,
-    rgb(246, 143, 246),
-    rgb(139, 60, 196),
-    rgb(77, 77, 188),
-    rgb(145, 231, 16),
-    rgba(255, 255, 0, 0.836),
-    orange,
-    rgb(213, 9, 9)
+    rgba(246, 143, 246, 0.471),
+    rgba(139, 60, 196, 0.463),
+    rgba(77, 77, 188, 0.505),
+    rgba(145, 231, 16, 0.565),
+    rgba(255, 255, 0, 0.47),
+    rgba(255, 166, 0, 0.588),
+    rgba(213, 9, 9, 0.317)
   );
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
   animation: rise 15s linear;
-  animation-iteration-count: 3;
+  animation-iteration-count: 1;
   /* animation-delay: 1s; */
   animation-timing-function: ease-in-out;
   opacity: 0;
@@ -88,6 +88,6 @@
   }
   100% {
     transform: translateY(-400px) scale(2.6); /* End at the top with the largest size */
-    opacity: 0.;
+    opacity: 0.01;
   }
 }

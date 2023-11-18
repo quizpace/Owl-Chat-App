@@ -72,8 +72,6 @@ function openYouTubeModal(url) {
   }
 }
 
-
-
 // // Function to open YouTube modal with the video link
 // function openYouTubeModal(url) {
 //   const youtubeRegex =

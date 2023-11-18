@@ -10,10 +10,10 @@
 
 .fullscreen {
   position: absolute;
-  cursor: pointer;
+  cursor: url(/cursors/main2.cur);
   top: 2%;
   left: 0%;
-  width: 8%; /* Adjust the width as needed */
+  width: 6%; /* Adjust the width as needed */
   opacity: 1;
   z-index: 1;
 }
@@ -29,6 +29,7 @@
 
 #scroll-button:hover {
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8); /* Adjust the values as needed */
+  cursor: url(/cursors/phand.cur);
 }
 
 .send-btn {
@@ -79,7 +80,7 @@
 .tvIcon {
   position: relative;
   width: 30%;
-  cursor: url("cursors/owl.cur"), auto;
+  cursor: url("cursors/phand.cur"), auto;
   z-index: 1; /* Adjust z-index as necessary */
 }
 
