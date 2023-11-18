@@ -90,9 +90,13 @@
         <div class="emoji-bank">
           
           <div class="emoji-info">
-            <h2>Emojis</h2>
+            <span id="emoji-sp">Emojis</span>
+            <span>🧩</span>
+            <span id="sticker-sp">Stickers</span>
             <p>free your mind</p>
             <table class="emojis-icons" id="emoji-icons">
+              <input class="stickers-search" id="sticker-search" placeholder="Search 4 Stickers" />
+              <img src="/img/stickers-src.png" class="search-stickers-btn" id="stickerSearch" />
               <tbody>
                 <tr>
                   <td data-category="smileys-and-people"><img src="/emoji-icons/smily-emoji.png" alt="smiley"></td>
@@ -106,6 +110,7 @@
                 </tr>
               </tbody>
             </table>
+
           </div>
         </div>
 
@@ -114,6 +119,10 @@
       <tbody id="smileysCategory"></tbody>
       <tbody id="animalsCategory"></tbody>
       <!-- Add more tbody sections for different categories -->
+      <div class="stickers-box">
+        <table class="stickers-icons" id="stickers-icons">
+        </table>
+        </div>
     </table>
   </div>
 </div>
@@ -163,6 +172,7 @@
     <script src="time.js"></script>
     <script src="bubble.js"></script>
     <script src="emoji.js"></script>
+    <script src="stickers.js"></script>
     <script src="inflat-bubble.js"></script>
 
   </body>

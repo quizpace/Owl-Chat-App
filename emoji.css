@@ -28,13 +28,21 @@
   align-items: center;
   height: 80px;
   background-color: rgb(88, 63, 111);
-  padding: 15px;
+  padding: 1px;
 }
 
 .emoji-info {
   color: rgb(236, 225, 247);
   padding: 15px;
+  margin-top: 15px;
 }
+
+.emoji-info span {
+  color: rgb(255, 222, 187);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
 .emoji-info p {
   color: rgb(222, 255, 187);
   font-weight: bold;
@@ -44,10 +52,7 @@
 .emoji {
   width: 60%;
   word-wrap: break-word;
-  /* background-color: #e0b1cb; */
-  /* background-color: #4d194d; */
   background-color: #35012c;
-  /* background-color: #5f4b66; */
   padding: 7px 10px;
   border-radius: 10px 10px 10px 0;
   margin: 10px 0;
@@ -82,7 +87,6 @@
 
 .emoji-table {
   display: grid;
-
 }
 
 .emoji-table td {
@@ -96,20 +100,98 @@
   cursor: url(/cursors/main.cur);
 }
 
-
 .emojis-icons {
   border-collapse: collapse;
   width: 100%; /* Adjust the width of the table */
-  margin-left: auto; /* Push the table to the right */
+  margin-left: 100px; /* Push the table to the right */
   cursor: pointer;
-  
+  float: right;
 }
 
 .emojis-icons td {
-  padding: 5px; /* Adjust spacing between cells */
+  padding: auto; /* Adjust spacing between cells */
 }
 
 .emojis-icons img {
-  width: 22px; /* Adjust the width of the images */
-  height: 22px; /* Adjust the height of the images */
+  border-radius: 15px;
+  background-color: rgb(249, 255, 127);
+  width: 30px; /* Adjust the width of the images */
+  height: 30px; /* Adjust the height of the images */
+  margin-bottom: 10px;
+  padding: auto;
+}
+
+.stickers-search {
+  margin: 6px;
+  display: none;
+  margin-bottom: 20px;
+}
+
+#sticker-sp,
+#emoji-sp {
+  cursor: url("cursors/phand.cur"), pointer !important;
+  padding: 10px;
+}
+
+.search-stickers-btn {
+  cursor: pointer !important;
+  display: none;
+  width: 65px;
+  position: absolute;
+  top: 25px;
+  left: 190px;
+}
+
+/* Add this CSS to your existing stylesheet */
+.emoji-table {
+  /* Your existing emoji table styles */
+  position: relative;
+}
+
+.stickers-box {
+  /* Styles for the stickers box */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Add this CSS to your existing stylesheet */
+.emoji-table {
+  /* Your existing emoji table styles */
+  position: relative;
+}
+
+/* ... (Your existing CSS) */
+
+.stickers-box {
+  /* Styles for the stickers box */
+  position: absolute;
+  top: 60%; /* Adjust as needed */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* Adjust width as needed */
+  max-height: 300px; /* Set a maximum height for the stickers box */
+  overflow-y: auto; /* Enable vertical scrolling */
+  display: flex;
+  justify-content: space-evenly; /* Distribute stickers horizontally */
+  align-items: center; /* Center stickers vertically */
+  flex-wrap: wrap; /* Allow stickers to wrap if needed */
+  z-index: -1;
+}
+
+.stickers-icons {
+  /* Styles for the stickers within the stickers box */
+  display: flex;
+  justify-content: center; /* Center stickers horizontally within each row */
+  align-items: center; /* Center stickers vertically within each row */
+  /* Additional styles for individual stickers */
+}
+
+.stickers-icons img {
+  /* Additional styles for individual stickers */
+  width: 100px;
+  height: 80px;
+  margin: 10px;
+  /* Adjust other styles as needed */
 }
