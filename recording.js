@@ -27,34 +27,32 @@ stopButton.addEventListener("click", () => {
   }
 });
 
+stopButton.addEventListener("click", () => {
+  if (recorder) {
+    recorder.stopRecording(() => {
+      const blob = recorder.getBlob();
 
-stopButton.addEventListener('click', () => {
-    if (recorder) {
-      recorder.stopRecording(() => {
-        const blob = recorder.getBlob();
-  
-        // Create FormData object to send the Blob data
-        const formData = new FormData();
-        formData.append('audio', blob, 'recorded_audio.wav');
-  
-        // Send the audio Blob to the server
-        fetch('http://your-json-server-url/audios', {
-          method: 'POST',
-          body: formData,
+      // Create FormData object to send the Blob data
+      const formData = new FormData();
+      formData.append("audio", blob, "recorded_audio.wav");
+
+      // Send the audio Blob to the server
+      fetch("http://localhost:4000/audioUpload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log("Audio sent successfully!");
+            // Handle success, if needed
+          } else {
+            throw new Error("Failed to send audio");
+          }
         })
-          .then(response => {
-            if (response.ok) {
-              console.log('Audio sent successfully!');
-              // Handle success, if needed
-            } else {
-              throw new Error('Failed to send audio');
-            }
-          })
-          .catch(error => {
-            console.error('Error sending audio:', error);
-            // Handle errors
-          });
-      });
-    }
-  });
-  
+        .catch((error) => {
+          console.error("Error sending audio:", error);
+          // Handle errors
+        });
+    });
+  }
+});
