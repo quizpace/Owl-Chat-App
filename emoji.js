@@ -62,14 +62,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
   // Select all elements with the class 'emoji-icon'
-  const emojiIcons = document.querySelectorAll('.emoji-table');
+  const emojiIcons = document.querySelectorAll(".emoji-table");
 
   // Attach the click event listener only to the emoji icons
-  emojiIcons.forEach(icon => {
-    icon.addEventListener('click', function(event) {
+  emojiIcons.forEach((icon) => {
+    icon.addEventListener("click", function (event) {
       const clickedEmoji = document.getElementById(event.target.id);
       if (clickedEmoji) {
         const emojiUnicode = clickedEmoji.textContent;
@@ -82,13 +81,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   createEmojiGrid("smileys-and-people");
-  });
-
+});
 
 //buttons id
+
 function logElementInfo(event) {
-  console.log("Clicked Element ID:", event.target.id);
-  console.log("Clicked Element Source:", event.target.src);
+  clickedElement = event.target; // Save event.target to the variable
+  console.log("Clicked Element ID:", clickedElement.id);
+  console.log("Clicked Element Source:", clickedElement.src);
 }
 
 document.addEventListener("DOMContentLoaded", function () {

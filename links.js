@@ -1,4 +1,7 @@
 function convertURLsToLinks(text, chatType) {
+  if (!text) {
+    return ""; // or handle the case when text is undefined or empty
+  }
   const urlRegex = /(https?:\/\/[^\s]+)/g;
 
   const textWithLinks = text.replace(urlRegex, (url) => {

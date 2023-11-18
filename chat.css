@@ -48,21 +48,6 @@ body {
   overflow: scroll;
 }
 
-.chat-box.bigger {
-  width: 400px;
-  height: 450px;
-  background-color: rgb(255, 255, 255);
-  overflow: hidden;
-  border-radius: 10px;
-  position: relative;
-}
-
-.chat-box.bigger.expanded {
-  /* width: 600px;
-  height: 600px; */
-  overflow: scroll;
-}
-
 /* about client */
 
 .client {
@@ -70,7 +55,7 @@ body {
   justify-content: start;
   align-items: center;
   height: 80px;
-  background-color: rgb(88, 63, 111);
+  background: linear-gradient(to right, #584460, rgb(88, 63, 111));
   padding: 15px;
   top: 0;
   position: sticky;
@@ -109,7 +94,8 @@ body {
   word-wrap: break-word;
   /* background-color: #e0b1cb; */
   /* background-color: #4d194d; */
-  background-color: #35012c;
+  /* background-color: #35012c; */
+  background: linear-gradient(to right, #584460, #35012c);
   /* background-color: #5f4b66; */
   padding: 7px 10px;
   border-radius: 10px 10px 10px 0;
@@ -124,6 +110,16 @@ body {
   border-radius: 10px 10px 0 10px;
   margin: 5px 0 5px auto;
 }
+
+.my-chat-sticker {
+  width: 60%;
+  word-wrap: break-word;
+  background: linear-gradient(to right, #584460, #ffffff);
+  padding: 7px 10px;
+  border-radius: 10px 10px 0 10px;
+  margin: 5px 0 5px auto;
+}
+
 
 /* input section */
 

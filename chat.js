@@ -18,12 +18,50 @@ function createMyChat(chatsDiv, text, userName, time) {
   // Convert URLs in the text to clickable links
   const textWithLinks = convertURLsToLinks(text);
 
+  // Set the background gradient style
+  myChatDiv.style.background = "linear-gradient(to right, #584460, #0f0c29)";
+
   myChatDiv.innerHTML = `<span class="username-style">${userName}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
   chatsDiv.appendChild(myChatDiv);
 
   // Scroll the new message into view
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
 }
+
+
+function createMyChat2(chatsDiv, userName, time, imageUrl) {
+  const myChatDiv = document.createElement("div");
+  myChatDiv.classList.add("my-chat-sticker");
+
+  // Create an image element with the provided PNG URL
+  const imageElement = document.createElement("img");
+  imageElement.src = imageUrl;
+  imageElement.classList.add("chat-image");
+
+  // Set the width and height of the image
+  imageElement.style.width = "100px";
+  imageElement.style.height = "100px";
+
+  imageElement.addEventListener("click", function(event) {
+    console.log("Clicked Image Source:", event.target.src);
+    // Perform actions with the image source when clicked
+  });
+
+  // Set the background gradient style
+  // myChatDiv.style.background = "linear-gradient(to right, #584460, #0f0c29)";
+
+  myChatDiv.innerHTML = `<span class="username-style">${userName}</span> <br> <span class="message-time">${time}</span>`;
+  // Append the image element to the chat container
+  myChatDiv.appendChild(imageElement);
+  chatsDiv.appendChild(myChatDiv);
+
+  // Scroll the new message into view
+  myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
+}
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const chatBox = document.querySelector(".chat-box");
@@ -54,9 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // FullScreen Button!
-
-
-
 
 const fullscreenButton = document.getElementById("fullscreen");
 fullscreenButton.addEventListener("click", () => {

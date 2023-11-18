@@ -26,7 +26,7 @@
   justify-content: start;
   align-items: center;
   height: 80px;
-  background-color: rgb(88, 63, 111);
+  background: linear-gradient(to right, #584460, rgb(88, 63, 111));
   padding: 15px;
 }
 

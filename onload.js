@@ -29,5 +29,5 @@ window.onload = async () => {
     if (!chatBox.classList.contains("expanded")) {
       scrollChatBoxDown();
     }
-  }, 10); // Set the interval to 1000 milliseconds (1 second)
+  }, 9000); // Set the interval to 1000 milliseconds (1 second)
 };

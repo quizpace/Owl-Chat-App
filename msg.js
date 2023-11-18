@@ -15,6 +15,7 @@ document
 
     // Send the chat input to the server
     await sendchatInputToServer(chatInput);
+    
 
     // Now that the data is sent, create and append the my-chat div
     createMyChat(chatsDiv, chatInput, userName, time);

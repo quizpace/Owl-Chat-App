@@ -27,7 +27,7 @@
   justify-content: start;
   align-items: center;
   height: 80px;
-  background-color: rgb(88, 63, 111);
+  background: linear-gradient(to right, #584460, rgb(88, 63, 111));
   padding: 1px;
 }
 
@@ -170,7 +170,7 @@
   top: 60%; /* Adjust as needed */
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%; /* Adjust width as needed */
+  width: 100%; /* Adjust width as needed */
   max-height: 300px; /* Set a maximum height for the stickers box */
   overflow-y: auto; /* Enable vertical scrolling */
   display: flex;
