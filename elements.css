@@ -14,9 +14,10 @@
   top: 2%;
   left: 0%;
   width: 6%; /* Adjust the width as needed */
-  opacity: 1;
+  opacity: 0.9;
   z-index: 1;
 }
+
 
 #scroll-button {
   position: absolute;
@@ -62,6 +63,7 @@
   overflow: hidden;
   position: fixed;
   bottom: 20px;
+  left: 50%;
 }
 .chat-btn img {
   width: 100%;
@@ -108,4 +110,25 @@
   /* Your styles for visited other links */
   color: rgb(127, 158, 13); /* For example */
   /* Add other styles */
+}
+
+.html-canvas h5 {
+  position: absolute;
+  top: 2%;
+  left: 10%;
+  color: rgb(29, 1, 29);
+  opacity: 0;
+  animation: fadeInOut 60s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0.3; /* Start from fully transparent */
+  }
+  50% {
+    opacity: 0; /* Peak opacity */
+  }
+  100% {
+    opacity: 0; /* End at fully transparent */
+  }
 }

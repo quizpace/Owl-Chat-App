@@ -40,6 +40,7 @@ body {
   overflow: hidden;
   border-radius: 10px;
   position: relative;
+  left: 5%;
 }
 
 .chat-box.expanded {
@@ -55,7 +56,7 @@ body {
   justify-content: start;
   align-items: center;
   height: 80px;
-  background: linear-gradient(to right, #584460, rgb(88, 63, 111));
+  background: linear-gradient(to right, #72587c, rgb(69, 48, 88));
   padding: 15px;
   top: 0;
   position: sticky;
@@ -86,7 +87,7 @@ body {
   padding: 0 15px;
   color: #fff;
   position: relative;
-  font-size: 0.9em;
+  font-size: 1.1em;
 }
 
 .client-chat {
@@ -119,7 +120,6 @@ body {
   border-radius: 10px 10px 0 10px;
   margin: 5px 0 5px auto;
 }
-
 
 /* input section */
 
