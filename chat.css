@@ -31,6 +31,14 @@ body {
   align-items: center;
 }
 
+.rainbow {
+  position: absolute;
+  top: 20%;
+  width: 70%;
+  right: 13%;
+  transform: rotate(10deg); /* Correct way to rotate an element */
+}
+
 /* chat box section */
 
 .chat-box {
@@ -141,7 +149,7 @@ position: sticky;
 }
 
 .chat-input input {
-  width: calc(100% - 40px);
+  width: calc(100% - 80px);
   height: 100%;
   background-color: #f9ebff;
   border-radius: 50px;
@@ -153,3 +161,5 @@ position: sticky;
 .chat-input input:hover {
   cursor: url("cursors/but-pur.cur"), auto;
 }
+
+

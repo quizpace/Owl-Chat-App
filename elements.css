@@ -18,7 +18,6 @@
   z-index: 1;
 }
 
-
 #scroll-button {
   position: absolute;
   top: 25%;
@@ -132,3 +131,93 @@
     opacity: 0; /* End at fully transparent */
   }
 }
+
+#toggleRecording {
+  position: absolute;
+  bottom: 5px;
+  right: 0.3%;
+  width: 12%;
+  height: 65%;
+  background-color: #fff;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+#toggleRecording:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(198, 233, 243, 0.55),
+    rgba(198, 208, 243, 0.922)
+  );
+  opacity: 1;
+  border-radius: 35px;
+}
+
+
+/* Style for the audio message container */
+.audio-message {
+  display: flex;
+  align-items: center;
+  background-color: rgba(207, 181, 246, 0.166);
+  border-radius: 15px;
+}
+
+/* Style for the play/pause button within .audio-message */
+.audio-message .play-pause-button {
+  position: relative;
+  left: 4%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 10px;
+  opacity: 5;
+}
+
+/* Style for the progress bar within .audio-message */
+.audio-message progress {
+  height: 7px;
+  background-image: linear-gradient(
+    to right,
+    rgba(131, 94, 191, 0.855),
+    rgba(189, 241, 241, 0.855)
+  );
+  width: calc(100% - 40px); /* Adjust width as needed */
+  margin: 0 10px;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* For Firefox */
+::-moz-progress-bar {
+  background-image: linear-gradient(
+    to right,
+    rgba(213, 241, 189, 0.855),
+    rgba(84, 50, 137, 0.855)
+  );
+  border-radius: 15px;
+  opacity: 0.7;
+}
+
+/* For WebKit-based browsers like Chrome and Safari */
+::-webkit-progress-value {
+  background-image: linear-gradient(
+    to right,
+    rgba(213, 241, 189, 0.855),
+    rgba(84, 50, 137, 0.855)
+  );
+  border-radius: 15px;
+  opacity: 0.7;
+}
+
+/* For IE/Edge */
+::-ms-fill {
+  background-image: linear-gradient(
+    to right,
+    rgba(213, 241, 189, 0.855),
+    rgba(84, 50, 137, 0.855)
+  );
+  border-radius: 15px;
+  opacity: 0.7;
+}
+

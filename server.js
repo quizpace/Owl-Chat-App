@@ -18,15 +18,36 @@ async function sendchatInputToServer(chatInput) {
     if (!response.ok) {
       throw new Error(`Error sending data: ${response.statusText}`);
     }
-
-    // Assuming you want to do something else after a successful response
-    // ...
   } catch (error) {
     console.error("Error sending data:", error);
   }
 }
 
-// Function to fetch all messages from the server and create chat divs for each message ID
+// Audio
+
+async function sendAudioInfoToServer(userName, fileInfo) {
+  try {
+    console.log("Sending data to the server...");
+    const response = await fetch("https://db-vkyv.onrender.com/chats", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: userName, // Assuming userName is globally available
+        text: `${fileInfo}`, // Place the fileInfo in the text field
+        time: new Date().toISOString(),
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error sending data: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error sending data:", error);
+  }
+}
+
 // async function getTextFromServer() {
 //   try {
 //     const response = await fetch("https://db-vkyv.onrender.com/chats");
@@ -48,7 +69,20 @@ async function sendchatInputToServer(chatInput) {
 //             // Create a message format with line breaks
 //             const clientChatDiv = document.createElement("div");
 //             clientChatDiv.classList.add("client-chat");
+//             if (message.imageUrl) {
+//               clientChatDiv.style.background =
+//                 "linear-gradient(to right, #584460, white)";
+//             }
 //             clientChatDiv.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
+
+//             // Check if there's an imageUrl in the message
+//             if (message.imageUrl) {
+//               const imageElement = document.createElement("img");
+//               imageElement.src = message.imageUrl;
+//               imageElement.width = 100;
+//               imageElement.height = 100;
+//               clientChatDiv.appendChild(imageElement);
+//             }
 
 //             // Create a separate div for each message ID
 //             const messageDiv = document.createElement("div");
@@ -70,6 +104,16 @@ async function sendchatInputToServer(chatInput) {
 //   }
 // }
 
+function extractFileName(text) {
+  const words = text.split(" ");
+  for (const word of words) {
+    if (word.includes(".wav")) {
+      return word;
+    }
+  }
+  return "";
+}
+
 async function getTextFromServer() {
   try {
     const response = await fetch("https://db-vkyv.onrender.com/chats");
@@ -80,42 +124,48 @@ async function getTextFromServer() {
 
         if (!processedMessageIds.has(messageId)) {
           const username = message.user;
-
-          // Parse the time string to create a Date object
           const time = parseMessageTime(message.time, username);
+          const textWithLinks = convertURLsToLinks(message.text);
 
           if (username !== myUserName) {
-            // Convert URLs in the text to clickable links
-            const textWithLinks = convertURLsToLinks(message.text);
+            // Check username condition here
+            const messageDiv = document.createElement("div");
+            messageDiv.id = `message-${messageId}`;
 
-            // Create a message format with line breaks
             const clientChatDiv = document.createElement("div");
             clientChatDiv.classList.add("client-chat");
-            if (message.imageUrl) {
-              clientChatDiv.style.background =
-                "linear-gradient(to right, #584460, white)";
-            }
-            clientChatDiv.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
 
-            // Check if there's an imageUrl in the message
+            const messageContent = document.createElement("div");
+            messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
+
             if (message.imageUrl) {
               const imageElement = document.createElement("img");
               imageElement.src = message.imageUrl;
               imageElement.width = 100;
               imageElement.height = 100;
-              clientChatDiv.appendChild(imageElement);
+              messageContent.appendChild(imageElement);
+
+              clientChatDiv.style.background =
+                "linear-gradient(to right, #584460, white)";
             }
 
-            // Create a separate div for each message ID
-            const messageDiv = document.createElement("div");
-            messageDiv.id = `message-${messageId}`;
+            if (message.text && message.text.includes(".wav")) {
+              const audioPlayer = document.createElement("audio");
+              audioPlayer.controls = true;
+              audioPlayer.src = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
+                message.text
+              )}`;
+              messageContent.appendChild(audioPlayer);
+            }
+
+            clientChatDiv.appendChild(messageContent);
             messageDiv.appendChild(clientChatDiv);
             chatsDiv.appendChild(messageDiv);
 
-            // Scroll the new message into view
-            clientChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
-
-            // Add the message ID to the set
+            clientChatDiv.scrollIntoView({
+              behavior: "smooth",
+              block: "end",
+            });
             processedMessageIds.add(messageId);
           }
         }
@@ -130,7 +180,7 @@ async function getTextFromServer() {
 window.onload = async () => {
   await getTextFromServer();
   // Start the interval after loading all messages
-  setInterval(getTextFromServer, 200);
+  setInterval(getTextFromServer, 5000);
 };
 
 // delete msgs from server
