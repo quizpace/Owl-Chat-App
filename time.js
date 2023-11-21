@@ -3,19 +3,17 @@ const username = myUserName;
 // Function to parse the time string based on the user
 function parseMessageTime(timeString, username) {
   if (username == myUserName) {
-    // Parse time for Avi using ISO 8601 format
+    // Parse time for Avi using 12-hour format
     return new Date(timeString).toLocaleTimeString([], {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
     });
   } else {
-    // Parse time for other users using "HH:mm:ss:SSS" format
-    const timeParts = timeString.split(":");
-    const hours = timeParts[0];
-    const minutes = timeParts[1];
-    // const seconds = timeParts[2];
-    // const milliseconds = timeParts[3];
+    // Parse time for other users using 12-hour format
+    const time = new Date(timeString);
+    const hours = (time.getHours() % 12 || 12).toString().padStart(2, "0");
+    const minutes = time.getMinutes().toString().padStart(2, "0");
     return `${hours}:${minutes}`;
   }
 }

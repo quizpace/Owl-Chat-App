@@ -18,19 +18,7 @@
   z-index: 1;
 }
 
-#scroll-button {
-  position: absolute;
-  top: 25%;
-  left: 36%;
-  width: 10%; /* Adjust the width as needed */
-  z-index: 1;
-  /* You can also add height if needed, e.g., height: 50%; */
-}
 
-#scroll-button:hover {
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8); /* Adjust the values as needed */
-  cursor: url(/cursors/phand.cur);
-}
 
 .send-btn {
   width: 40px;
@@ -38,7 +26,8 @@
   background-color: transparent;
   overflow: hidden;
   position: relative;
-  margin-left: 5px;
+  top: -5px;
+  margin-left: 2px;
   cursor: pointer;
   transition: 0.4s ease-in-out;
 }
@@ -48,8 +37,8 @@
 }
 
 .send-btn img {
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 130%;
 }
 
 /* chat box button section */
@@ -133,11 +122,11 @@
 }
 
 #toggleRecording {
-  position: absolute;
-  bottom: 5px;
-  right: 0.3%;
-  width: 12%;
-  height: 65%;
+  position: relative;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  height: 52px;
   background-color: #fff;
   z-index: -1;
   opacity: 0.8;
@@ -153,13 +142,25 @@
   border-radius: 35px;
 }
 
-
 /* Style for the audio message container */
 .audio-message {
   display: flex;
+  height: 29px;
   align-items: center;
   background-color: rgba(207, 181, 246, 0.166);
+  z-index: 5;
   border-radius: 15px;
+}
+
+.audio-message:hover {
+  background: linear-gradient(
+    to right,
+    rgba(246, 143, 246, 0.239),
+    rgba(139, 60, 196, 0.22),
+    rgba(77, 77, 188, 0.229),
+    rgba(150, 229, 255, 0.487),
+    rgba(153, 255, 0, 0.385)
+  );
 }
 
 /* Style for the play/pause button within .audio-message */
@@ -179,8 +180,8 @@
   height: 7px;
   background-image: linear-gradient(
     to right,
-    rgba(131, 94, 191, 0.855),
-    rgba(189, 241, 241, 0.855)
+    rgba(97, 0, 252, 0.855),
+    rgba(95, 249, 249, 0.855)
   );
   width: calc(100% - 40px); /* Adjust width as needed */
   margin: 0 10px;
@@ -190,10 +191,13 @@
 
 /* For Firefox */
 ::-moz-progress-bar {
-  background-image: linear-gradient(
-    to right,
-    rgba(213, 241, 189, 0.855),
-    rgba(84, 50, 137, 0.855)
+  background: linear-gradient(
+    to left,
+    rgba(246, 143, 246, 0.239),
+    rgba(139, 60, 196, 0.22),
+    rgba(77, 77, 188, 0.229),
+    rgba(213, 255, 150, 0.347),
+    rgba(255, 255, 0, 0.385)
   );
   border-radius: 15px;
   opacity: 0.7;
@@ -201,10 +205,13 @@
 
 /* For WebKit-based browsers like Chrome and Safari */
 ::-webkit-progress-value {
-  background-image: linear-gradient(
-    to right,
-    rgba(213, 241, 189, 0.855),
-    rgba(84, 50, 137, 0.855)
+  background: linear-gradient(
+    to left,
+    rgba(246, 143, 246, 0.239),
+    rgba(139, 60, 196, 0.22),
+    rgba(77, 77, 188, 0.229),
+    rgba(213, 255, 150, 0.347),
+    rgba(255, 255, 0, 0.385)
   );
   border-radius: 15px;
   opacity: 0.7;
@@ -212,12 +219,80 @@
 
 /* For IE/Edge */
 ::-ms-fill {
-  background-image: linear-gradient(
-    to right,
-    rgba(213, 241, 189, 0.855),
-    rgba(84, 50, 137, 0.855)
+  background: linear-gradient(
+    to left,
+    rgba(246, 143, 246, 0.239),
+    rgba(139, 60, 196, 0.22),
+    rgba(77, 77, 188, 0.229),
+    rgba(213, 255, 150, 0.347),
+    rgba(255, 255, 0, 0.385)
   );
   border-radius: 15px;
   opacity: 0.7;
 }
 
+/* Audio bar 2 */
+
+/* Style for the audio message container */
+.audio-message2 {
+  display: flex;
+  height: 29px;
+  align-items: center;
+  background-color: rgba(207, 181, 246, 0.166);
+
+  border-radius: 15px;
+}
+
+.audio-message2:hover {
+  background: linear-gradient(
+    to right,
+    rgba(246, 143, 246, 0.239),
+    rgba(139, 60, 196, 0.22),
+    rgba(77, 77, 188, 0.229),
+    rgba(150, 229, 255, 0.487),
+    rgba(153, 255, 0, 0.385)
+  );
+}
+
+/* Style for the play/pause button within .audio-message */
+.audio-message2 .play-pause-button2 {
+  position: relative;
+  bottom: 9px;
+  left: 6px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 10px;
+  opacity: 5;
+}
+
+/* Style for the progress bar within .audio-message */
+.audio-message2 progress {
+  top: 10px;
+  left: 15%;
+  height: 7px;
+  background-image: linear-gradient(
+    to right,
+    rgba(97, 0, 252, 0.855),
+    rgba(95, 249, 249, 0.855)
+  );
+  width: calc(100% - 40px) !important ; /* Adjust width as needed */
+  margin: 0 10px;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* For Firefox */
+::-moz-progress-bar2 {
+  background: linear-gradient(
+    to left,
+    rgba(246, 143, 246, 0.239),
+    rgba(139, 60, 196, 0.22),
+    rgba(77, 77, 188, 0.229),
+    rgba(213, 255, 150, 0.347),
+    rgba(255, 255, 0, 0.385)
+  );
+  border-radius: 15px;
+  opacity: 0.7;
+}

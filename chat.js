@@ -28,6 +28,7 @@ function createMyChat(chatsDiv, text, userName, time) {
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
 }
 
+// For Links With IMG
 function createMyChat2(chatsDiv, userName, time, imageUrl) {
   const myChatDiv = document.createElement("div");
   myChatDiv.classList.add("my-chat-sticker");
@@ -38,7 +39,7 @@ function createMyChat2(chatsDiv, userName, time, imageUrl) {
   imageElement.classList.add("chat-image");
 
   // Set the width and height of the image
-  imageElement.style.width = "100px";
+  imageElement.style.width = "110px";
   imageElement.style.height = "100px";
 
   imageElement.addEventListener("click", function (event) {
@@ -76,7 +77,7 @@ function createAudioBox(chatsDiv, audioFileURL, userName, time) {
   // Create a play/pause button
   const playButton = document.createElement("button");
   playButton.classList.add("play-pause-button");
-  playButton.textContent = "🖲️";
+  playButton.textContent = "🎶";
   playButton.addEventListener("click", () => {
     if (audioPlayer.paused) {
       audioPlayer.play();
@@ -202,7 +203,7 @@ function createAudioBox(chatsDiv, audioFileURL, userName, time) {
 
 document.addEventListener("DOMContentLoaded", function () {
   const chatBox = document.querySelector(".chat-box");
-  const clientImg = document.querySelector(".client img");
+  const clientImg = document.querySelector(".logowl");
   const scrollButton = document.getElementById("scroll-button"); // Assuming you have an element with ID "scroll-button"
 
   let isExpanded = false;
@@ -211,18 +212,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!isExpanded) {
       chatBox.style.width = "600px";
       chatBox.style.height = "600px";
-      clientImg.style.top = "-350%";
-      clientImg.style.width = "184%";
-      scrollButton.style.left = "25%";
-      scrollButton.style.top = "20%";
+
       isExpanded = true;
     } else {
       chatBox.style.width = "400px";
       chatBox.style.height = "450px";
-      clientImg.style.top = "-225%";
-      clientImg.style.width = "190%";
-      scrollButton.style.left = "36%";
-      scrollButton.style.top = "25%";
+
       isExpanded = false;
     }
   });

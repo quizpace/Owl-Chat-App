@@ -125,10 +125,9 @@ async function getTextFromServer() {
         if (!processedMessageIds.has(messageId)) {
           const username = message.user;
           const time = parseMessageTime(message.time, username);
-          const textWithLinks = convertURLsToLinks(message.text);
+          // const textWithLinks = convertURLsToLinks(message.text);
 
           if (username !== myUserName) {
-            // Check username condition here
             const messageDiv = document.createElement("div");
             messageDiv.id = `message-${messageId}`;
 
@@ -136,28 +135,75 @@ async function getTextFromServer() {
             clientChatDiv.classList.add("client-chat");
 
             const messageContent = document.createElement("div");
-            messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
-
-            if (message.imageUrl) {
-              const imageElement = document.createElement("img");
-              imageElement.src = message.imageUrl;
-              imageElement.width = 100;
-              imageElement.height = 100;
-              messageContent.appendChild(imageElement);
-
-              clientChatDiv.style.background =
-                "linear-gradient(to right, #584460, white)";
-            }
+            // messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
 
             if (message.text && message.text.includes(".wav")) {
-              const audioPlayer = document.createElement("audio");
-              audioPlayer.controls = true;
-              audioPlayer.src = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
+              const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
                 message.text
               )}`;
-              messageContent.appendChild(audioPlayer);
-            }
 
+              messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> `;
+              const audioDiv = document.createElement("div");
+              audioDiv.classList.add("audio-message2");
+
+              const audioPlayer = new Audio(audioFileURL);
+              audioPlayer.controls = false;
+
+              const playButton = document.createElement("button2");
+              playButton.classList.add("play-pause-button2");
+              playButton.textContent = "🎶";
+              playButton.addEventListener("click", () => {
+                if (audioPlayer.paused) {
+                  audioPlayer.play();
+                  playButton.textContent = "🟰";
+                } else {
+                  audioPlayer.pause();
+                  playButton.textContent = "🎶";
+                }
+              });
+              audioPlayer.addEventListener("ended", () => {
+                playButton.textContent = "🎶";
+              });
+
+              const progressBarContainer = document.createElement("div");
+              progressBarContainer.classList.add("progress-bar-container2");
+
+              const progressBar = document.createElement("progress");
+              progressBar.max = 100;
+              progressBar.value = 0;
+
+              const progressDot = document.createElement("div");
+              progressDot.classList.add("progress-dot2");
+
+              progressBarContainer.appendChild(progressBar);
+              progressBarContainer.appendChild(progressDot);
+              progressBarContainer.appendChild(playButton);
+
+              audioPlayer.addEventListener("loadedmetadata", () => {
+                progressBar.max = audioPlayer.duration;
+              });
+
+              audioPlayer.addEventListener("timeupdate", () => {
+                progressBar.value = audioPlayer.currentTime;
+              });
+
+              audioDiv.appendChild(audioPlayer);
+              audioDiv.appendChild(progressBarContainer);
+              messageContent.appendChild(audioDiv);
+            } else {
+              const textWithLinks = convertURLsToLinks(message.text);
+              messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
+              if (message.imageUrl) {
+                const imageElement = document.createElement("img");
+                imageElement.src = message.imageUrl;
+                imageElement.width = 110;
+                imageElement.height = 100;
+                messageContent.appendChild(imageElement);
+
+                clientChatDiv.style.background =
+                  "linear-gradient(to right, #584460, #e0fbfc)";
+              }
+            }
             clientChatDiv.appendChild(messageContent);
             messageDiv.appendChild(clientChatDiv);
             chatsDiv.appendChild(messageDiv);

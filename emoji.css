@@ -79,6 +79,7 @@
   left: 0;
   padding: 0px;
   transition: 0.4s ease-in-out;
+  
 }
 
 .emoji-btn:hover img {
@@ -87,6 +88,7 @@
 
 .emoji-table {
   display: grid;
+  
 }
 
 .emoji-table td {
@@ -106,6 +108,7 @@
   margin-left: 100px; /* Push the table to the right */
   cursor: pointer;
   float: right;
+  
 }
 
 .emojis-icons td {
@@ -114,9 +117,16 @@
 
 .emojis-icons img {
   border-radius: 15px;
-  background-color: rgb(249, 255, 127);
-  width: 30px; /* Adjust the width of the images */
-  height: 30px; /* Adjust the height of the images */
+  background: linear-gradient(
+    to right,
+    rgba(246, 143, 246, 0.614),
+    rgba(23, 218, 156, 0.722),
+    rgba(77, 77, 188, 0.764),
+    rgba(150, 229, 255, 0.783),
+    rgba(153, 255, 0, 0.695)
+  );
+  width: 32px; /* Adjust the width of the images */
+  height: 32px; /* Adjust the height of the images */
   margin-bottom: 10px;
   padding: auto;
 }

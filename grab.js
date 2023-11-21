@@ -1,5 +1,5 @@
 const chatBox = document.querySelector(".chat-box");
-const logoOwl = document.getElementById("logo-owl");
+const logoOwl = document.getElementById("owl");
 let isDragging = false;
 let offsetX, offsetY;
 

@@ -12,14 +12,20 @@ document
   .querySelector(".send-btn")
   .addEventListener("click", async function () {
     const chatInput = document.querySelector(".msg").value;
+    if (chatInput === "") {
+      return; // Stop further execution if the input field is empty
+    } else {
+      // Send the chat input to the server
+      await sendchatInputToServer(chatInput);
 
-    // Send the chat input to the server
-    await sendchatInputToServer(chatInput);
-    
+      // Now that the data is sent, create and append the my-chat div
+      createMyChat(chatsDiv, chatInput, userName, time);
 
-    // Now that the data is sent, create and append the my-chat div
-    createMyChat(chatsDiv, chatInput, userName, time);
-
-    // Clear the input field
-    document.querySelector(".msg").value = "";
+      // Clear the input field
+      document.querySelector(".msg").value = "";
+    }
   });
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelector(".msg").value = "";
+});
