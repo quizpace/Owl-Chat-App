@@ -22,7 +22,8 @@
     width: 80%;
     max-width: 592px;
     /* Adding gradient to background color */
-    background-image: linear-gradient(to bottom right, rgb(181, 225, 38), rgb(242, 144, 246));
+    /* background-image: linear-gradient(to bottom right, rgb(181, 225, 38), rgb(242, 144, 246)); */
+    background-image: linear-gradient(to bottom right, rgb(181, 225, 38), rgb(190, 144, 246));
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
   }

@@ -22,7 +22,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: rgb(144, 164, 187);
+  background-color: rgb(167, 144, 187);
 }
 
 .container {
@@ -64,8 +64,7 @@ body {
   justify-content: start;
   align-items: center;
   height: 80px;
-  /* background: linear-gradient(to right, #72587c, rgb(69, 48, 88)); */
-  background: linear-gradient(to right, #586b7c, rgb(55, 48, 88));
+  background: linear-gradient(to right, #72587c, rgb(69, 48, 88));
   padding: 15px;
   top: 0;
   position: sticky;
@@ -129,7 +128,7 @@ body {
   /* background-color: #e0b1cb; */
   /* background-color: #4d194d; */
   /* background-color: #35012c; */
-  background: linear-gradient(to right, #444660, #100135);
+  background: linear-gradient(to right, #584460, #35012c);
   /* background-color: #5f4b66; */
   padding: 7px 10px;
   border-radius: 10px 10px 10px 0;
@@ -139,7 +138,7 @@ body {
 .my-chat {
   width: 60%;
   word-wrap: break-word;
-  background-color: #444860;
+  background-color: #584460;
   padding: 7px 10px;
   border-radius: 10px 10px 0 10px;
   margin: 5px 0 5px auto;
@@ -151,7 +150,7 @@ body {
   background: linear-gradient(
     to right,
     rgba(71, 98, 165, 0.541),
-    rgba(13, 77, 145, 0.298)
+    rgba(90, 13, 145, 0.298)
   );
   padding: 7px 10px;
   border-radius: 10px 10px 0 10px;
@@ -180,8 +179,7 @@ position: sticky;
 .chat-input input {
   width: calc(100% - 80px);
   height: 100%;
-  /* background-color: #f9ebff; */
-  background-color: #ebf4ff;
+  background-color: #f9ebff;
   border-radius: 50px;
   color: #8e7c97;
   font-size: 1.2em;
