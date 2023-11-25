@@ -1,0 +1,24 @@
+# Dependency directories
+node_modules/
+
+# Environment variables file
+.env
+
+# Uploaded files (if you don't want to version control uploaded files)
+uploads/
+
+# IDE or editor specific files
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Build output
+dist/
+build/
+
+# OS generated files
+.DS_Store
+Thumbs.db
