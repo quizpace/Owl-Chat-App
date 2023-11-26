@@ -66,31 +66,6 @@ function sendUserDataToServer(username, time) {
     });
 }
 
-// function sendUserDataToServer(username, time) {
-//   const userData = {
-//     user: username,
-//     time: time,
-//   };
-
-//   fetch("https://web-server-demo1.onrender.com/users", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(userData),
-//   })
-//     .then((response) => {
-//       if (response.ok) {
-//         console.log(`User data (${username}, ${time}) sent to the server.`);
-//       } else {
-//         throw new Error("Failed to send user data to the server.");
-//       }
-//     })
-//     .catch((error) => {
-//       console.error("Error sending user data to the server:", error);
-//     });
-// }
-
 // get the time
 function getCurrentTime() {
   const now = new Date();
