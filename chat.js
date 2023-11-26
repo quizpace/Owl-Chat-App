@@ -90,23 +90,6 @@ function createAudioBox(chatsDiv, audioFileURL, userName, time) {
   audioPlayer.addEventListener("ended", () => {
     playButton.textContent = "🎶";
   });
-  // playButton.classList.add("play-pause-button");
-  // playButton.addEventListener("click", () => {
-  //   if (audioPlayer.paused) {
-  //     audioPlayer.play();
-  //     playButton.classList.remove("pause-icon"); // Ensure pause icon class is removed
-  //     playButton.classList.add("play-pause-button"); // Add play icon class
-  //   } else {
-  //     audioPlayer.pause();
-  //     playButton.classList.remove("play-pause-button"); // Ensure play icon class is removed
-  //     playButton.classList.add("pause-icon"); // Add pause icon class
-  //   }
-  // });
-
-  // audioPlayer.addEventListener("ended", () => {
-  //   playButton.classList.remove("pause-icon"); // Ensure pause icon class is removed
-  //   playButton.classList.add("play-pause-button"); // Add play icon class
-  // });
 
   // Create a progress bar container
   const progressBarContainer = document.createElement("div");
@@ -162,45 +145,6 @@ function createAudioBox(chatsDiv, audioFileURL, userName, time) {
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
 }
 
-// function createAudioBox(chatsDiv, audioFileURL, userName, time) {
-//   const myChatDiv = document.createElement("div");
-//   myChatDiv.classList.add("my-chat");
-
-//   // Set the background gradient style
-//   myChatDiv.style.background = "linear-gradient(to right, #584460, #0f0c29)";
-
-//   const audioDiv = document.createElement("div");
-//   audioDiv.classList.add("audio-message");
-
-//   // Create an audio element
-//   const audioPlayer = document.createElement("audio");
-//   audioPlayer.controls = true;
-//   audioPlayer.src = audioFileURL;
-
-//   // Create the username and time elements
-//   const usernameElement = document.createElement("span");
-//   usernameElement.classList.add("username-style");
-//   usernameElement.textContent = userName;
-
-//   const timeElement = document.createElement("span");
-//   timeElement.classList.add("message-time");
-//   timeElement.textContent = time;
-
-//   // Append elements to myChatDiv
-//   myChatDiv.appendChild(usernameElement);
-//   myChatDiv.appendChild(document.createElement("br")); // Line break
-//   myChatDiv.appendChild(timeElement);
-//   myChatDiv.appendChild(document.createElement("br")); // Line break
-//   audioDiv.appendChild(audioPlayer); // Append the audio player to the audioDiv
-//   myChatDiv.appendChild(audioDiv); // Append the audioDiv to myChatDiv
-
-//   // Append the chat div to the chats container
-//   chatsDiv.appendChild(myChatDiv);
-
-//   // Scroll the new message into view
-//   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
-// }
-
 document.addEventListener("DOMContentLoaded", function () {
   const chatBox = document.querySelector(".chat-box");
   const clientImg = document.querySelector(".logowl");
@@ -211,13 +155,13 @@ document.addEventListener("DOMContentLoaded", function () {
   clientImg.addEventListener("click", function () {
     if (!isExpanded) {
       chatBox.style.width = "600px";
-      chatBox.style.height = "600px";
-
+      chatBox.style.height = "650px";
+      chatBox.style.bottom = "40px";
       isExpanded = true;
     } else {
       chatBox.style.width = "400px";
       chatBox.style.height = "450px";
-
+      chatBox.style.bottom = "10px";
       isExpanded = false;
     }
   });
