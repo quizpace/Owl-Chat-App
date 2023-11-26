@@ -73,12 +73,19 @@ function getCurrentTime() {
 }
 
 // Creat users list
-const usersList = document.querySelector(".users");
-function createUsersList(userName) {
-  const myUsersList = document.createElement("li");
-  myUsersList.classList.add("uList");
-  myUsersList.innerHTML = `${userName}`;
-  usersList.appendChild(myUsersList);
+// const usersList = document.querySelector(".users");
+// Create users list based on unique user IDs
+const usersList = {}; // Object to store user IDs
+
+function createUsersList(userName, userId) {
+  if (!usersList[userId]) {
+    const myUsersList = document.createElement("li");
+    myUsersList.id = `user_${userId}`;
+    myUsersList.classList.add("uList");
+    myUsersList.innerHTML = `${userName}`;
+    usersList[userId] = true; // Store user ID in the object
+    document.querySelector(".users").appendChild(myUsersList);
+  }
 }
 
 //get users names from server
@@ -102,18 +109,6 @@ function fetchUsersData() {
 // Call fetchUsersData initially and then every 5 seconds
 // fetchUsersData(); // Initial call
 setInterval(fetchUsersData, 2000); // Subsequent calls every 5 seconds (in milliseconds)
-
-// Update createUsersList function to include user IDs
-function createUsersList(userName, userId) {
-  const existingUser = document.getElementById(`user_${userId}`);
-  if (!existingUser) {
-    const myUsersList = document.createElement("li");
-    myUsersList.id = `user_${userId}`; // Set an ID for the user list item
-    myUsersList.classList.add("uList");
-    myUsersList.innerHTML = `${userName}`;
-    usersList.appendChild(myUsersList);
-  }
-}
 
 // Delete user from list when leave the chat
 
