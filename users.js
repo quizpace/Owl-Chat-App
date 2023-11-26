@@ -150,7 +150,18 @@ function deleteInactiveUsers() {
       const currentTime = Date.now();
       console.log("Sync Users...");
       data.forEach((user) => {
-        const userLastUpdateTime = new Date(user.time).getTime(); // Convert time string to milliseconds
+        let userLastUpdateTime;
+
+        // Handling different time formats
+        if (user.time.includes("GMT")) {
+          userLastUpdateTime = new Date(user.time).getTime();
+        } else {
+          const timeParts = user.time.split(":");
+          const hours = parseInt(timeParts[0]);
+          const minutes = parseInt(timeParts[1]);
+          const seconds = parseInt(timeParts[2].split(" ")[0]);
+          userLastUpdateTime = new Date().setHours(hours, minutes, seconds);
+        }
 
         const timeDiffMilliseconds = currentTime - userLastUpdateTime;
         const timeDiffSeconds = timeDiffMilliseconds / 1000;
