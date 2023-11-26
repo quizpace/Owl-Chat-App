@@ -143,43 +143,40 @@ function updateUsernameOnServer(globalUserId, myUserName) {
 }
 
 // Function to delete user if not updated in the last 15 seconds
-// Fetch data from the JSON server and update users' last update time
+// This function will be called initially and then at regular intervals to check and delete inactive users
 function fetchAndUpdateLastUpdateTime() {
-  function checkAndUpdateUsers() {
-    fetch("https://web-server-demo1.onrender.com/users")
-      .then((response) => response.json())
-      .then((data) => {
-        const currentTime = new Date();
+  fetch("https://web-server-demo1.onrender.com/users")
+    .then((response) => response.json())
+    .then((data) => {
+      const currentTime = new Date();
 
-        // Iterate through each user data
-        data.forEach((user) => {
-          const lastUpdate = lastUpdateTime[user.id];
-          if (lastUpdate) {
-            const timeDiffSeconds = (currentTime - new Date(lastUpdate)) / 1000; // Difference in seconds
+      data.forEach((user) => {
+        const lastUpdate = lastUpdateTime[user.id];
+        const userLastUpdate = new Date(user.time); // Assuming 'time' is the user's last update time from the server
 
-            if (timeDiffSeconds > 15) {
-              console.log(
-                `User with ID "${user.id}" hasn't updated for 15 seconds.`
-              );
-              // Call the function to delete the user from the server
-              deleteUserFromServer(user.id);
-              delete lastUpdateTime[user.id]; // Remove the user from the tracking object
-            }
+        if (!lastUpdate) {
+          lastUpdateTime[user.id] = userLastUpdate;
+        } else {
+          const timeDiffSeconds = (currentTime - userLastUpdate) / 1000;
+
+          if (timeDiffSeconds > 15) {
+            console.log(`Deleting user with ID "${user.id}"`);
+            deleteUserFromServer(user.id);
+            delete lastUpdateTime[user.id];
+          } else {
+            lastUpdateTime[user.id] = userLastUpdate;
           }
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
+        }
       });
-  }
-
-  // Call initially and then at regular intervals
-  checkAndUpdateUsers(); // Initial call
-  setInterval(checkAndUpdateUsers, 1000); // Subsequent calls at intervals
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
 }
 
-// Call fetchAndUpdateLastUpdateTime to start the process
-fetchAndUpdateLastUpdateTime();
+// Call fetchAndUpdateLastUpdateTime initially and then at regular intervals
+fetchAndUpdateLastUpdateTime(); // Initial call
+setInterval(fetchAndUpdateLastUpdateTime, 5000); // Subsequent calls every 5 seconds (adjust as needed)
 
 // Call updateUsernameOnServer every 10 seconds
 setInterval(() => {
