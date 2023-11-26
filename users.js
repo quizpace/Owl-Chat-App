@@ -77,7 +77,7 @@ const usersList = document.querySelector(".users");
 function createUsersList(userName) {
   const myUsersList = document.createElement("li");
   myUsersList.classList.add("uList");
-  myUsersList.innerHTML = `${userName}`;
+  // myUsersList.innerHTML = `${userName}`;
   usersList.appendChild(myUsersList);
 }
 
