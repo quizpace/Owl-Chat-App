@@ -143,7 +143,6 @@ function updateUsernameOnServer(globalUserId, myUserName) {
 }
 
 // Function to delete user if not updated in the last 15 seconds
-
 function deleteInactiveUsers() {
   fetch("https://web-server-demo1.onrender.com/users")
     .then((response) => response.json())
@@ -151,7 +150,7 @@ function deleteInactiveUsers() {
       const currentTime = Date.now();
 
       data.forEach((user) => {
-        const userLastUpdateTime = Date.parse(user.time); // Parse user's last update time
+        const userLastUpdateTime = new Date(user.time).getTime(); // Convert time string to milliseconds
 
         const timeDiffMilliseconds = currentTime - userLastUpdateTime;
         const timeDiffSeconds = timeDiffMilliseconds / 1000;
