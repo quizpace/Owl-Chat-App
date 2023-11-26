@@ -73,13 +73,13 @@ function getCurrentTime() {
 }
 
 // Creat users list
-// const usersList = document.querySelector(".users");
-// function createUsersList(userName) {
-//   const myUsersList = document.createElement("li");
-//   myUsersList.classList.add("uList");
-//   myUsersList.innerHTML = `${userName}`;
-//   usersList.appendChild(myUsersList);
-// }
+const usersList = document.querySelector(".users");
+function createUsersList(userName) {
+  const myUsersList = document.createElement("li");
+  myUsersList.classList.add("uList");
+  myUsersList.innerHTML = `${userName}`;
+  usersList.appendChild(myUsersList);
+}
 
 //get users names from server
 function fetchUsersData() {
