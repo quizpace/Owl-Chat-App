@@ -149,7 +149,7 @@ function fetchAndUpdateLastUpdateTime() {
     .then((response) => response.json())
     .then((data) => {
       const currentTime = new Date();
-
+      console.log("Syncing Users...");
       data.forEach((user) => {
         const lastUpdate = lastUpdateTime[user.id];
 
