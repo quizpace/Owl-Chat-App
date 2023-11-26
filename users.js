@@ -148,7 +148,7 @@ function fetchAndUpdateLastUpdateTime() {
     .then((response) => response.json())
     .then((data) => {
       const currentTime = new Date();
-
+      console.log("Syncing Users...");
       data.forEach((user) => {
         const userTime = new Date(user.time.split(" ")[0]); // Extracting time part and converting to Date object
         const timeDiffSeconds = (currentTime - userTime) / 1000;
