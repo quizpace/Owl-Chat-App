@@ -75,7 +75,9 @@ function getCurrentTime() {
 // Creat users list
 // const usersList = document.querySelector(".users");
 // Create users list based on unique user IDs
-const usersList = {}; // Object to store user IDs
+// Create users list based on unique user IDs
+// Create users list based on unique user IDs
+const usersList = {};
 
 function createUsersList(userName, userId) {
   if (!usersList[userId]) {
@@ -83,22 +85,18 @@ function createUsersList(userName, userId) {
     myUsersList.id = `user_${userId}`;
     myUsersList.classList.add("uList");
     myUsersList.innerHTML = `${userName}`;
-    usersList[userId] = true; // Store user ID in the object
+    usersList[userId] = myUsersList; // Store user list item in the object
     document.querySelector(".users").appendChild(myUsersList);
   }
 }
 
-//get users names from server
-function fetchUsersData() {
+// Fetch users data and update the user list
+function fetchAndUpdateUsersList() {
   fetch("https://web-server-demo1.onrender.com/users")
     .then((response) => response.json())
     .then((data) => {
-      // Assuming the data is an array of user objects with a 'user' property
       data.forEach((user) => {
-        // Check if the user already exists in the user list
-        if (!document.getElementById(`user_${user.id}`)) {
-          createUsersList(user.user, user.id); // Pass user ID to createUsersList
-        }
+        createUsersList(user.user, user.id);
       });
     })
     .catch((error) => {
@@ -106,9 +104,9 @@ function fetchUsersData() {
     });
 }
 
-// Call fetchUsersData initially and then every 5 seconds
-// fetchUsersData(); // Initial call
-setInterval(fetchUsersData, 2000); // Subsequent calls every 5 seconds (in milliseconds)
+// Call fetchAndUpdateUsersList initially and then every 5 seconds
+fetchAndUpdateUsersList(); // Initial call
+setInterval(fetchAndUpdateUsersList, 5000); // Subsequent calls every 5 seconds (in milliseconds)
 
 // Delete user from list when leave the chat
 
