@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // send the user name to server
+let globalUserId = null; // Define a global variable to store the userID
+
 function sendUserDataToServer(username, time) {
   const userData = {
     user: username,
@@ -46,15 +48,48 @@ function sendUserDataToServer(username, time) {
   })
     .then((response) => {
       if (response.ok) {
-        console.log(`User data (${username}, ${time}) sent to the server.`);
+        return response.json(); // Parse the response to get JSON data
       } else {
         throw new Error("Failed to send user data to the server.");
       }
+    })
+    .then((data) => {
+      // Assuming the server responds with the created user data including an 'id'
+      const userId = data.id; // Extract the ID from the response
+      globalUserId = userId; // Assign userId to the global variable
+      console.log(`User data (${username}, ${time}) sent to the server.`);
+      console.log(`User ID on the server is: ${userId}`);
+      // You can use userId as needed in your application
     })
     .catch((error) => {
       console.error("Error sending user data to the server:", error);
     });
 }
+
+// function sendUserDataToServer(username, time) {
+//   const userData = {
+//     user: username,
+//     time: time,
+//   };
+
+//   fetch("https://web-server-demo1.onrender.com/users", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(userData),
+//   })
+//     .then((response) => {
+//       if (response.ok) {
+//         console.log(`User data (${username}, ${time}) sent to the server.`);
+//       } else {
+//         throw new Error("Failed to send user data to the server.");
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error sending user data to the server:", error);
+//     });
+// }
 
 // get the time
 function getCurrentTime() {
@@ -87,16 +122,16 @@ fetch("https://web-server-demo1.onrender.com/users")
 
 // Delete user from list when leave the chat
 
-let lastPutTimestamp = Date.now(); // Store the timestamp of the last PUT request
+// Store the last update time for each user
+const lastUpdateTime = {};
 
-// Function to send a PUT request to update the username
-function updateUser(username) {
+function updateUsernameOnServer(globalUserId, myUserName) {
   const userData = {
-    user: username,
+    user: myUserName,
     time: getCurrentTime(),
   };
 
-  fetch(`https://web-server-demo1.onrender.com/users/${username}`, {
+  fetch(`https://web-server-demo1.onrender.com/users/${globalUserId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -105,39 +140,58 @@ function updateUser(username) {
   })
     .then((response) => {
       if (response.ok) {
-        console.log(`User data (${username}) updated on the server.`);
-        lastPutTimestamp = Date.now(); // Update the timestamp for the last PUT request
+        console.log(
+          `Username for user with ID "${globalUserId}" updated on the server.`
+        );
+        lastUpdateTime[globalUserId] = new Date(); // Update last update time
       } else {
-        throw new Error("Failed to update user data on the server.");
+        throw new Error(
+          `Failed to update username for user with ID "${globalUserId}".`
+        );
       }
     })
     .catch((error) => {
-      console.error("Error updating user data on the server:", error);
+      console.error("Error updating username on the server:", error);
     });
 }
 
-// Function to handle automatic deletion if there's no PUT request for more than 10 seconds
-function checkAndDeleteIfInactive(username) {
-  const currentTime = Date.now();
-  const inactiveTime = currentTime - lastPutTimestamp;
+// Function to delete user if not updated in the last 15 seconds
+function checkAndUpdateUserStatus() {
+  const currentTime = new Date();
+  Object.keys(lastUpdateTime).forEach((userId) => {
+    const lastUpdate = lastUpdateTime[userId];
+    const timeDiffSeconds = (currentTime - lastUpdate) / 1000; // Difference in seconds
 
-  if (inactiveTime > 10000) {
-    deleteUserFromServer(username);
-  }
+    if (timeDiffSeconds > 15) {
+      console.log(`User with ID "${userId}" hasn't updated for 15 seconds.`);
+      deleteUserFromServer(userId);
+      delete lastUpdateTime[userId]; // Remove the user from the tracking object
+    }
+  });
 }
 
-// Function to delete the user from the server
-function deleteUserFromServer(username) {
-  fetch(`https://web-server-demo1.onrender.com/users/${username}`, {
+// Call checkAndUpdateUserStatus every second
+setInterval(checkAndUpdateUserStatus, 1000);
+
+// Call updateUsernameOnServer every 10 seconds
+setInterval(() => {
+  // Replace userId and myUserName with actual values
+  updateUsernameOnServer(globalUserId, myUserName);
+}, 10000); // 10 seconds interval
+
+// Delete users list
+
+function deleteUserFromServer(userId) {
+  fetch(`https://web-server-demo1.onrender.com/users/${userId}`, {
     method: "DELETE",
   })
     .then((response) => {
       if (response.ok) {
-        console.log(
-          `User "${username}" removed from the server due to inactivity.`
-        );
+        console.log(`User with ID "${userId}" removed from the server.`);
       } else {
-        throw new Error("Failed to remove user from the server.");
+        throw new Error(
+          `Failed to remove user with ID "${userId}" from the server.`
+        );
       }
     })
     .catch((error) => {
@@ -145,38 +199,21 @@ function deleteUserFromServer(username) {
     });
 }
 
-// Execute updateUser every 10 seconds
-setInterval(() => {
-  updateUser(myUserName); // Replace myUserName with the actual username
-}, 10000);
+// Define the deleteUserFromServer function
+function deleteAllUsersExceptOne() {
+  fetch("https://web-server-demo1.onrender.com/users")
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((user) => {
+        if (user.id !== 1) {
+          deleteUserFromServer(user.id);
+        }
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
 
-// Check for inactivity and trigger deletion if necessary every 10 seconds
-setInterval(() => {
-  checkAndDeleteIfInactive(myUserName); // Replace myUserName with the actual username
-}, 10000);
-
-// Rest of your code...
-// function deleteAllUsersExceptOne() {
-//   fetch("https://web-server-demo1.onrender.com/users")
-//     .then((response) => response.json())
-//     .then((data) => {
-//       data.forEach((user) => {
-//         if (user.id !== "1") {
-//           deleteUserFromServer(user.user);
-//         }
-//       });
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching data:", error);
-//     });
-// }
-
-// function initializePage() {
-//   // Perform necessary operations
-//   // ...
-
-//   // Delete all users except the one with ID "1"
-//   deleteAllUsersExceptOne();
-// }
-
-// document.addEventListener("DOMContentLoaded", initializePage);
+// // Execute the deletion process
+// deleteAllUsersExceptOne();
