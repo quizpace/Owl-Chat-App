@@ -143,27 +143,19 @@ function updateUsernameOnServer(globalUserId, myUserName) {
 }
 
 // Function to delete user if not updated in the last 15 seconds
-// This function will be called initially and then at regular intervals to check and delete inactive users
 function fetchAndUpdateLastUpdateTime() {
   fetch("https://web-server-demo1.onrender.com/users")
     .then((response) => response.json())
     .then((data) => {
       const currentTime = new Date();
-      console.log("Syncing Users...");
+
       data.forEach((user) => {
-        const lastUpdate = lastUpdateTime[user.id];
+        const userTime = new Date(user.time.split(" ")[0]); // Extracting time part and converting to Date object
+        const timeDiffSeconds = (currentTime - userTime) / 1000;
 
-        if (lastUpdate) {
-          const userLastUpdate = new Date(user.time); // Assuming 'time' is the user's last update time from the server
-          const timeDiffSeconds = (currentTime - userLastUpdate) / 1000;
-
-          if (timeDiffSeconds > 15) {
-            console.log(`Deleting user with ID "${user.id}"`);
-            deleteUserFromServer(user.id);
-            delete lastUpdateTime[user.id];
-          }
-        } else {
-          lastUpdateTime[user.id] = new Date(user.time);
+        if (timeDiffSeconds > 15) {
+          console.log(`Deleting user with ID "${user.id}"`);
+          deleteUserFromServer(user.id);
         }
       });
     })
