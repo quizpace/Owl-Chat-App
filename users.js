@@ -82,14 +82,16 @@ function createUsersList(userName) {
 }
 
 //get users names from server
-// Fetch data from the JSON server
 function fetchUsersData() {
   fetch("https://web-server-demo1.onrender.com/users")
     .then((response) => response.json())
     .then((data) => {
       // Assuming the data is an array of user objects with a 'user' property
       data.forEach((user) => {
-        createUsersList(user.user);
+        // Check if the user already exists in the user list
+        if (!document.getElementById(`user_${user.id}`)) {
+          createUsersList(user.user, user.id); // Pass user ID to createUsersList
+        }
       });
     })
     .catch((error) => {
@@ -100,6 +102,18 @@ function fetchUsersData() {
 // Call fetchUsersData initially and then every 5 seconds
 fetchUsersData(); // Initial call
 setInterval(fetchUsersData, 5000); // Subsequent calls every 5 seconds (in milliseconds)
+
+// Update createUsersList function to include user IDs
+function createUsersList(userName, userId) {
+  const existingUser = document.getElementById(`user_${userId}`);
+  if (!existingUser) {
+    const myUsersList = document.createElement("li");
+    myUsersList.id = `user_${userId}`; // Set an ID for the user list item
+    myUsersList.classList.add("uList");
+    myUsersList.innerHTML = `${userName}`;
+    usersList.appendChild(myUsersList);
+  }
+}
 
 // Delete user from list when leave the chat
 
