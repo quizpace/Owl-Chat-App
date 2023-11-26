@@ -18,10 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     myUserName = userNameInput.value;
     if (userName.trim() !== "") {
       modal.style.display = "none";
-      // Now you can use the userName when sending messages
-      createUsersList(userName);
-      createBubble(`${userName} joined the chat!`);
-
       // Send the username and time to the JSON server
       sendUserDataToServer(userName, getCurrentTime());
     } else {
@@ -80,21 +76,24 @@ function getCurrentTime() {
 const usersList = {};
 
 function createUsersList(userName, userId) {
-  if (!usersList[userId]) {
+  const existingUser = document.getElementById(`user_${userId}`);
+  if (!existingUser) {
     const myUsersList = document.createElement("li");
     myUsersList.id = `user_${userId}`;
     myUsersList.classList.add("uList");
     myUsersList.innerHTML = `${userName}`;
-    usersList[userId] = myUsersList; // Store user list item in the object
     document.querySelector(".users").appendChild(myUsersList);
   }
 }
 
-// Fetch users data and update the user list
 function fetchAndUpdateUsersList() {
   fetch("https://web-server-demo1.onrender.com/users")
     .then((response) => response.json())
     .then((data) => {
+      // Clear the current user list
+      document.querySelector(".users").innerHTML = "";
+
+      // Create the updated user list
       data.forEach((user) => {
         createUsersList(user.user, user.id);
       });
