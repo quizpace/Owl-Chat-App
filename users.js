@@ -154,7 +154,7 @@ function fetchAndUpdateLastUpdateTime() {
       data.forEach((user) => {
         const lastUpdate = lastUpdateTime[user.id];
         if (lastUpdate) {
-          const timeDiffSeconds = (currentTime - lastUpdate) / 1000; // Difference in seconds
+          const timeDiffSeconds = (currentTime - new Date(lastUpdate)) / 1000; // Difference in seconds
 
           if (timeDiffSeconds > 15) {
             console.log(
