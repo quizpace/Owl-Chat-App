@@ -139,6 +139,7 @@ function checkAndUpdateUserStatus() {
 
     if (timeDiffSeconds > 15) {
       console.log(`User with ID "${userId}" hasn't updated for 15 seconds.`);
+      // Call the function to delete the user from the server
       deleteUserFromServer(userId);
       delete lastUpdateTime[userId]; // Remove the user from the tracking object
     }
