@@ -152,20 +152,18 @@ function fetchAndUpdateLastUpdateTime() {
 
       data.forEach((user) => {
         const lastUpdate = lastUpdateTime[user.id];
-        const userLastUpdate = new Date(user.time); // Assuming 'time' is the user's last update time from the server
 
-        if (!lastUpdate) {
-          lastUpdateTime[user.id] = userLastUpdate;
-        } else {
+        if (lastUpdate) {
+          const userLastUpdate = new Date(user.time); // Assuming 'time' is the user's last update time from the server
           const timeDiffSeconds = (currentTime - userLastUpdate) / 1000;
 
           if (timeDiffSeconds > 15) {
             console.log(`Deleting user with ID "${user.id}"`);
             deleteUserFromServer(user.id);
             delete lastUpdateTime[user.id];
-          } else {
-            lastUpdateTime[user.id] = userLastUpdate;
           }
+        } else {
+          lastUpdateTime[user.id] = new Date(user.time);
         }
       });
     })
