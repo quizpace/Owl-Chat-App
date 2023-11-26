@@ -77,7 +77,7 @@ const usersList = document.querySelector(".users");
 function createUsersList(userName) {
   const myUsersList = document.createElement("li");
   myUsersList.classList.add("uList");
-  // myUsersList.innerHTML = `${userName}`;
+  myUsersList.innerHTML = `${userName}`;
   usersList.appendChild(myUsersList);
 }
 
@@ -100,8 +100,8 @@ function fetchUsersData() {
 }
 
 // Call fetchUsersData initially and then every 5 seconds
-fetchUsersData(); // Initial call
-setInterval(fetchUsersData, 5000); // Subsequent calls every 5 seconds (in milliseconds)
+// fetchUsersData(); // Initial call
+setInterval(fetchUsersData, 2000); // Subsequent calls every 5 seconds (in milliseconds)
 
 // Update createUsersList function to include user IDs
 function createUsersList(userName, userId) {
