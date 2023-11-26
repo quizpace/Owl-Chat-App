@@ -83,17 +83,23 @@ function createUsersList(userName) {
 
 //get users names from server
 // Fetch data from the JSON server
-fetch("https://web-server-demo1.onrender.com/users")
-  .then((response) => response.json())
-  .then((data) => {
-    // Assuming the data is an array of user objects with a 'user' property
-    data.forEach((user) => {
-      createUsersList(user.user);
+function fetchUsersData() {
+  fetch("https://web-server-demo1.onrender.com/users")
+    .then((response) => response.json())
+    .then((data) => {
+      // Assuming the data is an array of user objects with a 'user' property
+      data.forEach((user) => {
+        createUsersList(user.user);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
     });
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });
+}
+
+// Call fetchUsersData initially and then every 5 seconds
+fetchUsersData(); // Initial call
+setInterval(fetchUsersData, 5000); // Subsequent calls every 5 seconds (in milliseconds)
 
 // Delete user from list when leave the chat
 
