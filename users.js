@@ -131,23 +131,38 @@ function updateUsernameOnServer(globalUserId, myUserName) {
 }
 
 // Function to delete user if not updated in the last 15 seconds
-function checkAndUpdateUserStatus() {
-  const currentTime = new Date();
-  Object.keys(lastUpdateTime).forEach((userId) => {
-    const lastUpdate = lastUpdateTime[userId];
-    const timeDiffSeconds = (currentTime - lastUpdate) / 1000; // Difference in seconds
+// Fetch data from the JSON server and update users' last update time
+function fetchAndUpdateLastUpdateTime() {
+  fetch("https://web-server-demo1.onrender.com/users")
+    .then((response) => response.json())
+    .then((data) => {
+      const currentTime = new Date();
 
-    if (timeDiffSeconds > 15) {
-      console.log(`User with ID "${userId}" hasn't updated for 15 seconds.`);
-      // Call the function to delete the user from the server
-      deleteUserFromServer(userId);
-      delete lastUpdateTime[userId]; // Remove the user from the tracking object
-    }
-  });
+      // Iterate through each user data
+      data.forEach((user) => {
+        const lastUpdate = lastUpdateTime[user.id];
+        if (lastUpdate) {
+          const timeDiffSeconds = (currentTime - lastUpdate) / 1000; // Difference in seconds
+
+          if (timeDiffSeconds > 15) {
+            console.log(
+              `User with ID "${user.id}" hasn't updated for 15 seconds.`
+            );
+            // Call the function to delete the user from the server
+            deleteUserFromServer(user.id);
+            delete lastUpdateTime[user.id]; // Remove the user from the tracking object
+          }
+        }
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
 }
 
-// Call checkAndUpdateUserStatus every second
-setInterval(checkAndUpdateUserStatus, 1000);
+// Call fetchAndUpdateLastUpdateTime initially and then at regular intervals
+fetchAndUpdateLastUpdateTime(); // Initial call
+setInterval(fetchAndUpdateLastUpdateTime, 1000); // Subsequent calls at intervals
 
 // Call updateUsernameOnServer every 10 seconds
 setInterval(() => {
