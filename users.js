@@ -143,19 +143,27 @@ function updateUsernameOnServer(globalUserId, myUserName) {
 }
 
 // Function to delete user if not updated in the last 15 seconds
-function fetchAndUpdateLastUpdateTime() {
+
+const lastSeenTime = {}; // Track last seen time for each user
+
+function fetchAndUpdateLastSeenTime() {
   fetch("https://web-server-demo1.onrender.com/users")
     .then((response) => response.json())
     .then((data) => {
-      const currentTime = new Date();
+      const currentTime = Date.now();
       console.log("Syncing Users...");
       data.forEach((user) => {
-        const userTime = new Date(user.time.split(" ")[0]); // Extracting time part and converting to Date object
-        const timeDiffSeconds = (currentTime - userTime) / 1000;
+        lastSeenTime[user.id] = Date.parse(user.time); // Assuming 'time' is in a parseable format
+      });
+
+      // Check and delete users inactive for more than 15 seconds
+      Object.keys(lastSeenTime).forEach((userId) => {
+        const timeDiffSeconds = (currentTime - lastSeenTime[userId]) / 1000;
 
         if (timeDiffSeconds > 15) {
-          console.log(`Deleting user with ID "${user.id}"`);
-          deleteUserFromServer(user.id);
+          console.log(`Deleting user with ID "${userId}"`);
+          deleteUserFromServer(userId);
+          delete lastSeenTime[userId];
         }
       });
     })
@@ -164,9 +172,9 @@ function fetchAndUpdateLastUpdateTime() {
     });
 }
 
-// Call fetchAndUpdateLastUpdateTime initially and then at regular intervals
-fetchAndUpdateLastUpdateTime(); // Initial call
-setInterval(fetchAndUpdateLastUpdateTime, 5000); // Subsequent calls every 5 seconds (adjust as needed)
+// Call fetchAndUpdateLastSeenTime initially and then at regular intervals
+fetchAndUpdateLastSeenTime(); // Initial call
+setInterval(fetchAndUpdateLastSeenTime, 5000); // Subsequent calls every 5 seconds (adjust as needed)
 
 // Call updateUsernameOnServer every 10 seconds
 setInterval(() => {
