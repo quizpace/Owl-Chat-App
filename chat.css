@@ -75,11 +75,18 @@ body {
 }
 
 .client img {
-  width: 100%;
+  width: 15%;
   position: absolute;
-  top: -100%; /* Adjust top value */
-  right: 1%; /* Adjust left value */
+left: 65%;
+border-radius: 20px;
 }
+.client img:hover {
+  width: 15%;
+  position: absolute;
+left: 65%;
+box-shadow: 0 0 10px 5px #cbf3cb;
+}
+
 
 #scroll-button {
   position: relative;
@@ -260,4 +267,3 @@ position: sticky;
     left: calc(50% - 20%);
   }
 }
-
