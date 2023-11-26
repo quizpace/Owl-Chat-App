@@ -148,7 +148,7 @@ function deleteInactiveUsers() {
     .then((response) => response.json())
     .then((data) => {
       const currentTime = Date.now();
-
+      console.log("Sync Users...");
       data.forEach((user) => {
         const userLastUpdateTime = new Date(user.time).getTime(); // Convert time string to milliseconds
 
