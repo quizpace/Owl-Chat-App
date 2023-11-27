@@ -75,15 +75,15 @@ body {
 }
 
 .client img {
-  width: 15%;
+  width: 10%;
   position: absolute;
-left: 65%;
+left: 35%;
 border-radius: 20px;
 }
 .client img:hover {
-  width: 15%;
+  width: 10%;
   position: absolute;
-left: 65%;
+left: 35%;
 box-shadow: 0 0 10px 5px #cbf3cb;
 }
 
