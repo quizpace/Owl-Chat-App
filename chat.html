@@ -11,10 +11,26 @@
     <link rel="stylesheet" type="text/css" href="emoji.css" />
     <link rel="stylesheet" type="text/css" href="bubble.css" />
     <link rel="stylesheet" type="text/css" href="inflat-bubble.css" />
+    <link rel="stylesheet" type="text/css" href="inter-modal.css" />
     <title>Owl Chat</title>
   </head>
   <body>
     <div class="container">
+
+            <!-- Interactive Section -->
+
+<!-- Trigger button to open the modal -->
+<button id="openModalBtn">Open Modal</button>
+
+<!-- The modal -->
+<div id="interModal" class="inter-modal">
+  <div class="inter-modal-content">
+    <span class="closeIM">&times;</span>
+    <!-- Content will be loaded here -->
+    <div id="interModalContent"></div>
+  </div>
+</div>
+
       <!-- <img src="/img/bubpng.png" class="blue" alt="blue" id="blueb" /> -->
       <img src="/img/logo-owl.png" class="logowl" alt="logowl" id="owl" />
       <div class="spider-container">
@@ -176,8 +192,7 @@
     <div class="html-canvas">
 
   <h5>click any place on the screen to play with the bubbles</h5>
-  <canvas id="canvas1"></canvas>
-  
+  <canvas id="canvas1"></canvas>  
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -198,6 +213,7 @@
     <script src="recording.js"></script>
     <script src="upload-pic.js"></script>
     <script src="spider-bub.js"></script>
+    <script src="inter-modal.js"></script>
     <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reqwest@2.0.5/reqwest.min.js"></script>
 
