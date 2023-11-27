@@ -97,6 +97,7 @@ async function getTextFromServer() {
           const time = parseMessageTime(message.time, username);
           // const textWithLinks = convertURLsToLinks(message.text);
 
+          // CHECK IF ITS NOT THE USING USER AT THE MOMENT
           if (username !== myUserName) {
             const messageDiv = document.createElement("div");
             messageDiv.id = `message-${messageId}`;
@@ -107,18 +108,19 @@ async function getTextFromServer() {
             const messageContent = document.createElement("div");
             // messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
 
+            // AUDIO RECORDINGS
             if (message.text && message.text.includes(".wav")) {
               const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
                 message.text
               )}`;
-
+              // VIEW AUDIO TIME AND USERNAME
               messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> `;
               const audioDiv = document.createElement("div");
               audioDiv.classList.add("audio-message2");
 
               const audioPlayer = new Audio(audioFileURL);
               audioPlayer.controls = false;
-
+              // CREAT AUDIO PLAYER WITH CUSTOM CONTROLS
               const playButton = document.createElement("button2");
               playButton.classList.add("play-pause-button2");
               playButton.textContent = "🎶";
@@ -134,7 +136,7 @@ async function getTextFromServer() {
               audioPlayer.addEventListener("ended", () => {
                 playButton.textContent = "🎶";
               });
-
+              // AUDIO PROGRESS BAR
               const progressBarContainer = document.createElement("div");
               progressBarContainer.classList.add("progress-bar-container2");
 
@@ -163,21 +165,11 @@ async function getTextFromServer() {
             } else {
               const textWithLinks = convertURLsToLinks(message.text);
               messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
-              //   if (message.imageUrl) {
-              //     const imageElement = document.createElement("img");
-              //     imageElement.src = message.imageUrl;
-              //     imageElement.width = 110;
-              //     imageElement.height = 100;
-              //     messageContent.appendChild(imageElement);
-
-              //     clientChatDiv.style.background =
-              //       "linear-gradient(to right, #584460, #e0fbfc)";
-              //   }
-              // }
+              // IMG STICKERS AND UPLOADED PICS
               if (message.imageUrl) {
                 const serverUrl = "https://photos-api-mzpl.onrender.com/photos";
                 const imageExtensionsRegex = /\.(png|jpe?g|gif|bmp|webp)$/i;
-
+                // FOR UPLOADED PICS
                 if (
                   message.imageUrl.startsWith(serverUrl) &&
                   imageExtensionsRegex.test(message.imageUrl)
@@ -189,6 +181,7 @@ async function getTextFromServer() {
                   clientChatDiv.style.background =
                     "linear-gradient(to right, #584460, #b9fbc0)";
                 } else {
+                  // FOR PICTURES
                   const imageElement = document.createElement("img");
                   imageElement.src = message.imageUrl;
                   imageElement.width = 110;
@@ -222,7 +215,7 @@ async function getTextFromServer() {
 window.onload = async () => {
   await getTextFromServer();
   // Start the interval after loading all messages
-  setInterval(getTextFromServer, 5000);
+  setInterval(getTextFromServer, 500);
 };
 
 // delete msgs from server
