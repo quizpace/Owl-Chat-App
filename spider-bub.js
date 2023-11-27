@@ -1,4 +1,4 @@
-const exampleElement = document.querySelector(".users-btn");
+const exampleElement = document.querySelector(".logowl");
 const spiderContainer = document.querySelector(".spider-container");
 const textOverlay = document.querySelector(".text-overlay");
 let timeoutIds = [];
@@ -24,6 +24,16 @@ const messages = [
   "Connect with someone and spread a little kindness.",
   "Take a moment to appreciate your achievements, big or small.",
   "A positive mindset can turn challenges into triumphs.",
+  "Allow yourself to dream big and aim high.",
+  "Pause, breathe, and savor the beauty of this moment.",
+  "Cherish the people who bring light into your life.",
+  "Let gratitude be your compass today.",
+  "Dance through your challenges with resilience.",
+  "Create a balance between work, play, and rest.",
+  "Explore new perspectives and embrace diversity.",
+  "Kindness costs nothing but can mean everything.",
+  "You have the strength to overcome any hurdle.",
+  "Let your enthusiasm for life shine brightly.",
 ];
 
 exampleElement.addEventListener("mouseenter", function () {

@@ -1,3 +1,5 @@
+let sendsendImageUrl;
+
 document.getElementById("pic-upload").addEventListener("click", async () => {
   const fileInput = document.getElementById("fileInput");
   fileInput.click(); // Trigger click on the file input
@@ -20,9 +22,10 @@ document.getElementById("pic-upload").addEventListener("click", async () => {
 
         if (response.ok) {
           alert("File uploaded successfully!");
-          const imageUrl = await response.text(); // Assuming the server returns the image URL
-          console.log("Uploaded Image URL:", imageUrl);
-          // You can store or use the imageUrl as needed
+          let sendImageUrl = await response.text(); // Assuming the server returns the image URL
+          console.log("Uploaded Image URL:", sendImageUrl);
+          await sendImageToServer(userName, sendImageUrl);
+          // You can store or use the sendImageUrl as needed
         } else {
           const errorMessage = await response.text();
           alert(`Failed to upload file: ${errorMessage}`);

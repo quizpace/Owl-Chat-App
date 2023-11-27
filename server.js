@@ -48,62 +48,6 @@ async function sendAudioInfoToServer(userName, fileInfo) {
   }
 }
 
-// async function getTextFromServer() {
-//   try {
-//     const response = await fetch("https://db-vkyv.onrender.com/chats");
-//     const data = await response.json();
-//     if (data && data.length > 0) {
-//       data.forEach((message) => {
-//         const messageId = message.id;
-
-//         if (!processedMessageIds.has(messageId)) {
-//           const username = message.user;
-
-//           // Parse the time string to create a Date object
-//           const time = parseMessageTime(message.time, username);
-
-//           if (username !== myUserName) {
-//             // Convert URLs in the text to clickable links
-//             const textWithLinks = convertURLsToLinks(message.text);
-
-//             // Create a message format with line breaks
-//             const clientChatDiv = document.createElement("div");
-//             clientChatDiv.classList.add("client-chat");
-//             if (message.imageUrl) {
-//               clientChatDiv.style.background =
-//                 "linear-gradient(to right, #584460, white)";
-//             }
-//             clientChatDiv.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
-
-//             // Check if there's an imageUrl in the message
-//             if (message.imageUrl) {
-//               const imageElement = document.createElement("img");
-//               imageElement.src = message.imageUrl;
-//               imageElement.width = 100;
-//               imageElement.height = 100;
-//               clientChatDiv.appendChild(imageElement);
-//             }
-
-//             // Create a separate div for each message ID
-//             const messageDiv = document.createElement("div");
-//             messageDiv.id = `message-${messageId}`;
-//             messageDiv.appendChild(clientChatDiv);
-//             chatsDiv.appendChild(messageDiv);
-
-//             // Scroll the new message into view
-//             clientChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
-
-//             // Add the message ID to the set
-//             processedMessageIds.add(messageId);
-//           }
-//         }
-//       });
-//     }
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// }
-
 function extractFileName(text) {
   const words = text.split(" ");
   for (const word of words) {
@@ -114,6 +58,32 @@ function extractFileName(text) {
   return "";
 }
 
+// Photo
+
+async function sendImageToServer(userName, imageUrl) {
+  try {
+    console.log("Sending image data to the server...");
+    const response = await fetch("https://db-vkyv.onrender.com/chats", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: userName, // Assuming userName is globally available
+        imageUrl: imageUrl,
+        time: new Date().toISOString(),
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error sending image data: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error sending image data:", error);
+  }
+}
+
+// handle massages from server (photo, audio, stickers....)
 async function getTextFromServer() {
   try {
     const response = await fetch("https://db-vkyv.onrender.com/chats");
@@ -193,15 +163,41 @@ async function getTextFromServer() {
             } else {
               const textWithLinks = convertURLsToLinks(message.text);
               messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
-              if (message.imageUrl) {
-                const imageElement = document.createElement("img");
-                imageElement.src = message.imageUrl;
-                imageElement.width = 110;
-                imageElement.height = 100;
-                messageContent.appendChild(imageElement);
+              //   if (message.imageUrl) {
+              //     const imageElement = document.createElement("img");
+              //     imageElement.src = message.imageUrl;
+              //     imageElement.width = 110;
+              //     imageElement.height = 100;
+              //     messageContent.appendChild(imageElement);
 
-                clientChatDiv.style.background =
-                  "linear-gradient(to right, #584460, #e0fbfc)";
+              //     clientChatDiv.style.background =
+              //       "linear-gradient(to right, #584460, #e0fbfc)";
+              //   }
+              // }
+              if (message.imageUrl) {
+                const serverUrl = "https://photos-api-mzpl.onrender.com/photos";
+                const imageExtensionsRegex = /\.(png|jpe?g|gif|bmp|webp)$/i;
+
+                if (
+                  message.imageUrl.startsWith(serverUrl) &&
+                  imageExtensionsRegex.test(message.imageUrl)
+                ) {
+                  const blueImage = document.createElement("img");
+                  blueImage.src = "/img/blueberry.png";
+                  blueImage.classList.add("blue");
+                  messageContent.appendChild(blueImage);
+                  clientChatDiv.style.background =
+                    "linear-gradient(to right, #584460, #b9fbc0)";
+                } else {
+                  const imageElement = document.createElement("img");
+                  imageElement.src = message.imageUrl;
+                  imageElement.width = 110;
+                  imageElement.height = 100;
+                  messageContent.appendChild(imageElement);
+
+                  clientChatDiv.style.background =
+                    "linear-gradient(to right, #584460, #e0fbfc)";
+                }
               }
             }
             clientChatDiv.appendChild(messageContent);

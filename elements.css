@@ -302,6 +302,7 @@
   right: 7%;
   top: 3%;
   display: none;
+  z-index: 1;
 }
 
 .spider {
@@ -310,14 +311,14 @@
   width: 100%;
   background: linear-gradient(
     45deg,
-    #ff00ff7c,
-    #00ffff7e,
-    #ffff0088,
-    #ff00ff69
+    #ff00ff0d,
+    #00ffff15,
+    #ffff0018,
+    #ff00ff15
   );
   background-size: 400% 400%;
   animation: gradientAnimation 10s linear infinite;
-  backdrop-filter: blur(40px); /* Adjust the blur strength as needed */
+  backdrop-filter: blur(10px); /* Adjust the blur strength as needed */
   /* Other styles for the spider image */
 }
 
@@ -370,3 +371,4 @@
     /* Add any other styles you want for the text */
   }
 }
+
