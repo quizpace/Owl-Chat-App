@@ -295,3 +295,78 @@
   border-radius: 15px;
   opacity: 0.7;
 }
+
+.spider-container {
+  position: absolute;
+  width: 20%;
+  right: 7%;
+  top: 3%;
+  display: none;
+}
+
+.spider {
+  border-radius: 50%;
+  position: relative;
+  width: 100%;
+  background: linear-gradient(
+    45deg,
+    #ff00ff7c,
+    #00ffff7e,
+    #ffff0088,
+    #ff00ff69
+  );
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s linear infinite;
+  backdrop-filter: blur(40px); /* Adjust the blur strength as needed */
+  /* Other styles for the spider image */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text-overlay {
+  position: absolute;
+  width: 70%; /* Set the width to 100% */
+  height: 70%; /* Set the height to 100% */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+@keyframes animationRainbowText {
+  28.56% {
+    color: rgb(174, 204, 24); /* Yellow */
+  }
+}
+
+.text-overlay p {
+  color: rgb(204, 240, 27); /* Yellow */
+  animation: animationRainbowText 10s linear infinite;
+  font-size: 16px; /* Adjust the font size as needed */
+  animation: animationRainbow 5s linear infinite;
+}
+
+@keyframes animationRainbow {
+  0% {
+    text-shadow: 0 0 10px rgba(44, 11, 11, 0.7),
+      /* Blue */ 0 0 10px rgba(54, 9, 85, 0.7),
+      /* Indigo */ 0 0 8px rgba(179, 69, 179, 0.7); /* Violet */
+    /* Add any other styles you want for the text */
+  }
+
+  100% {
+    text-shadow: 0 0 8px rgba(105, 7, 7, 0.7),
+      /* Indigo */ 0 0 5px rgba(116, 9, 116, 0.7); /* Violet */
+    /* Add any other styles you want for the text */
+  }
+}
