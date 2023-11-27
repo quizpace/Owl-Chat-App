@@ -12,17 +12,33 @@
     <link rel="stylesheet" type="text/css" href="bubble.css" />
     <link rel="stylesheet" type="text/css" href="inflat-bubble.css" />
     <link rel="stylesheet" type="text/css" href="inter-modal.css" />
+    <link rel="stylesheet" type="text/css" href="pic-upload.css" />
     <title>Owl Chat</title>
   </head>
   <body>
     <div class="container">
 
-            <!-- Interactive Section -->
+                  <!-- Upload Picture Section -->
 
+<!-- Pic Modal structure -->
+<div id="myModalPic" class="modal-pic" style="display: none;">
+  <!-- Modal content -->
+  <div class="pic-modal-content">
+    <span class="pic-close">&times;</span>
+    <img id="modalImage" class="bordered-image" alt="Image 1">
+  </div>
+</div>
+    <!-- Add more images with the "bordered-image" class here -->
+  </div>
+</div>
+
+
+
+            <!-- Interactive Section -->
 <!-- Trigger button to open the modal -->
 <button id="openModalBtn">Open Modal</button>
 
-<!-- The modal -->
+<!-- Games modal -->
 <div id="interModal" class="inter-modal">
   <div class="inter-modal-content">
     <span class="closeIM">&times;</span>

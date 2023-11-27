@@ -167,16 +167,26 @@ async function getTextFromServer() {
               messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
               // IMG STICKERS AND UPLOADED PICS
               if (message.imageUrl) {
-                const serverUrl = "https://photos-api-mzpl.onrender.com/photos";
-                const imageExtensionsRegex = /\.(png|jpe?g|gif|bmp|webp)$/i;
-                // FOR UPLOADED PICS
+                // console.log("Image URL:", message.imageUrl);
+                // const serverUrl = "https://photos-api-mzpl.onrender.com/photos";
+                // // const imageExtensionsRegex = /\.(png|jpe?g|gif|bmp|webp)$/i;
+                // // FOR UPLOADED PICS
+                // console.log("Server URL:", serverUrl);
+                // When creating the .blue element within your code
+                // When creating the .blue element within your code
+                // When creating the .blue element within your code
                 if (
-                  message.imageUrl.startsWith(serverUrl) &&
-                  imageExtensionsRegex.test(message.imageUrl)
+                  message.imageUrl.includes(
+                    "://photos-api-mzpl.onrender.com/photos"
+                  )
                 ) {
                   const blueImage = document.createElement("img");
                   blueImage.src = "/img/blueberry.png";
                   blueImage.classList.add("blue");
+
+                  // Setting data-image-url directly on the .blue element
+                  blueImage.dataset.imageUrl = message.imageUrl;
+
                   messageContent.appendChild(blueImage);
                   clientChatDiv.style.background =
                     "linear-gradient(to right, #584460, #b9fbc0)";
