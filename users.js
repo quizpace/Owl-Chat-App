@@ -1,7 +1,10 @@
-// Modal for username
-// Declare userName globally
+// Declare global variables
 let userName = "";
 let myUserName = "";
+let globalUserId = null;
+let lastUpdateTime = {}; // Define lastUpdateTime as an empty object
+
+// Rest of your code...
 
 // Choose username
 document.addEventListener("DOMContentLoaded", function () {
@@ -26,9 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-// send the user name to server
-let globalUserId = null; // Define a global variable to store the userID
 
 function sendUserDataToServer(username, time) {
   const userData = {
@@ -70,15 +70,21 @@ function getCurrentTime() {
 }
 
 // Creat users list
-// const usersList = document.querySelector(".users");
-// Create users list based on unique user IDs
-// Create users list based on unique user IDs
-// Create users list based on unique user IDs
+
 const usersList = {};
 
 function createUsersList(userName, userId) {
-  const existingUser = document.getElementById(`user_${userId}`);
-  if (!existingUser) {
+  const existingUsers = document.querySelectorAll(".uList");
+  let userExists = false;
+
+  existingUsers.forEach((user) => {
+    if (user.textContent.trim() === userName) {
+      userExists = true;
+      return; // Exit loop if a user with the same name is found
+    }
+  });
+
+  if (!userExists) {
     const myUsersList = document.createElement("li");
     myUsersList.id = `user_${userId}`;
     myUsersList.classList.add("uList");
@@ -91,114 +97,76 @@ function fetchAndUpdateUsersList() {
   fetch("https://web-server-demo1.onrender.com/users")
     .then((response) => response.json())
     .then((data) => {
-      // Clear the current user list
-      document.querySelector(".users").innerHTML = "";
+      const existingUsers = document.querySelectorAll(".users .uList");
+      const existingUsernames = Array.from(existingUsers).map((user) =>
+        user.textContent.trim()
+      );
 
-      // Create the updated user list
       data.forEach((user) => {
-        createUsersList(user.user, user.id);
+        if (!existingUsernames.includes(user.user)) {
+          createUsersList(user.user, user.id);
+        }
+      });
+
+      existingUsers.forEach((userElement) => {
+        const userId = userElement.id.split("_")[1]; // Extract user ID
+        const found = data.some((user) => user.id === parseInt(userId));
+        if (!found) {
+          // Delay the removal by 500 milliseconds
+          setTimeout(() => {
+            userElement.remove();
+          }, 500);
+        }
       });
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
 }
-
-// Call fetchAndUpdateUsersList initially and then every 5 seconds
-fetchAndUpdateUsersList(); // Initial call
-setInterval(fetchAndUpdateUsersList, 5000); // Subsequent calls every 5 seconds (in milliseconds)
-
-// Delete user from list when leave the chat
-
-// Store the last update time for each user
-const lastUpdateTime = {};
 
 function updateUsernameOnServer(globalUserId, myUserName) {
-  const userData = {
-    user: myUserName,
-    time: getCurrentTime(),
-  };
-
-  fetch(`https://web-server-demo1.onrender.com/users/${globalUserId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  })
-    .then((response) => {
-      if (response.ok) {
-        console.log(
-          `Username for user with ID "${globalUserId}" updated on the server.`
-        );
-        lastUpdateTime[globalUserId] = new Date(); // Update last update time
-      } else {
-        throw new Error(
-          `Failed to update username for user with ID "${globalUserId}".`
-        );
-      }
-    })
-    .catch((error) => {
-      console.error("Error updating username on the server:", error);
-    });
-}
-
-// Function to delete user if not updated in the last 15 seconds
-function deleteInactiveUsers() {
-  fetch("https://web-server-demo1.onrender.com/users")
+  // Check if the username already exists
+  fetch(`https://web-server-demo1.onrender.com/users?user=${myUserName}`)
     .then((response) => response.json())
     .then((data) => {
-      const currentTime = Date.now();
-      console.log("Sync Users...");
-      data.forEach((user) => {
-        let userLastUpdateTime;
+      if (data.length > 0) {
+        return;
+      }
 
-        // Check for "GMT" in the time string to handle different formats
-        if (user.time.includes("GMT")) {
-          userLastUpdateTime = new Date(user.time).getTime();
-        } else {
-          const timeParts = user.time.split(":");
-          if (timeParts.length === 3) {
-            const hours = parseInt(timeParts[0]);
-            const minutes = parseInt(timeParts[1]);
-            const seconds = parseInt(timeParts[2].split(" ")[0]);
-            const currentTimeObject = new Date();
-            currentTimeObject.setHours(hours, minutes, seconds);
-            userLastUpdateTime = currentTimeObject.getTime();
+      // Username doesn't exist, proceed with creating the user
+      const userData = {
+        user: myUserName,
+        time: getCurrentTime(),
+      };
+
+      fetch(`https://web-server-demo1.onrender.com/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log(`Username "${myUserName}" posted to the server.`);
+            // Assuming the server responds with the created user data including an 'id'
+            const userId = response.id; // Extract the ID from the response
+            lastUpdateTime[userId] = new Date(); // Update last update time for the new user
+            globalUserId = userId; // Update the global user ID if needed
           } else {
-            console.error(`Invalid time format for user ID "${user.id}"`);
-            return; // Skip this user due to invalid time format
+            throw new Error(
+              `Failed to post username "${myUserName}" to the server.`
+            );
           }
-        }
-
-        const timeDiffMilliseconds = currentTime - userLastUpdateTime;
-        const timeDiffSeconds = timeDiffMilliseconds / 1000;
-
-        if (isNaN(timeDiffSeconds)) {
-          console.error(`Invalid time difference for user ID "${user.id}"`);
-          return; // Skip this user due to invalid time difference
-        }
-
-        if (timeDiffSeconds > 15) {
-          console.log(`Deleting user with ID "${user.id}"`);
-          deleteUserFromServer(user.id);
-        }
-      });
+        })
+        .catch((error) => {
+          console.error("Error posting username on the server:", error);
+        });
     })
     .catch((error) => {
-      console.error("Error fetching data:", error);
+      console.error("Error checking username on the server:", error);
     });
 }
-
-// Call deleteInactiveUsers initially and then at regular intervals
-deleteInactiveUsers(); // Initial call
-setInterval(deleteInactiveUsers, 5000); // Subsequent calls every 5 seconds (adjust as needed)
-
-// Call updateUsernameOnServer every 10 seconds
-setInterval(() => {
-  // Replace userId and myUserName with actual values
-  updateUsernameOnServer(globalUserId, myUserName);
-}, 10000); // 10 seconds interval
 
 // Delete users list
 
@@ -236,5 +204,13 @@ function deleteAllUsersExceptOne() {
     });
 }
 
-// // Execute the deletion process
-// deleteAllUsersExceptOne();
+// Update the user list every 1 second
+setInterval(fetchAndUpdateUsersList, 300);
+
+setInterval(deleteAllUsersExceptOne, 5000); // Subsequent calls every 5 seconds (adjust as needed)
+
+// Call updateUsernameOnServer every 10 seconds
+setInterval(() => {
+  // Replace userId and myUserName with actual values
+  updateUsernameOnServer(globalUserId, myUserName);
+}, 500); // 10 seconds interval
