@@ -4,8 +4,6 @@ let myUserName = "";
 let globalUserId = null;
 let lastUpdateTime = {}; // Define lastUpdateTime as an empty object
 
-// Rest of your code...
-
 // Choose username
 document.addEventListener("DOMContentLoaded", function () {
   // Display the modal on page load
@@ -207,7 +205,8 @@ function deleteAllUsersExceptOne() {
 // Update the user list every 1 second
 setInterval(fetchAndUpdateUsersList, 300);
 
-setInterval(deleteAllUsersExceptOne, 5000); // Subsequent calls every 5 seconds (adjust as needed)
+deleteAllUsersExceptOne();
+setInterval(deleteAllUsersExceptOne, 10000); // Subsequent calls every 5 seconds (adjust as needed)
 
 // Call updateUsernameOnServer every 10 seconds
 setInterval(() => {
