@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.style.display = "none";
       // Send the username and time to the JSON server
       sendUserDataToServer(userName, getCurrentTime());
+      createBubble(`Welcome ${userName} have fun!`);
     } else {
       alert("Please enter a valid name.");
     }

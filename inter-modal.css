@@ -9,6 +9,7 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
 }
 
 .inter-modal-content {
@@ -33,7 +34,7 @@
 
 .closeIM:hover,
 .closeIM:focus {
-  color: black;
+  color: rgb(255, 84, 50);
   text-decoration: none;
   cursor: pointer;
   z-index: 2;
@@ -43,4 +44,38 @@
   position: absolute;
   left: 0;
   top: 20%;
+  background-color: #d1ff0400;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.tictac {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.tictac:hover {
+  opacity: 1;
+}
+
+#openModalBtn2 {
+  position: absolute;
+  left: 0;
+  top: 55%;
+  background-color: #d1ff0400;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.memory {
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  /* Apply a rotation of 45 degrees */
+  transform: rotate(25deg);
+  opacity: 0.5;
+}
+.memory:hover {
+  opacity: 1;
 }

@@ -10,6 +10,14 @@ openModalBtn.addEventListener("click", () => {
     `;
 });
 
+openModalBtn2.addEventListener("click", () => {
+  interModal.style.display = "block";
+  // Clear previous content
+  document.getElementById("interModalContent").innerHTML = `
+      <iframe src="https://amazing-arithmetic-10d027.netlify.app/" frameborder="0" style="width: 98%; height: 100%; position: absolute; top: 0; left: 0;"></iframe>
+    `;
+});
+
 // Close the modal when the close button (×) is clicked
 document.querySelector(".closeIM").addEventListener("click", () => {
   interModal.style.display = "none";
