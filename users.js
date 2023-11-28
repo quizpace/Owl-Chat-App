@@ -153,19 +153,31 @@ function deleteInactiveUsers() {
       data.forEach((user) => {
         let userLastUpdateTime;
 
-        // Handling different time formats
+        // Check for "GMT" in the time string to handle different formats
         if (user.time.includes("GMT")) {
           userLastUpdateTime = new Date(user.time).getTime();
         } else {
           const timeParts = user.time.split(":");
-          const hours = parseInt(timeParts[0]);
-          const minutes = parseInt(timeParts[1]);
-          const seconds = parseInt(timeParts[2].split(" ")[0]);
-          userLastUpdateTime = new Date().setHours(hours, minutes, seconds);
+          if (timeParts.length === 3) {
+            const hours = parseInt(timeParts[0]);
+            const minutes = parseInt(timeParts[1]);
+            const seconds = parseInt(timeParts[2].split(" ")[0]);
+            const currentTimeObject = new Date();
+            currentTimeObject.setHours(hours, minutes, seconds);
+            userLastUpdateTime = currentTimeObject.getTime();
+          } else {
+            console.error(`Invalid time format for user ID "${user.id}"`);
+            return; // Skip this user due to invalid time format
+          }
         }
 
         const timeDiffMilliseconds = currentTime - userLastUpdateTime;
         const timeDiffSeconds = timeDiffMilliseconds / 1000;
+
+        if (isNaN(timeDiffSeconds)) {
+          console.error(`Invalid time difference for user ID "${user.id}"`);
+          return; // Skip this user due to invalid time difference
+        }
 
         if (timeDiffSeconds > 15) {
           console.log(`Deleting user with ID "${user.id}"`);
