@@ -194,6 +194,7 @@ function deleteAllUsersExceptOne() {
       data.forEach((user) => {
         if (user.id !== 1) {
           deleteUserFromServer(user.id);
+          console.log("users deleted");
         }
       });
     })
