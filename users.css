@@ -4,7 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  /* position: relative; */
+
 }
 
 /* chat box section */
@@ -16,7 +17,7 @@
   overflow: hidden;
   border-radius: 10px;
   position: relative;
-  left: 290%;
+  left: 188%;
   z-index: 0;
 }
 
