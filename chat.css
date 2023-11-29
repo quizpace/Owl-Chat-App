@@ -50,7 +50,7 @@ body {
   overflow: hidden;
   border-radius: 10px;
   position: relative;
-  left: 5%;
+  left: 2.3%;
 }
 
 .chat-box.expanded {
@@ -77,16 +77,15 @@ body {
 .client img {
   width: 10%;
   position: absolute;
-left: 35%;
-border-radius: 20px;
+  left: 35%;
+  border-radius: 20px;
 }
 .client img:hover {
   width: 10%;
   position: absolute;
-left: 35%;
-box-shadow: 0 0 10px 5px #cbf3cb;
+  left: 35%;
+  box-shadow: 0 0 10px 5px #cbf3cb;
 }
-
 
 #scroll-button {
   position: relative;
