@@ -106,7 +106,6 @@ async function getTextFromServer() {
             clientChatDiv.classList.add("client-chat");
 
             const messageContent = document.createElement("div");
-            // messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
 
             // AUDIO RECORDINGS
             if (message.text && message.text.includes(".wav")) {
@@ -167,14 +166,6 @@ async function getTextFromServer() {
               messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
               // IMG STICKERS AND UPLOADED PICS
               if (message.imageUrl) {
-                // console.log("Image URL:", message.imageUrl);
-                // const serverUrl = "https://photos-api-mzpl.onrender.com/photos";
-                // // const imageExtensionsRegex = /\.(png|jpe?g|gif|bmp|webp)$/i;
-                // // FOR UPLOADED PICS
-                // console.log("Server URL:", serverUrl);
-                // When creating the .blue element within your code
-                // When creating the .blue element within your code
-                // When creating the .blue element within your code
                 if (
                   message.imageUrl.includes(
                     "://photos-api-mzpl.onrender.com/photos"
@@ -217,7 +208,7 @@ async function getTextFromServer() {
       });
     }
   } catch (error) {
-    console.error("Error fetching data:", error);
+    // console.error("Error fetching data:", error);
   }
 }
 
