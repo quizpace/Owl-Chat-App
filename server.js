@@ -208,7 +208,7 @@ async function getTextFromServer() {
       });
     }
   } catch (error) {
-    // console.error("Error fetching data:", error);
+    alert("There was an issue fetching data. Please try again later.");
   }
 }
 
