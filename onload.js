@@ -21,8 +21,7 @@ $(document).ready(() => {
 // Call the function when the page loads
 window.onload = async () => {
   await getTextFromServer();
-  // await deleteAllExceptFirst();
-  // Start the interval after loading all messages
+
   setInterval(() => {
     getTextFromServer();
     const chatBox = document.querySelector(".chat-box");
