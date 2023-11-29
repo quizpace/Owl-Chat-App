@@ -372,3 +372,16 @@
   }
 }
 
+.moonMode {
+  position: absolute;
+  top: 10%;
+  left: 3%;
+  width: 150px;
+}
+
+.sunMode {
+  position: absolute;
+  top: 70%;
+  right: 93%;
+  width: 100px;
+}
