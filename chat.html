@@ -18,8 +18,7 @@
   <body>
     <div class="container">
 
-                  <!-- Upload Picture Section -->
-
+      <!-- Upload Picture Section -->
 <!-- Pic Modal structure -->
 <div id="myModalPic" class="modal-pic" style="display: none;">
   <!-- Modal content -->
@@ -65,8 +64,7 @@
       
       <img src="/img/bub.png" class="bub" alt="bubble" id="bub" />
       <img src="/img/rainbow.png" alt="rainbow" class="rainbow" />
-      <img src="/img/mooon.png" alt="moon" class="moonMode" />
-      <img src="/img/psun.png" alt="sun" class="sunMode" />
+      <img src="/img/psun.png" alt="moon" class="mode-toggle" id="modeToggle" onclick="toggleMode()" />
       <!-- Modal for username -->
       <div id="myModal" class="modalStart">
         <div class="modal-content">
@@ -99,16 +97,16 @@
         <div class="chats" id="chatsContainer"></div>
         <!--input field section-->
         <div class="chat-input">
-          <input class="msg" type="text" placeholder="Enter Message" />
+          <textarea class="msg" placeholder="Enter Message"></textarea>
           <button class="send-btn">
             <img src="img/sendpurp1.png" alt="send-btn" />
           </button>
-            <!-- Recording Section-->
-            <img src="/img/mic.png" id="toggleRecording" class="mic" alt="record" />
-            <!-- <button id="toggleRecording" type="button">🎙️</button> -->
-            <audio controls id="audioPlayer" style="display: none;"></audio>
+          <!-- Recording Section-->
+          <img src="/img/mic.png" id="toggleRecording" class="mic" alt="record" />
+          <!-- <button id="toggleRecording" type="button">🎙️</button> -->
+          <audio controls id="audioPlayer" style="display: none;"></audio>
         </div>
-
+        
 
       </div>
 <!--bubble-->

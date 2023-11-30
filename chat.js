@@ -145,27 +145,6 @@ function createAudioBox(chatsDiv, audioFileURL, userName, time) {
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const chatBox = document.querySelector(".chat-box");
-  const clientImg = document.querySelector(".logowl");
-  const scrollButton = document.getElementById("scroll-button"); // Assuming you have an element with ID "scroll-button"
-
-  let isExpanded = false;
-
-  clientImg.addEventListener("click", function () {
-    if (!isExpanded) {
-      chatBox.style.width = "600px";
-      chatBox.style.height = "650px";
-      chatBox.style.bottom = "40px";
-      isExpanded = true;
-    } else {
-      chatBox.style.width = "400px";
-      chatBox.style.height = "450px";
-      chatBox.style.bottom = "10px";
-      isExpanded = false;
-    }
-  });
-});
 
 // FullScreen Button!
 

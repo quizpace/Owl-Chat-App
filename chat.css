@@ -23,7 +23,10 @@ body {
   align-items: center;
   min-height: 100vh;
   background-color: rgb(144, 164, 187);
-  /* background-color: rgb(40, 4, 58); */
+}
+
+body.night {
+  background-color: rgb(40, 4, 58);
 }
 
 .container {
@@ -45,7 +48,7 @@ body {
 .chat-box {
   width: 400px;
   height: 450px;
-  background-image: url("/img/backg2.jpg"); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+  background-image: url("/img/backg2.jpg");
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -58,6 +61,10 @@ body {
   /* width: 600px;
   height: 600px; */
   overflow: scroll;
+}
+
+.chat-box.night {
+  background-image: url("/img/night-mode.jpg"); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
 }
 
 /* about client */
@@ -186,6 +193,13 @@ position: sticky;
   z-index: 1;
 }
 
+/* Night mode specific chat-input styles */
+.chat-input.night {
+  background-image: linear-gradient(to bottom right, #b7ff002c, #04243f);
+  border-radius: 20px;
+  /* Other night mode input styles here */
+}
+
 .chat-input input {
   width: calc(100% - 80px);
   height: 100%;
@@ -199,6 +213,24 @@ position: sticky;
 
 .chat-input input:hover {
   cursor: url("cursors/but-pur.cur"), auto;
+}
+
+textarea {
+  position: absolute;
+  text-align: center;
+}
+
+.chat-input .msg {
+  resize: none; /* Prevent resizing by the user */
+}
+
+.msg {
+  position: absolute;
+  width: 250px; /* Set your original width */
+  height: 40px; /* Set your original height */
+  margin: 5px;
+  left: 5%;
+  border-radius: 20px;
 }
 
 .bub {

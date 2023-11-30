@@ -20,6 +20,10 @@
   z-index: 1;
 }
 
+.emoji-box.night {
+  background-color: rgb(36, 21, 133)
+}
+
 /* about client */
 
 .emoji-bank {
