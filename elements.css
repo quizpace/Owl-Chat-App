@@ -390,8 +390,8 @@
 .mode-toggle {
   cursor: pointer;
   position: absolute;
-  top: 10%;
-  left: 3%;
+  top: 5%;
+  left: 45%;
   width: 150px;
 }
 /* 
