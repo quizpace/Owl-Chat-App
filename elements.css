@@ -45,13 +45,22 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: #fff;
+  /* Other styles */
   cursor: pointer;
   overflow: hidden;
   position: fixed;
   bottom: 20px;
   left: 50%;
 }
+.chat-btn:hover {
+  backdrop-filter: blur(90px); /* Adjust the blur intensity as needed */
+  background-image: linear-gradient(
+    to right,
+    rgba(225, 247, 78, 0.284),
+    #ffa6003c
+  ); /* Adjust the gradient direction and colors */
+}
+
 .chat-btn img {
   width: 100%;
   height: 100%;

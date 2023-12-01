@@ -71,12 +71,20 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: #fff;
+  /* background-color: #fff; */
   cursor: pointer;
   overflow: hidden;
   position: fixed;
   bottom: 20px;
   right: 7%;
+}
+.users-btn:hover {
+  backdrop-filter: blur(90px); /* Adjust the blur intensity as needed */
+  background-image: linear-gradient(
+    to right,
+    rgba(225, 247, 78, 0.284),
+    #ffa6003c
+  );
 }
 .users-btn img {
   width: 100%; /* Adjust the percentage to your preference */
