@@ -12,7 +12,16 @@
 .users-box {
   width: 200px;
   height: 550px;
-  background-color: rgb(255, 255, 255);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 0, 0, 0.211) 5%,
+    rgba(255, 166, 0, 0.257) 27%,
+    rgba(255, 255, 0, 0.248) 43%,
+    rgba(0, 128, 0, 0.239) 55%,
+    rgba(0, 0, 255, 0.222) 67%,
+    rgba(76, 0, 130, 0.241) 83%,
+    rgba(238, 130, 238, 0.178) 100%
+  );
   overflow: hidden;
   border-radius: 10px;
   position: absolute;
@@ -21,7 +30,7 @@
 }
 
 .users-box.night {
-  background-color: rgb(60, 0, 109);
+  background-color: rgba(60, 0, 109, 0.134);
 }
 /* about client */
 

@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  /* position: absolute; */
 }
 
 /* chat box section */
@@ -12,17 +12,22 @@
 .emoji-box {
   width: 380px;
   height: 388px;
-  background-color: rgb(255, 255, 255);
+  background-size: cover; /* Fit the background image to cover the entire box */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-color: rgba(125, 135, 62, 0.232);
   overflow: hidden;
   border-radius: 12px;
-  position: relative;
-  left: -135%;
+  position: absolute;
+  left: 2%;
   z-index: 1;
 }
 
 .emoji-box.night {
-  background-color: rgb(36, 21, 133)
+  /* background-image: url(/img/night2.jpg); */
+  background-color: rgba(0, 255, 136, 0.232);
 }
+
 
 /* about client */
 
