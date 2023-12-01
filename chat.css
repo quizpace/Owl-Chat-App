@@ -48,7 +48,8 @@ body.night {
 .chat-box {
   width: 400px;
   height: 450px;
-  background-image: url("/img/backg2.jpg");
+  /* background-image: url("/img/backg2.jpg"); */
+  background-image: url("/img/drcolor.jpg");
   background-size: cover;
   background-position: center;
   overflow: hidden;
