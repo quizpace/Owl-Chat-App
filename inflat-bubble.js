@@ -6,9 +6,25 @@ canvas.height = window.innerHeight;
 
 console.log(ctx);
 let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-gradient.addColorStop(0, "white");
-gradient.addColorStop(0.5, "lightblue");
-gradient.addColorStop(1, "navy");
+// gradient.addColorStop(0, "white");
+// gradient.addColorStop(0.5, "lightblue");
+// gradient.addColorStop(1, "navy");
+// gradient.addColorStop(0, "green");
+// gradient.addColorStop(0.5, "lightblue");
+// gradient.addColorStop(1, "purple");
+
+// Define multiple color stops to create a rainbow effect
+gradient.addColorStop(0, "red");
+gradient.addColorStop(0.17, "orange");
+gradient.addColorStop(0.33, "yellow");
+gradient.addColorStop(0.5, "green");
+gradient.addColorStop(0.67, "blue");
+gradient.addColorStop(0.83, "indigo");
+gradient.addColorStop(1, "violet");
+
+// Fill a rectangle or any shape you want with the rainbow gradient
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
 ctx.fillStyle = gradient;
 
 class Particle {
@@ -130,7 +146,7 @@ class Effect {
     });
   }
   connectParticles(context) {
-    const maxDistance = 80;
+    const maxDistance = 50;
     for (let a = 0; a < this.particles.length; a++) {
       for (let b = a; b < this.particles.length; b++) {
         const dx = this.particles[a].x - this.particles[b].x;

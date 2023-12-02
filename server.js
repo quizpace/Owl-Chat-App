@@ -85,131 +85,132 @@ async function sendImageToServer(userName, imageUrl) {
 
 // handle massages from server (photo, audio, stickers....)
 async function getTextFromServer() {
-  // try {
-  const response = await fetch("https://db-vkyv.onrender.com/chats");
-  const data = await response.json();
-  if (data && data.length > 0) {
-    data.forEach((message) => {
-      const messageId = message.id;
+  try {
+    const response = await fetch("https://db-vkyv.onrender.com/chats");
+    const data = await response.json();
+    if (data && data.length > 0) {
+      data.forEach((message) => {
+        const messageId = message.id;
 
-      if (!processedMessageIds.has(messageId)) {
-        const username = message.user;
-        const time = parseMessageTime(message.time, username);
-        // const textWithLinks = convertURLsToLinks(message.text);
+        if (!processedMessageIds.has(messageId)) {
+          
+          const username = message.user;
+          const time = parseMessageTime(message.time, username);
+          // const textWithLinks = convertURLsToLinks(message.text);
 
-        // CHECK IF ITS NOT THE USING USER AT THE MOMENT
-        if (username !== myUserName) {
-          const messageDiv = document.createElement("div");
-          messageDiv.id = `message-${messageId}`;
+          // CHECK IF ITS NOT THE USING USER AT THE MOMENT
+          if (username !== myUserName) {
+            const messageDiv = document.createElement("div");
+            messageDiv.id = `message-${messageId}`;
 
-          const clientChatDiv = document.createElement("div");
-          clientChatDiv.classList.add("client-chat");
+            const clientChatDiv = document.createElement("div");
+            clientChatDiv.classList.add("client-chat");
 
-          const messageContent = document.createElement("div");
+            const messageContent = document.createElement("div");
 
-          // AUDIO RECORDINGS
-          if (message.text && message.text.includes(".wav")) {
-            const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
-              message.text
-            )}`;
-            // VIEW AUDIO TIME AND USERNAME
-            messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> `;
-            const audioDiv = document.createElement("div");
-            audioDiv.classList.add("audio-message2");
+            // AUDIO RECORDINGS
+            if (message.text && message.text.includes(".wav")) {
+              const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
+                message.text
+              )}`;
+              // VIEW AUDIO TIME AND USERNAME
+              messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> `;
+              const audioDiv = document.createElement("div");
+              audioDiv.classList.add("audio-message2");
 
-            const audioPlayer = new Audio(audioFileURL);
-            audioPlayer.controls = false;
-            // CREAT AUDIO PLAYER WITH CUSTOM CONTROLS
-            const playButton = document.createElement("button2");
-            playButton.classList.add("play-pause-button2");
-            playButton.textContent = "🎶";
-            playButton.addEventListener("click", () => {
-              if (audioPlayer.paused) {
-                audioPlayer.play();
-                playButton.textContent = "🟰";
-              } else {
-                audioPlayer.pause();
-                playButton.textContent = "🎶";
-              }
-            });
-            audioPlayer.addEventListener("ended", () => {
+              const audioPlayer = new Audio(audioFileURL);
+              audioPlayer.controls = false;
+              // CREAT AUDIO PLAYER WITH CUSTOM CONTROLS
+              const playButton = document.createElement("button2");
+              playButton.classList.add("play-pause-button2");
               playButton.textContent = "🎶";
-            });
-            // AUDIO PROGRESS BAR
-            const progressBarContainer = document.createElement("div");
-            progressBarContainer.classList.add("progress-bar-container2");
+              playButton.addEventListener("click", () => {
+                if (audioPlayer.paused) {
+                  audioPlayer.play();
+                  playButton.textContent = "🟰";
+                } else {
+                  audioPlayer.pause();
+                  playButton.textContent = "🎶";
+                }
+              });
+              audioPlayer.addEventListener("ended", () => {
+                playButton.textContent = "🎶";
+              });
+              // AUDIO PROGRESS BAR
+              const progressBarContainer = document.createElement("div");
+              progressBarContainer.classList.add("progress-bar-container2");
 
-            const progressBar = document.createElement("progress");
-            progressBar.max = 100;
-            progressBar.value = 0;
+              const progressBar = document.createElement("progress");
+              progressBar.max = 100;
+              progressBar.value = 0;
 
-            const progressDot = document.createElement("div");
-            progressDot.classList.add("progress-dot2");
+              const progressDot = document.createElement("div");
+              progressDot.classList.add("progress-dot2");
 
-            progressBarContainer.appendChild(progressBar);
-            progressBarContainer.appendChild(progressDot);
-            progressBarContainer.appendChild(playButton);
+              progressBarContainer.appendChild(progressBar);
+              progressBarContainer.appendChild(progressDot);
+              progressBarContainer.appendChild(playButton);
 
-            audioPlayer.addEventListener("loadedmetadata", () => {
-              progressBar.max = audioPlayer.duration;
-            });
+              audioPlayer.addEventListener("loadedmetadata", () => {
+                progressBar.max = audioPlayer.duration;
+              });
 
-            audioPlayer.addEventListener("timeupdate", () => {
-              progressBar.value = audioPlayer.currentTime;
-            });
+              audioPlayer.addEventListener("timeupdate", () => {
+                progressBar.value = audioPlayer.currentTime;
+              });
 
-            audioDiv.appendChild(audioPlayer);
-            audioDiv.appendChild(progressBarContainer);
-            messageContent.appendChild(audioDiv);
-          } else {
-            const textWithLinks = convertURLsToLinks(message.text);
-            messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
-            // IMG STICKERS AND UPLOADED PICS
-            if (message.imageUrl) {
-              if (
-                message.imageUrl.includes(
-                  "://photos-api-mzpl.onrender.com/photos"
-                )
-              ) {
-                const blueImage = document.createElement("img");
-                blueImage.src = "/img/blueberry.png";
-                blueImage.classList.add("blue");
+              audioDiv.appendChild(audioPlayer);
+              audioDiv.appendChild(progressBarContainer);
+              messageContent.appendChild(audioDiv);
+            } else {
+              const textWithLinks = convertURLsToLinks(message.text);
+              messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
+              // IMG STICKERS AND UPLOADED PICS
+              if (message.imageUrl) {
+                if (
+                  message.imageUrl.includes(
+                    "://photos-api-mzpl.onrender.com/photos"
+                  )
+                ) {
+                  const blueImage = document.createElement("img");
+                  blueImage.src = "/img/blueberry.png";
+                  blueImage.classList.add("blue");
 
-                // Setting data-image-url directly on the .blue element
-                blueImage.dataset.imageUrl = message.imageUrl;
+                  // Setting data-image-url directly on the .blue element
+                  blueImage.dataset.imageUrl = message.imageUrl;
 
-                messageContent.appendChild(blueImage);
-                clientChatDiv.style.background =
-                  "linear-gradient(to right, #584460, #b9fbc0)";
-              } else {
-                // FOR PICTURES
-                const imageElement = document.createElement("img");
-                imageElement.src = message.imageUrl;
-                imageElement.width = 110;
-                imageElement.height = 100;
-                messageContent.appendChild(imageElement);
+                  messageContent.appendChild(blueImage);
+                  clientChatDiv.style.background =
+                    "linear-gradient(to right, #584460, #b9fbc0)";
+                } else {
+                  // FOR PICTURES
+                  const imageElement = document.createElement("img");
+                  imageElement.src = message.imageUrl;
+                  imageElement.width = 110;
+                  imageElement.height = 100;
+                  messageContent.appendChild(imageElement);
 
-                clientChatDiv.style.background =
-                  "linear-gradient(to right, #584460, #e0fbfc)";
+                  clientChatDiv.style.background =
+                    "linear-gradient(to right, #584460, #e0fbfc)";
+                }
               }
             }
-          }
-          clientChatDiv.appendChild(messageContent);
-          messageDiv.appendChild(clientChatDiv);
-          chatsDiv.appendChild(messageDiv);
+            clientChatDiv.appendChild(messageContent);
+            messageDiv.appendChild(clientChatDiv);
+            chatsDiv.appendChild(messageDiv);
 
-          clientChatDiv.scrollIntoView({
-            behavior: "smooth",
-            block: "end",
-          });
-          processedMessageIds.add(messageId);
+            clientChatDiv.scrollIntoView({
+              behavior: "smooth",
+              block: "end",
+            });
+            processedMessageIds.add(messageId);
+          }
         }
-      }
-    });
+      });
+    }
+  } catch (error) {
+    alert("There was an issue fetching data. Please try again later.");
   }
-  // } catch (error) {
-  //   alert("There was an issue fetching data. Please try again later.");
-  // }
 }
 
 // Call the function when the page loads

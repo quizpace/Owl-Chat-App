@@ -1,112 +1,89 @@
-//   async function getTextFromServer() {
-//     try {
-//       const response = await fetch("https://db-vkyv.onrender.com/chats");
-//       const data = await response.json();
-//       if (data && data.length > 0) {
-//         data.forEach((message) => {
-//           const messageId = message.id;
+// send msgs to server
 
-//           if (!processedMessageIds.has(messageId)) {
-//             const username = message.user;
-//             const time = parseMessageTime(message.time, username);
-//             const textWithLinks = convertURLsToLinks(message.text);
+async function sendchatInputToServer(chatInput) {
+  try {
+    console.log("Sending data to the server...");
+    const response = await fetch("https://db-vkyv.onrender.com/chats", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: userName, // Assuming userName is globally available
+        text: chatInput,
+        time: new Date().toISOString(),
+      }),
+    });
 
-//             if (username !== myUserName) {
-//               // Check username condition here
-//               const messageDiv = document.createElement("div");
-//               messageDiv.id = `message-${messageId}`;
+    if (!response.ok) {
+      throw new Error(`Error sending data: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error sending data:", error);
+  }
+}
 
-//               const clientChatDiv = document.createElement("div");
-//               clientChatDiv.classList.add("client-chat");
+// Audio
 
-//               const messageContent = document.createElement("div");
-//               messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
+async function sendAudioInfoToServer(userName, fileInfo) {
+  try {
+    console.log("Sending data to the server...");
+    const response = await fetch("https://db-vkyv.onrender.com/chats", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: userName, // Assuming userName is globally available
+        text: `${fileInfo}`, // Place the fileInfo in the text field
+        time: new Date().toISOString(),
+      }),
+    });
 
-//               if (message.imageUrl) {
-//                 const imageElement = document.createElement("img");
-//                 imageElement.src = message.imageUrl;
-//                 imageElement.width = 100;
-//                 imageElement.height = 100;
-//                 messageContent.appendChild(imageElement);
+    if (!response.ok) {
+      throw new Error(`Error sending data: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error sending data:", error);
+  }
+}
 
-//                 clientChatDiv.style.background =
-//                   "linear-gradient(to right, #584460, white)";
-//               }
+function extractFileName(text) {
+  const words = text.split(" ");
+  for (const word of words) {
+    if (word.includes(".wav")) {
+      return word;
+    }
+  }
+  return "";
+}
 
-//               if (message.text && message.text.includes(".wav")) {
-//                 const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(message.text)}`;
+// Photo
 
-//                 // Create audio player
-//                 const audioPlayer = new Audio(audioFileURL);
-//                 audioPlayer.controls = false; // Hide default controls
+async function sendImageToServer(userName, imageUrl) {
+  try {
+    console.log("Sending image data to the server...");
+    const response = await fetch("https://db-vkyv.onrender.com/chats", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: userName, // Assuming userName is globally available
+        imageUrl: imageUrl,
+        time: new Date().toISOString(),
+      }),
+    });
 
-//                 // Create a play/pause button
-//                 const playButton = document.createElement("button");
-//                 playButton.classList.add("play-pause-button");
-//                 playButton.textContent = "🎶";
-//                 playButton.addEventListener("click", () => {
-//                     if (audioPlayer.paused) {
-//                         audioPlayer.play();
-//                         playButton.textContent = "🟰";
-//                     } else {
-//                         audioPlayer.pause();
-//                         playButton.textContent = "🎶";
-//                     }
-//                 });
-//                 audioPlayer.addEventListener("ended", () => {
-//                     playButton.textContent = "🎶";
-//                 });
+    if (!response.ok) {
+      throw new Error(`Error sending image data: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error sending image data:", error);
+  }
+}
 
-//                 // Create a progress bar container
-//                 const progressBarContainer = document.createElement("div");
-//                 progressBarContainer.classList.add("progress-bar-container");
-
-//                 // Create the progress bar
-//                 const progressBar = document.createElement("progress");
-//                 progressBar.max = 100;
-//                 progressBar.value = 0;
-
-//                 // Create a black dot for visualizing progress
-//                 const progressDot = document.createElement("div");
-//                 progressDot.classList.add("progress-dot");
-
-//                 // Append elements to the container
-//                 progressBarContainer.appendChild(progressBar);
-//                 progressBarContainer.appendChild(progressDot);
-//                 progressBarContainer.appendChild(playButton);
-
-//                 // Wait for audio metadata to be loaded to get duration for the progress bar
-//                 audioPlayer.addEventListener("loadedmetadata", () => {
-//                     progressBar.max = audioPlayer.duration;
-//                 });
-
-//                 // Update progress bar as the audio plays
-//                 audioPlayer.addEventListener("timeupdate", () => {
-//                     progressBar.value = audioPlayer.currentTime;
-//                 });
-
-//                 // Append progress bar container to the message content
-//                 messageContent.appendChild(progressBarContainer);
-//             }
-
-//               clientChatDiv.appendChild(messageContent);
-//               messageDiv.appendChild(clientChatDiv);
-//               chatsDiv.appendChild(messageDiv);
-
-//               clientChatDiv.scrollIntoView({
-//                 behavior: "smooth",
-//                 block: "end",
-//               });
-//               processedMessageIds.add(messageId);
-//             }
-//           }
-//         });
-//       }
-//     } catch (error) {
-//       console.error("Error fetching data:", error);
-//     }
-//   }
-
+// handle massages from server (photo, audio, stickers....)
 async function getTextFromServer() {
   try {
     const response = await fetch("https://db-vkyv.onrender.com/chats");
@@ -118,8 +95,9 @@ async function getTextFromServer() {
         if (!processedMessageIds.has(messageId)) {
           const username = message.user;
           const time = parseMessageTime(message.time, username);
-          const textWithLinks = convertURLsToLinks(message.text);
+          // const textWithLinks = convertURLsToLinks(message.text);
 
+          // CHECK IF ITS NOT THE USING USER AT THE MOMENT
           if (username !== myUserName) {
             const messageDiv = document.createElement("div");
             messageDiv.id = `message-${messageId}`;
@@ -129,76 +107,97 @@ async function getTextFromServer() {
 
             const messageContent = document.createElement("div");
 
-            if (message.imageUrl) {
-              const imageElement = document.createElement("img");
-              imageElement.src = message.imageUrl;
-              imageElement.width = 100;
-              imageElement.height = 100;
-              clientChatDiv.style.background =
-                "linear-gradient(to right, #584460, white)";
-              clientChatDiv.appendChild(imageElement);
-            }
-
-            if (message.text.includes(".wav")) {
+            // AUDIO RECORDINGS
+            if (message.text && message.text.includes(".wav")) {
               const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
                 message.text
               )}`;
-              messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span>`;
-              const audioDiv2 = document.createElement("div");
-              audioDiv2.classList.add("audio-message2");
+              // VIEW AUDIO TIME AND USERNAME
+              messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> `;
+              const audioDiv = document.createElement("div");
+              audioDiv.classList.add("audio-message2");
 
-              const audioPlayer2 = new Audio(audioFileURL);
-              audioPlayer2.controls = false; // Hide default controls
-
-              const playButton2 = document.createElement("button");
-              playButton2.classList.add("play-pause-button2");
-              playButton2.textContent = "🎶";
-              playButton2.addEventListener("click", () => {
-                if (audioPlayer2.paused) {
-                  audioPlayer2.play();
-                  playButton2.textContent = "🟰";
+              const audioPlayer = new Audio(audioFileURL);
+              audioPlayer.controls = false;
+              // CREAT AUDIO PLAYER WITH CUSTOM CONTROLS
+              const playButton = document.createElement("button2");
+              playButton.classList.add("play-pause-button2");
+              playButton.textContent = "🎶";
+              playButton.addEventListener("click", () => {
+                if (audioPlayer.paused) {
+                  audioPlayer.play();
+                  playButton.textContent = "🟰";
                 } else {
-                  audioPlayer2.pause();
-                  playButton2.textContent = "🎶";
+                  audioPlayer.pause();
+                  playButton.textContent = "🎶";
                 }
               });
-              audioPlayer2.addEventListener("ended", () => {
-                playButton2.textContent = "🎶";
+              audioPlayer.addEventListener("ended", () => {
+                playButton.textContent = "🎶";
+              });
+              // AUDIO PROGRESS BAR
+              const progressBarContainer = document.createElement("div");
+              progressBarContainer.classList.add("progress-bar-container2");
+
+              const progressBar = document.createElement("progress");
+              progressBar.max = 100;
+              progressBar.value = 0;
+
+              const progressDot = document.createElement("div");
+              progressDot.classList.add("progress-dot2");
+
+              progressBarContainer.appendChild(progressBar);
+              progressBarContainer.appendChild(progressDot);
+              progressBarContainer.appendChild(playButton);
+
+              audioPlayer.addEventListener("loadedmetadata", () => {
+                progressBar.max = audioPlayer.duration;
               });
 
-              const progressBarContainer2 = document.createElement("div");
-              progressBarContainer2.classList.add("progress-bar-container2");
-
-              const progressBar2 = document.createElement("progress");
-              progressBar2.max = 100;
-              progressBar2.value = 0;
-              progressBar2.id = "custom-progress";
-
-              const progressDot2 = document.createElement("div");
-              progressDot2.classList.add("progress-dot2");
-
-              progressBarContainer2.appendChild(progressBar2);
-              progressBarContainer2.appendChild(progressDot2);
-              progressBarContainer2.appendChild(playButton2);
-
-              audioPlayer2.addEventListener("loadedmetadata", () => {
-                progressBar2.max = audioPlayer2.duration;
+              audioPlayer.addEventListener("timeupdate", () => {
+                progressBar.value = audioPlayer.currentTime;
               });
 
-              audioPlayer2.addEventListener("timeupdate", () => {
-                progressBar2.value = audioPlayer2.currentTime;
-              });
-
-              audioDiv2.appendChild(progressBarContainer2);
-              clientChatDiv.appendChild(messageContent);
-              clientChatDiv.appendChild(audioDiv2);
+              audioDiv.appendChild(audioPlayer);
+              audioDiv.appendChild(progressBarContainer);
+              messageContent.appendChild(audioDiv);
             } else {
+              const textWithLinks = convertURLsToLinks(message.text);
               messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
-              clientChatDiv.appendChild(messageContent);
-            }
+              // IMG STICKERS AND UPLOADED PICS
+              if (message.imageUrl) {
+                if (
+                  message.imageUrl.includes(
+                    "://photos-api-mzpl.onrender.com/photos"
+                  )
+                ) {
+                  const blueImage = document.createElement("img");
+                  blueImage.src = "/img/blueberry.png";
+                  blueImage.classList.add("blue");
 
+                  // Setting data-image-url directly on the .blue element
+                  blueImage.dataset.imageUrl = message.imageUrl;
+
+                  messageContent.appendChild(blueImage);
+                  clientChatDiv.style.background =
+                    "linear-gradient(to right, #584460, #b9fbc0)";
+                } else {
+                  // FOR PICTURES
+                  const imageElement = document.createElement("img");
+                  imageElement.src = message.imageUrl;
+                  imageElement.width = 110;
+                  imageElement.height = 100;
+                  messageContent.appendChild(imageElement);
+
+                  clientChatDiv.style.background =
+                    "linear-gradient(to right, #584460, #e0fbfc)";
+                }
+              }
+            }
+            clientChatDiv.appendChild(messageContent);
             messageDiv.appendChild(clientChatDiv);
             chatsDiv.appendChild(messageDiv);
+
             clientChatDiv.scrollIntoView({
               behavior: "smooth",
               block: "end",
@@ -209,62 +208,52 @@ async function getTextFromServer() {
       });
     }
   } catch (error) {
-    console.error("Error fetching data:", error);
+    alert("There was an issue fetching data. Please try again later.");
   }
 }
 
-// async function getTextFromServer() {
-//   try {
-//     const response = await fetch("https://db-vkyv.onrender.com/chats");
-//     const data = await response.json();
-//     if (data && data.length > 0) {
-//       data.forEach((message) => {
-//         const messageId = message.id;
+// Call the function when the page loads
+window.onload = async () => {
+  await getTextFromServer();
+  // Start the interval after loading all messages
+  setInterval(getTextFromServer, 500);
+};
 
-//         if (!processedMessageIds.has(messageId)) {
-//           const username = message.user;
+// delete msgs from server
 
-//           // Parse the time string to create a Date object
-//           const time = parseMessageTime(message.time, username);
+async function deleteAllExceptFirst() {
+  try {
+    const response = await fetch("https://db-vkyv.onrender.com/chats");
+    const data = await response.json();
 
-//           if (username !== myUserName) {
-//             // Convert URLs in the text to clickable links
-//             const textWithLinks = convertURLsToLinks(message.text);
+    if (data && data.length > 1) {
+      // Extract the IDs of all records except the first one
+      const idsToDelete = data.slice(1).map((record) => record.id);
 
-//             // Create a message format with line breaks
-//             const clientChatDiv = document.createElement("div");
-//             clientChatDiv.classList.add("client-chat");
-//             if (message.imageUrl) {
-//               clientChatDiv.style.background =
-//                 "linear-gradient(to right, #584460, white)";
-//             }
-//             clientChatDiv.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
+      // Send delete requests for each ID
+      const deletePromises = idsToDelete.map(async (id) => {
+        const deleteResponse = await fetch(
+          `https://db-vkyv.onrender.com/chats/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
 
-//             // Check if there's an imageUrl in the message
-//             if (message.imageUrl) {
-//               const imageElement = document.createElement("img");
-//               imageElement.src = message.imageUrl;
-//               imageElement.width = 100;
-//               imageElement.height = 100;
-//               clientChatDiv.appendChild(imageElement);
-//             }
+        if (!deleteResponse.ok) {
+          throw new Error(
+            `Error deleting record with ID ${id}: ${deleteResponse.statusText}`
+          );
+        }
+      });
 
-//             // Create a separate div for each message ID
-//             const messageDiv = document.createElement("div");
-//             messageDiv.id = `message-${messageId}`;
-//             messageDiv.appendChild(clientChatDiv);
-//             chatsDiv.appendChild(messageDiv);
+      // Wait for all delete requests to complete
+      await Promise.all(deletePromises);
 
-//             // Scroll the new message into view
-//             clientChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
-
-//             // Add the message ID to the set
-//             processedMessageIds.add(messageId);
-//           }
-//         }
-//       });
-//     }
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// }
+      console.log("Records deleted successfully, except the first one.");
+    } else {
+      console.log("No records to delete or only one record exists.");
+    }
+  } catch (error) {
+    console.error("Error deleting records:", error);
+  }
+}

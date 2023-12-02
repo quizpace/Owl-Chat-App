@@ -5,12 +5,31 @@
   left: 30%;
   width: 40%;
   height: 35%;
-  background: linear-gradient(45deg, #7b00ff, #66ebff);
+  background: linear-gradient(45deg, #ff0000, #ff7700, #fffb00, #00ff00, #0000ff, #ff00ff, #ff0000);
+  background-size: 600% 600%;
   z-index: 2;
   border-radius: 75px;
-  animation: gradientAnimation 5s ease infinite alternate;
-  opacity: 0.9;
+  animation: rainbowAnimation 2s linear infinite alternate, opacityAnimation 1s ease-in-out infinite alternate;
 }
+
+@keyframes rainbowAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes opacityAnimation {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
 
 @keyframes gradientAnimation {
   0% {

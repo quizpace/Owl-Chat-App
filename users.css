@@ -12,7 +12,16 @@
 .users-box {
   width: 200px;
   height: 550px;
-  background-color: rgb(255, 255, 255);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 0, 0, 0.211) 5%,
+    rgba(255, 166, 0, 0.257) 27%,
+    rgba(255, 255, 0, 0.248) 43%,
+    rgba(0, 128, 0, 0.239) 55%,
+    rgba(0, 0, 255, 0.222) 67%,
+    rgba(76, 0, 130, 0.241) 83%,
+    rgba(238, 130, 238, 0.178) 100%
+  );
   overflow: hidden;
   border-radius: 10px;
   position: absolute;
@@ -21,7 +30,7 @@
 }
 
 .users-box.night {
-  background-color: rgb(60, 0, 109);
+  background-color: rgba(60, 0, 109, 0.134);
 }
 /* about client */
 
@@ -32,6 +41,10 @@
   height: 80px;
   /* background: linear-gradient(to right, #584460, rgb(88, 63, 111)); */
   background: linear-gradient(to right, #445060, rgb(63, 71, 111));
+  /* Apply the font to specific elements */
+
+
+
   padding: 15px;
 }
 
@@ -62,12 +75,20 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: #fff;
+  /* background-color: #fff; */
   cursor: pointer;
   overflow: hidden;
   position: fixed;
   bottom: 20px;
   right: 7%;
+}
+.users-btn:hover {
+  backdrop-filter: blur(90px); /* Adjust the blur intensity as needed */
+  background-image: linear-gradient(
+    to right,
+    rgba(225, 247, 78, 0.284),
+    #ffa6003c
+  );
 }
 .users-btn img {
   width: 100%; /* Adjust the percentage to your preference */
@@ -88,10 +109,11 @@
 
 li {
   padding: 5px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   background-color: rgba(255, 209, 144, 0.575);
   color: #35012c;
-  font-family: "Kanit", sans-serif;
+  font-family: "Caveat", cursive;
+  /* Other styles */
 }
 
 li:hover {
