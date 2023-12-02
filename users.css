@@ -41,6 +41,10 @@
   height: 80px;
   /* background: linear-gradient(to right, #584460, rgb(88, 63, 111)); */
   background: linear-gradient(to right, #445060, rgb(63, 71, 111));
+  /* Apply the font to specific elements */
+
+
+
   padding: 15px;
 }
 
@@ -105,10 +109,11 @@
 
 li {
   padding: 5px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   background-color: rgba(255, 209, 144, 0.575);
   color: #35012c;
-  font-family: "Kanit", sans-serif;
+  font-family: "Caveat", cursive;
+  /* Other styles */
 }
 
 li:hover {

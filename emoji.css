@@ -219,3 +219,33 @@
   margin: 10px;
   /* Adjust other styles as needed */
 }
+
+.background-container {
+  background-color: rgba(1, 31, 53, 0.851); /* Solid background color */
+  display: inline-block;
+  padding: 5px; /* Adjust padding as needed */
+}
+
+.stickers-text {
+  font-size: 1.8rem;
+  color: transparent; /* Hide the actual text color */
+  font-family: "Caveat", sans-serif;
+  background-image: linear-gradient(
+    to left,
+    rgb(246, 143, 143),
+    rgb(226, 61, 61),
+    rgba(77, 77, 188, 1),
+    rgba(150, 229, 255, 1),
+    rgba(153, 255, 0, 1),
+    rgb(77, 188, 158),
+    rgba(150, 229, 255, 1),
+    rgba(153, 255, 0, 1),
+    rgb(188, 181, 77),
+    rgba(150, 229, 255, 1),
+    rgba(166, 0, 255, 1)
+  );
+  background-color: #000000;
+  -webkit-background-clip: text; /* For webkit browsers */
+  background-clip: text;
+}
+

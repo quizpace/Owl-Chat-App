@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
 
 /* Your additional CSS rules here */
 
@@ -26,7 +27,8 @@ body {
 }
 
 body.night {
-  background-color: rgb(40, 4, 58);
+  /* background-color: rgb(40, 4, 58); */
+  background-color: rgb(26, 4, 58);
 }
 
 .container {
@@ -65,8 +67,11 @@ body.night {
 }
 
 .chat-box.night {
-  background-image: url("/img/stars2.png");
+  position: relative;
+  background-image: url("/img/space-colors2.png");
 }
+
+
 
 /* about client */
 
@@ -196,8 +201,8 @@ position: sticky;
 
 /* Night mode specific chat-input styles */
 .chat-input.night {
-  background-image: linear-gradient(to bottom right, #b7ff002c, #04243f);
-  border-radius: 20px;
+  background-image: linear-gradient(to bottom right, #1d1036, #04243f);
+  border-radius: 15px;
   /* Other night mode input styles here */
 }
 

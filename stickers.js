@@ -11,6 +11,16 @@ $(document).ready(function () {
     clearEmojisTable(); // Clear emojis when switching to stickers
   });
 
+  $(document).ready(function () {
+    $(".search-stickers-btn").on("click", function () {
+      $(".background-container, .stickers-text").css("display", "none");
+    });
+
+    $(".sticker-spP").on("click", function () {
+      $(".background-container, .stickers-text").css("display", "block");
+    });
+  });
+
   // Function to clear emojis from the table
   function clearEmojisTable() {
     const emojiTableBody = document.getElementById("emojiTableBody");

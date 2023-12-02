@@ -93,6 +93,7 @@ async function getTextFromServer() {
         const messageId = message.id;
 
         if (!processedMessageIds.has(messageId)) {
+          
           const username = message.user;
           const time = parseMessageTime(message.time, username);
           // const textWithLinks = convertURLsToLinks(message.text);
