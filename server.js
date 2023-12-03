@@ -93,7 +93,6 @@ async function getTextFromServer() {
         const messageId = message.id;
 
         if (!processedMessageIds.has(messageId)) {
-          
           const username = message.user;
           const time = parseMessageTime(message.time, username);
           // const textWithLinks = convertURLsToLinks(message.text);
@@ -107,61 +106,10 @@ async function getTextFromServer() {
             clientChatDiv.classList.add("client-chat");
 
             const messageContent = document.createElement("div");
-
+            const text = message.text;
             // AUDIO RECORDINGS
-            if (message.text && message.text.includes(".wav")) {
-              const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
-                message.text
-              )}`;
-              // VIEW AUDIO TIME AND USERNAME
-              messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> `;
-              const audioDiv = document.createElement("div");
-              audioDiv.classList.add("audio-message2");
-
-              const audioPlayer = new Audio(audioFileURL);
-              audioPlayer.controls = false;
-              // CREAT AUDIO PLAYER WITH CUSTOM CONTROLS
-              const playButton = document.createElement("button2");
-              playButton.classList.add("play-pause-button2");
-              playButton.textContent = "🎶";
-              playButton.addEventListener("click", () => {
-                if (audioPlayer.paused) {
-                  audioPlayer.play();
-                  playButton.textContent = "🟰";
-                } else {
-                  audioPlayer.pause();
-                  playButton.textContent = "🎶";
-                }
-              });
-              audioPlayer.addEventListener("ended", () => {
-                playButton.textContent = "🎶";
-              });
-              // AUDIO PROGRESS BAR
-              const progressBarContainer = document.createElement("div");
-              progressBarContainer.classList.add("progress-bar-container2");
-
-              const progressBar = document.createElement("progress");
-              progressBar.max = 100;
-              progressBar.value = 0;
-
-              const progressDot = document.createElement("div");
-              progressDot.classList.add("progress-dot2");
-
-              progressBarContainer.appendChild(progressBar);
-              progressBarContainer.appendChild(progressDot);
-              progressBarContainer.appendChild(playButton);
-
-              audioPlayer.addEventListener("loadedmetadata", () => {
-                progressBar.max = audioPlayer.duration;
-              });
-
-              audioPlayer.addEventListener("timeupdate", () => {
-                progressBar.value = audioPlayer.currentTime;
-              });
-
-              audioDiv.appendChild(audioPlayer);
-              audioDiv.appendChild(progressBarContainer);
-              messageContent.appendChild(audioDiv);
+            if (text && text.includes(".wav")) {
+              wavHandle(username, time, text, messageContent);
             } else {
               const textWithLinks = convertURLsToLinks(message.text);
               messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> ${textWithLinks}`;
@@ -211,6 +159,61 @@ async function getTextFromServer() {
   } catch (error) {
     alert("There was an issue fetching data. Please try again later.");
   }
+}
+
+function wavHandle(username, time, text, messageContent) {
+  const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
+    text
+  )}`;
+  // VIEW AUDIO TIME AND USERNAME
+  messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> `;
+  const audioDiv = document.createElement("div");
+  audioDiv.classList.add("audio-message2");
+
+  const audioPlayer = new Audio(audioFileURL);
+  audioPlayer.controls = false;
+  // CREAT AUDIO PLAYER WITH CUSTOM CONTROLS
+  const playButton = document.createElement("button2");
+  playButton.classList.add("play-pause-button2");
+  playButton.textContent = "🎶";
+  playButton.addEventListener("click", () => {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      playButton.textContent = "🟰";
+    } else {
+      audioPlayer.pause();
+      playButton.textContent = "🎶";
+    }
+  });
+  audioPlayer.addEventListener("ended", () => {
+    playButton.textContent = "🎶";
+  });
+  // AUDIO PROGRESS BAR
+  const progressBarContainer = document.createElement("div");
+  progressBarContainer.classList.add("progress-bar-container2");
+
+  const progressBar = document.createElement("progress");
+  progressBar.max = 100;
+  progressBar.value = 0;
+
+  const progressDot = document.createElement("div");
+  progressDot.classList.add("progress-dot2");
+
+  progressBarContainer.appendChild(progressBar);
+  progressBarContainer.appendChild(progressDot);
+  progressBarContainer.appendChild(playButton);
+
+  audioPlayer.addEventListener("loadedmetadata", () => {
+    progressBar.max = audioPlayer.duration;
+  });
+
+  audioPlayer.addEventListener("timeupdate", () => {
+    progressBar.value = audioPlayer.currentTime;
+  });
+
+  audioDiv.appendChild(audioPlayer);
+  audioDiv.appendChild(progressBarContainer);
+  messageContent.appendChild(audioDiv);
 }
 
 // Call the function when the page loads

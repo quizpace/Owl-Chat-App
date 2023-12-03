@@ -58,6 +58,25 @@ function createMyChat2(chatsDiv, userName, time, imageUrl) {
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
 }
 
+// Creat chat for sending IMG
+
+async function createMyChatWithBlueImage(chatsDiv, userName, time, imageUrl) {
+  const myChatDiv = document.createElement("div");
+  myChatDiv.classList.add("my-chat-sticker");
+
+  const blueImage = document.createElement("img");
+  blueImage.src = "/img/blueberry.png";
+  blueImage.classList.add("blue");
+  blueImage.dataset.imageUrl = imageUrl;
+
+  myChatDiv.innerHTML = `<span class="username-style">${userName}</span> <br> <span class="message-time">${time}</span>`;
+  myChatDiv.appendChild(blueImage);
+
+  myChatDiv.style.background = "linear-gradient(to right, #584460, #ecf39e)";
+  chatsDiv.appendChild(myChatDiv);
+  myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
+}
+
 // Creat Audio Chat Box
 
 function createAudioBox(chatsDiv, audioFileURL, userName, time) {
@@ -144,7 +163,6 @@ function createAudioBox(chatsDiv, audioFileURL, userName, time) {
   // Scroll the new message into view
   myChatDiv.scrollIntoView({ behavior: "smooth", block: "end" });
 }
-
 
 // FullScreen Button!
 

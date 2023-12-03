@@ -1,7 +1,6 @@
 let sendImageUrl;
 // save url by username
 
-
 document.getElementById("pic-upload").addEventListener("click", async () => {
   const fileInput = document.getElementById("fileInput");
   fileInput.click(); // Trigger click on the file input
@@ -27,6 +26,12 @@ document.getElementById("pic-upload").addEventListener("click", async () => {
           sendImageUrl = await response.text(); // Assuming the server returns the image URL
           console.log("Uploaded Image URL:", sendImageUrl);
           await sendImageToServer(userName, sendImageUrl);
+          await createMyChatWithBlueImage(
+            chatsDiv,
+            userName,
+            time,
+            sendImageUrl
+          );
           // You can store or use the sendImageUrl as needed
         } else {
           const errorMessage = await response.text();

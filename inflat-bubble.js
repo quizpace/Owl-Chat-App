@@ -181,9 +181,16 @@ class Effect {
     this.width = width;
     this.height = height;
     gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-    gradient.addColorStop(0, "white");
-    gradient.addColorStop(0.5, "lightblue");
-    gradient.addColorStop(1, "navy");
+    // gradient.addColorStop(0, "white");
+    // gradient.addColorStop(0.5, "lightblue");
+    // gradient.addColorStop(1, "navy");
+    gradient.addColorStop(0, "red");
+    gradient.addColorStop(0.17, "orange");
+    gradient.addColorStop(0.33, "yellow");
+    gradient.addColorStop(0.5, "green");
+    gradient.addColorStop(0.67, "blue");
+    gradient.addColorStop(0.83, "indigo");
+    gradient.addColorStop(1, "violet");
     this.context.fillStyle = gradient;
     this.particles.forEach((particle) => {
       particle.reset();
