@@ -26,12 +26,12 @@ toggleRecordingButton.addEventListener("click", async () => {
       };
 
       mediaRecorder.start();
-      toggleRecordingButton.textContent = "🛑"; // Change button icon to stop
+      // toggleRecordingButton.textContent = "🛑"; // Change button icon to stop
     } else {
       if (mediaRecorder && mediaRecorder.state === "recording") {
         mediaRecorder.stop();
         isRecording = false;
-        toggleRecordingButton.textContent = "🎙️"; // Change button icon back to record
+        // toggleRecordingButton.textContent = "🎙️"; // Change button icon back to record
       }
     }
   } catch (error) {
