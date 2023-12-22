@@ -95,7 +95,7 @@
     border-radius: 10px;
     position: absolute;
     left: 1%;
-    bottom: 5%;
+    bottom: 0;
   }
   .emoji-box {
     width: 98%;
@@ -205,7 +205,7 @@
     border-radius: 10px;
     position: absolute;
     left: 1%;
-    bottom: 5%;
+    bottom: 0;
   }
   .emoji-box {
     width: 98%;
