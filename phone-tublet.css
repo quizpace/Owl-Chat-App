@@ -1,0 +1,64 @@
+/* iPhone 13 Mini and newer models */
+@media only screen and (min-device-width: 375px) and (max-device-width: 390px) and (-webkit-device-pixel-ratio: 3),
+  only screen and (min-device-width: 428px) and (-webkit-device-pixel-ratio: 3) {
+  /* CSS rules for iPhone 13 Mini and above */
+
+  .modalStart {
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 10%;
+    width: 80%;
+    height: 35%;
+    background: linear-gradient(
+      45deg,
+      #ff0000,
+      #ff7700,
+      #fffb00,
+      #00ff00,
+      #0000ff,
+      #ff00ff,
+      #ff0000
+    );
+    background-size: 600% 600%;
+    z-index: 2;
+    border-radius: 75px;
+    animation: rainbowAnimation 2s linear infinite alternate,
+      opacityAnimation 1s ease-in-out infinite alternate;
+    opacity: 1;
+  }
+
+  .modal-content {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+    border-radius: 50px;
+    opacity: 1;
+  }
+
+  #userNameInput {
+    position: absolute;
+    width: 70%;
+    top: 50%;
+    opacity: 1;
+  }
+
+  #submitNameBtn {
+    position: absolute;
+    top: 80%;
+    width: 40%;
+    left: 30%;
+    color: #99ff00;
+    background: linear-gradient(135deg, #5d377c, #aad8d3);
+    border-radius: 25px;
+  }
+
+  #submitNameBtn:hover {
+    width: 30%;
+    background: linear-gradient(135deg, #acde5b, #aad8d3);
+    color: #5d377c;
+    border-radius: 25px;
+    animation: gradientAnimation 5s ease infinite alternate;
+  }
+}
