@@ -23,6 +23,12 @@
     right: 5%;
   }
 
+  .mode-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
   .modalStart {
     display: none;
     position: fixed;
@@ -136,6 +142,11 @@
     position: absolute;
     top: 0;
     right: 5%;
+  }
+  .mode-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   .modalStart {
