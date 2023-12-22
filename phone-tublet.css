@@ -93,8 +93,9 @@
     background-position: center;
     overflow: hidden;
     border-radius: 10px;
-    position: relative;
-    left: 0;
+    position: absolute;
+    left: 1%;
+    bottom: 5%;
   }
   .emoji-box {
     width: 98%;
@@ -202,8 +203,9 @@
     background-position: center;
     overflow: hidden;
     border-radius: 10px;
-    position: relative;
-    left: 0;
+    position: absolute;
+    left: 1%;
+    bottom: 5%;
   }
   .emoji-box {
     width: 98%;
