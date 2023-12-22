@@ -97,6 +97,11 @@
     left: 1%;
     bottom: 0;
   }
+
+  .chat-box.night {
+    position: absolute;
+    background-image: url("/img/space-colors2.png");
+  }
   .emoji-box {
     width: 98%;
     height: 388px;
@@ -206,6 +211,10 @@
     position: absolute;
     left: 1%;
     bottom: 0;
+  }
+  .chat-box.night {
+    position: absolute;
+    background-image: url("/img/space-colors2.png");
   }
   .emoji-box {
     width: 98%;
