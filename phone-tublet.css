@@ -14,7 +14,8 @@
 
   .chat-btn {
     position: absolute;
-    right: 50%;
+    top: 0;
+    right: 0;
   }
   .emoji-btn {
     position: absolute;
