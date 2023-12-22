@@ -3,6 +3,24 @@
   only screen and (min-device-width: 428px) and (-webkit-device-pixel-ratio: 3) {
   /* CSS rules for iPhone 13 Mini and above */
 
+  .tictac,
+  .memory,
+  .logowl,
+  .users-btn,
+  .fullscreen,
+  .html-canvas {
+    display: none;
+  }
+
+  .chat-btn {
+    position: absolute;
+    right: 50%;
+  }
+  .emoji-btn {
+    position: absolute;
+    right: 60%;
+  }
+
   .modalStart {
     display: none;
     position: fixed;
@@ -30,6 +48,7 @@
 
   .modal-content {
     position: absolute;
+    background-color: #ccbfdb;
     left: 10%;
     width: 80%;
     height: 60%;
@@ -46,8 +65,9 @@
 
   #submitNameBtn {
     position: absolute;
-    top: 80%;
+    top: 70%;
     width: 40%;
+    height: 20%;
     left: 30%;
     color: #99ff00;
     background: linear-gradient(135deg, #5d377c, #aad8d3);
@@ -60,5 +80,31 @@
     color: #5d377c;
     border-radius: 25px;
     animation: gradientAnimation 5s ease infinite alternate;
+  }
+
+  .chat-box {
+    width: 98%;
+    height: 535px;
+    /* background-image: url("/img/backg2.jpg"); */
+    background-image: url("/img/candy.jpg");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    left: 0;
+  }
+  .emoji-box {
+    width: 98%;
+    height: 388px;
+    background-size: cover; /* Fit the background image to cover the entire box */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-color: rgba(125, 135, 62, 0.232);
+    overflow: hidden;
+    border-radius: 12px;
+    position: absolute;
+    left: 0;
+    z-index: 1;
   }
 }
