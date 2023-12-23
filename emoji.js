@@ -1,3 +1,4 @@
+"use strict";
 async function createEmojiGrid(category) {
   const emojiTable = document.getElementById("emojiTableBody");
 

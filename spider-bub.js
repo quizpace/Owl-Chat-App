@@ -1,3 +1,4 @@
+"use strict";
 const exampleElement = document.querySelector(".logowl");
 const spiderContainer = document.querySelector(".spider-container");
 const textOverlay = document.querySelector(".text-overlay");

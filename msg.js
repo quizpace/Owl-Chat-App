@@ -1,3 +1,4 @@
+"use strict";
 /* Message Handeling */
 
 // Add an event listener to the "button2" (now a button element) for sending the user's input

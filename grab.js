@@ -1,3 +1,4 @@
+"use strict";
 const chatBox = document.querySelector(".chat-box");
 const logoOwl = document.getElementById("owl");
 let isDragging = false;

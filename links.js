@@ -1,3 +1,4 @@
+"use strict";
 function convertURLsToLinks(text, chatType) {
   if (!text) {
     return ""; // or handle the case when text is undefined or empty

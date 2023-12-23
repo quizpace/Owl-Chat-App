@@ -1,3 +1,4 @@
+"use strict";
 // Animals (search for animal-related terms like "cat," "dog," "elephant," etc.)
 // Emotions (try searching for emotions like "happy," "sad," "excited," etc.)
 // Activities (search for terms related to hobbies, sports, or activities)

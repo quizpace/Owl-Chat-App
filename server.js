@@ -1,3 +1,4 @@
+"use strict";
 // send msgs to server
 
 async function sendchatInputToServer(chatInput) {

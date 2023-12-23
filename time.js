@@ -1,3 +1,4 @@
+"use strict";
 // Format time
 const username = myUserName;
 // Function to parse the time string based on the user

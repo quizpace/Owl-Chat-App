@@ -1,3 +1,4 @@
+"use strict";
 /* scroll section */
 
 function toggleChatBoxSize() {

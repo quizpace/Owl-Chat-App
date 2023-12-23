@@ -1,3 +1,4 @@
+"use strict";
 let sendImageUrl;
 // save url by username
 

@@ -1,3 +1,4 @@
+"use strict";
 // Declare a set to store processed message IDs
 const processedMessageIds = new Set();
 // used to creat childes for .chats (div).

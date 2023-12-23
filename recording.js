@@ -1,3 +1,4 @@
+"use strict";
 const toggleRecordingButton = document.getElementById("toggleRecording");
 const audioPlayer = document.getElementById("audioPlayer");
 let mediaRecorder;

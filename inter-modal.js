@@ -1,3 +1,4 @@
+"use strict";
 // Get the modal element and the button that opens it
 const interModal = document.getElementById("interModal");
 const openModalBtn = document.getElementById("openModalBtn");

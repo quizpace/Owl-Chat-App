@@ -1,3 +1,4 @@
+"use strict";
 function createBubble(message) {
     const containerDiv = document.querySelector(".container");
     const bubbleDiv = document.createElement("div");
