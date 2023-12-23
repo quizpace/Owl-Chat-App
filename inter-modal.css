@@ -42,11 +42,12 @@
 
 #openModalBtn {
   position: absolute;
-  left: 15%;
-  top: 0;
+  left: 35%;
+  top: 1%;
   background-color: rgba(170, 186, 255, 0.166);
   border-radius: 50%;
   cursor: pointer;
+  z-index: 1;
 }
 
 .tictac {
@@ -61,11 +62,12 @@
 
 #openModalBtn2 {
   position: absolute;
-  left: 0;
-  top: 15%;
+  left: 40%;
+  top: 0;
   background-color: #d1ff0400;
   border-radius: 50%;
   cursor: pointer;
+  z-index: 1;
 }
 
 .memory {
@@ -73,7 +75,7 @@
   height: 120px;
   cursor: pointer;
   /* Apply a rotation of 45 degrees */
-  transform: rotate(25deg);
+  transform: rotate(87deg);
   opacity: 0.5;
 }
 .memory:hover {

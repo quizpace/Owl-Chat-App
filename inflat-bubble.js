@@ -104,7 +104,7 @@ class Effect {
     this.width = this.canvas.width;
     this.height = this.canvas.height;
     this.particles = [];
-    this.numberOfParticles = 2000;
+    this.numberOfParticles = 3000;
     this.createParticles();
     this.angle = 0;
 
@@ -112,7 +112,7 @@ class Effect {
       x: 0,
       y: 0,
       pressed: false,
-      radius: 60,
+      radius: 50,
     };
 
     window.addEventListener("resize", (e) => {
@@ -169,13 +169,22 @@ class Effect {
   autoMouse() {
     if (!this.mouse.pressed) {
       this.mouse.x =
-        this.width * 0.5 + Math.cos(this.angle * 0.5) * this.width * 0.3;
+        this.width * 0.5 + Math.cos(this.angle * 0.5) * this.width * 0.4;
       this.mouse.y =
         this.height * 0.5 + Math.sin(this.angle) * this.height * 0.3;
-      this.angle += 0.03;
-      if (this.angle > Math.PI * 4) this.angle = 0;
+      this.angle += 0.032;
+      if (this.angle > Math.PI * 8) this.angle = 0;
     }
   }
+  //   if (!this.mouse.pressed) {
+  //     this.mouse.x =
+  //       this.width * 0.5 + Math.cos(this.angle * 0.5) * this.width * 0.3;
+  //     this.mouse.y =
+  //       this.height * 0.5 + Math.sin(this.angle) * this.height * 0.3;
+  //     this.angle += 0.03;
+  //     if (this.angle > Math.PI * 4) this.angle = 0;
+  //   }
+  // }
   resize(width, height) {
     this.canvas.width = width;
     this.canvas.height = height;
