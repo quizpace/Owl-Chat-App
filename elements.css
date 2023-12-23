@@ -8,14 +8,26 @@
   color: rgb(147, 250, 43);
 }
 
-.fullscreen {
+.fullscreen img {
   position: absolute;
-  cursor: url(/cursors/main2.cur);
+  cursor: pointer;
   bottom: 2%;
   left: 0%;
   width: 6%; /* Adjust the width as needed */
   opacity: 0.9;
   z-index: 1;
+}
+
+.fullscreen-text {
+  position: absolute;
+  bottom: 2%;
+  left: 5.5%;
+  color: rgb(105, 13, 131);
+  border: 0.5px solid;
+  border-color: rgb(188, 255, 122);
+  border-radius: 25px;
+  background-color: rgba(60, 154, 255, 0.386);
+  display: none;
 }
 
 .send-btn {
