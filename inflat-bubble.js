@@ -1,4 +1,5 @@
 "use strict";
+
 // setup
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
@@ -166,6 +167,7 @@ class Effect {
       }
     }
   }
+
   autoMouse() {
     if (!this.mouse.pressed) {
       this.mouse.x =
@@ -176,15 +178,7 @@ class Effect {
       if (this.angle > Math.PI * 8) this.angle = 0;
     }
   }
-  //   if (!this.mouse.pressed) {
-  //     this.mouse.x =
-  //       this.width * 0.5 + Math.cos(this.angle * 0.5) * this.width * 0.3;
-  //     this.mouse.y =
-  //       this.height * 0.5 + Math.sin(this.angle) * this.height * 0.3;
-  //     this.angle += 0.03;
-  //     if (this.angle > Math.PI * 4) this.angle = 0;
-  //   }
-  // }
+
   resize(width, height) {
     this.canvas.width = width;
     this.canvas.height = height;
@@ -215,3 +209,13 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
+//   if (!this.mouse.pressed) {
+//     this.mouse.x =
+//       this.width * 0.5 + Math.cos(this.angle * 0.5) * this.width * 0.3;
+//     this.mouse.y =
+//       this.height * 0.5 + Math.sin(this.angle) * this.height * 0.3;
+//     this.angle += 0.03;
+//     if (this.angle > Math.PI * 4) this.angle = 0;
+//   }
+// }

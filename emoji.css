@@ -133,15 +133,15 @@
   border-radius: 15px;
   background: linear-gradient(
     to right,
-    rgba(246, 143, 246, 0.614),
+    rgba(143, 244, 246, 0.614),
     rgba(23, 218, 156, 0.722),
-    rgba(77, 77, 188, 0.764),
+    rgba(160, 188, 77, 0.764),
     rgba(150, 229, 255, 0.783),
     rgba(153, 255, 0, 0.695)
   );
   width: 32px; /* Adjust the width of the images */
   height: 32px; /* Adjust the height of the images */
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   padding: auto;
 }
 
@@ -221,7 +221,7 @@
 }
 
 .background-container {
-  background-color: rgba(1, 31, 53, 0.851); /* Solid background color */
+  background-color: rgba(8, 59, 89, 0.352); /* Solid background color */
   display: inline-block;
   padding: 5px; /* Adjust padding as needed */
 }
@@ -244,8 +244,7 @@
     rgba(150, 229, 255, 1),
     rgba(166, 0, 255, 1)
   );
-  background-color: #000000;
+  background-color: #2f5ada97;
   -webkit-background-clip: text; /* For webkit browsers */
   background-clip: text;
 }
-
