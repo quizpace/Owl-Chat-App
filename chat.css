@@ -23,12 +23,16 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: rgb(150, 220, 247);
+  /* background-color: rgb(150, 220, 247); */
+  background-image: url("/img/owldaymode3.png");
+  background-repeat: no-repeat;
+  background-position: center; /* Adjust if you want the image to be aligned differently */
+  background-size: cover; /* This will make sure your image covers the entire area. Use 'contain' if you want the whole image to be visible */
 }
 
 body.night {
-  /* background-color: rgb(40, 4, 58); */
-  background-color: rgb(26, 4, 58);
+  /* /* background-color: rgb(26, 4, 58);  */
+  background-image: url("/img/owlnightmode6.png");
 }
 
 .container {

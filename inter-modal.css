@@ -42,7 +42,7 @@
 
 #openModalBtn {
   position: absolute;
-  left: 35%;
+  left: 56%;
   top: 1%;
   background-color: rgba(170, 186, 255, 0.166);
   border-radius: 50%;
@@ -62,7 +62,7 @@
 
 #openModalBtn2 {
   position: absolute;
-  left: 40%;
+  left: 63%;
   top: 0;
   background-color: #d1ff0400;
   border-radius: 50%;
