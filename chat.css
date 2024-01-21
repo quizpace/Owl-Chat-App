@@ -24,7 +24,9 @@ body {
   align-items: center;
   min-height: 100vh;
   /* background-color: rgb(150, 220, 247); */
-  background-image: url("/img/cute43.png");
+  /* background-image: url("/img/cute43.png"); */
+  /* background-image: url("/img/owltoon14.png"); */
+  background-image: url("/img/dayOwl.png");
   background-repeat: no-repeat;
   background-position: center; /* Adjust if you want the image to be aligned differently */
   background-size: cover; /* This will make sure your image covers the entire area. Use 'contain' if you want the whole image to be visible */
@@ -32,7 +34,7 @@ body {
 
 body.night {
   /* /* background-color: rgb(26, 4, 58);  */
-  background-image: url("/img/owlnightmode6.png");
+  background-image: url("/img/adultApp.png");
 }
 
 .container {
@@ -52,8 +54,10 @@ body.night {
 /* chat box section */
 
 .chat-box {
-  width: 400px;
-  height: 450px;
+  width: 600px;
+  height: 650px;
+  bottom: 40px;
+
   /* background-image: url("/img/backg2.jpg"); */
   /* background-image: url("/img/cute6.png"); */
   background-size: cover;
@@ -72,7 +76,7 @@ body.night {
 
 .chat-box.night {
   position: relative;
-  background-image: url("/img/space-colors2.png");
+  /* background-image: url("/img/space-colors2.png"); */
 }
 
 /* about client */

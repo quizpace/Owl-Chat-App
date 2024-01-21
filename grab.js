@@ -4,6 +4,8 @@ const logoOwl = document.getElementById("owl");
 let isDragging = false;
 let offsetX, offsetY;
 
+// Grab chat box (move around the screen)
+
 logoOwl.addEventListener("mousedown", function (e) {
   isDragging = true;
   const boundingBox = chatBox.getBoundingClientRect();
@@ -27,5 +29,3 @@ document.addEventListener("mousemove", function (e) {
   }
 });
 //
-
-

@@ -215,3 +215,33 @@ setInterval(() => {
   // Replace userId and myUserName with actual values
   updateUsernameOnServer(globalUserId, myUserName);
 }, 500); // 10 seconds interval
+
+// how many is online
+
+// Global variable to store the number of users
+let numUsers = 0;
+
+// Function to fetch the number of users from the server and update numUsers
+function checkAndUpdateUserCount() {
+  fetch("https://web-server-demo1.onrender.com/users")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch user data");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Update numUsers with the length of the user array
+      numUsers = data.length;
+
+      // Update the text content of the paragraph with the new user count
+      document.getElementById("userCount").textContent = `${numUsers} online`;
+      document.getElementById("userCount2").textContent = `${numUsers} online`;
+    })
+    .catch((error) => {
+      console.error("Error fetching user count:", error);
+    });
+}
+
+// Call the function every 5 seconds (5000 milliseconds)
+setInterval(checkAndUpdateUserCount, 2000);

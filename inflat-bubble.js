@@ -1,5 +1,14 @@
 "use strict";
 
+document.getElementById("hidecanvas").addEventListener("click", function () {
+  var canvasDiv = document.querySelector(".html-canvas");
+  if (canvasDiv.style.display === "none") {
+    canvasDiv.style.display = "block";
+  } else {
+    canvasDiv.style.display = "none";
+  }
+});
+
 // setup
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");

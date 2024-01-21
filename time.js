@@ -21,6 +21,27 @@ function parseMessageTime(timeString, username) {
 
 // night - day mode
 
+// function toggleMode() {
+//   const body = document.querySelector("body");
+//   const chatBox = document.querySelector(".chat-box");
+//   const chatInput = document.querySelector(".chat-input");
+//   const emojiBox = document.querySelector(".emoji-box");
+//   const usersBox = document.querySelector(".users-box");
+//   const modeToggle = document.querySelector(".mode-toggle");
+
+//   body.classList.toggle("night");
+//   chatBox.classList.toggle("night");
+//   chatInput.classList.toggle("night");
+//   emojiBox.classList.toggle("night");
+//   usersBox.classList.toggle("night");
+
+//   // Toggle the image between moon and sun based on night mode
+//   if (body.classList.contains("night")) {
+//     modeToggle.src = "/img/mooon.png";
+//   } else {
+//     modeToggle.src = "/img/psun.png";
+//   }
+// }
 function toggleMode() {
   const body = document.querySelector("body");
   const chatBox = document.querySelector(".chat-box");
@@ -28,6 +49,7 @@ function toggleMode() {
   const emojiBox = document.querySelector(".emoji-box");
   const usersBox = document.querySelector(".users-box");
   const modeToggle = document.querySelector(".mode-toggle");
+  const colorBubbles = document.querySelector(".color-bubbles"); // Add this line
 
   body.classList.toggle("night");
   chatBox.classList.toggle("night");
@@ -38,8 +60,10 @@ function toggleMode() {
   // Toggle the image between moon and sun based on night mode
   if (body.classList.contains("night")) {
     modeToggle.src = "/img/mooon.png";
+    colorBubbles.src = "/img/nightbubicon.png"; // Add this line
   } else {
     modeToggle.src = "/img/psun.png";
+    colorBubbles.src = "/img/bubicons.png"; // Add this line
   }
 }
 
@@ -87,18 +111,18 @@ document.addEventListener("DOMContentLoaded", function () {
   let isExpanded = false;
 
   clientImg.addEventListener("click", function () {
-    if (!isExpanded) {
+    if (isExpanded) {
       chatBox.style.width = "600px";
       chatBox.style.height = "650px";
       chatBox.style.bottom = "40px";
       inputT.style.width = "400px";
-      isExpanded = true;
+      isExpanded = false;
     } else {
       chatBox.style.width = "400px";
       chatBox.style.height = "450px";
       chatBox.style.bottom = "10px";
       inputT.style.width = "250px";
-      isExpanded = false;
+      isExpanded = true;
     }
   });
 });

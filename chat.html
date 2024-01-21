@@ -42,7 +42,9 @@
 <button id="openModalBtn2">
   <img src="/img/lion-m.png" class="memory" alt="Open Modal">
 </button>
-
+<button id="hidecanvas">
+  <img src="/img/bubicons.png" class="color-bubbles" alt="Hide Bubbles">
+</button>
 
 <!-- Games modal -->
 <div id="interModal" class="inter-modal">
@@ -90,10 +92,10 @@
             id="scroll-button"
           />
         <!-- <p>scroll</p> -->
-          <div class="client-info">
-            <h2>Owl Chat</h2>
-            <p>x online</p>
-          </div>
+        <div class="client-info">
+          <h2>Owl Chat</h2>
+          <p id="userCount">0 online</p>
+      </div>
         </div>
         <!--main chat section-->
         <div class="chats" id="chatsContainer"></div>
@@ -126,7 +128,7 @@
         <div class="users-list">
           <div class="users-info">
             <h2>Owl Users</h2>
-            <p>x online</p>
+          <p id="userCount2">0 online</p>
           </div>
         </div>
         <!--main chat section-->

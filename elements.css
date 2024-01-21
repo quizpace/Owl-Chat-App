@@ -31,13 +31,13 @@
 }
 
 .send-btn {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   background-color: transparent;
   overflow: hidden;
   position: absolute;
-  top: 10%;
-  right: 17%;
+  top: 7%;
+  right: 20%;
 
   cursor: pointer;
   transition: 0.4s ease-in-out;
@@ -144,7 +144,7 @@
 #toggleRecording {
   position: absolute;
   bottom: 10%;
-  right: 0;
+  right: 2%;
   width: 60px;
   height: 52px;
   background-color: #ecdff8;
@@ -424,3 +424,19 @@
   right: 16%;
   cursor: pointer;
 } */
+
+.color-bubbles {
+  position: absolute;
+  background-color: #ecdff800;
+  /* top: 25%;
+  right: 18%;
+  width: 4%; */
+  top: 5%;
+  left: 20.5%;
+  width: 4%;
+  opacity: 0.7;
+  z-index: 0;
+}
+.color-bubbles:hover {
+  opacity: 0.9;
+}

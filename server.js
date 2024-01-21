@@ -140,7 +140,7 @@ async function getTextFromServer() {
                   messageContent.appendChild(imageElement);
 
                   clientChatDiv.style.background =
-                    "linear-gradient(to right, #584460, #e0fbfc)";
+                    "linear-gradient(to right, rgba(71, 98, 165, 0.541), rgba(13, 77, 145, 0.298))";
                 }
               }
             }
