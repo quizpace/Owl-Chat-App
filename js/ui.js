@@ -1,47 +1,20 @@
 "use strict";
-// Format time
-const username = myUserName;
-// Function to parse the time string based on the user
-function parseMessageTime(timeString, username) {
-  if (username == myUserName) {
-    // Parse time for Avi using 12-hour format
-    return new Date(timeString).toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-  } else {
-    // Parse time for other users using 12-hour format
-    const time = new Date(timeString);
-    const hours = (time.getHours() % 12 || 12).toString().padStart(2, "0");
-    const minutes = time.getMinutes().toString().padStart(2, "0");
-    return `${hours}:${minutes}`;
-  }
+
+/* scroll section */
+function toggleChatBoxSize() {
+  const scroll = document.querySelector(".chat-box");
+  scroll.classList.toggle("expanded");
 }
-
-// night - day mode
-
-// function toggleMode() {
-//   const body = document.querySelector("body");
-//   const chatBox = document.querySelector(".chat-box");
-//   const chatInput = document.querySelector(".chat-input");
-//   const emojiBox = document.querySelector(".emoji-box");
-//   const usersBox = document.querySelector(".users-box");
-//   const modeToggle = document.querySelector(".mode-toggle");
-
-//   body.classList.toggle("night");
-//   chatBox.classList.toggle("night");
-//   chatInput.classList.toggle("night");
-//   emojiBox.classList.toggle("night");
-//   usersBox.classList.toggle("night");
-
-//   // Toggle the image between moon and sun based on night mode
-//   if (body.classList.contains("night")) {
-//     modeToggle.src = "/img/mooon.png";
-//   } else {
-//     modeToggle.src = "/img/psun.png";
-//   }
-// }
+//scroll down
+function scrollChatBoxDown() {
+  const chatBox = document.querySelector(".chat-box");
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+// Add an event listener to the button or element that triggers the toggle
+document
+  .querySelector(".scroll-btn")
+  .addEventListener("click", toggleChatBoxSize);
+// DAY / NIGHT MODE
 function toggleMode() {
   const body = document.querySelector("body");
   const chatBox = document.querySelector(".chat-box");
@@ -50,13 +23,11 @@ function toggleMode() {
   const usersBox = document.querySelector(".users-box");
   const modeToggle = document.querySelector(".mode-toggle");
   const colorBubbles = document.querySelector(".color-bubbles"); // Add this line
-
   body.classList.toggle("night");
   chatBox.classList.toggle("night");
   chatInput.classList.toggle("night");
   emojiBox.classList.toggle("night");
   usersBox.classList.toggle("night");
-
   // Toggle the image between moon and sun based on night mode
   if (body.classList.contains("night")) {
     modeToggle.src = "/img/mooon.png";
@@ -66,28 +37,22 @@ function toggleMode() {
     colorBubbles.src = "/img/bubicons.png"; // Add this line
   }
 }
-
-// input longer
-
+// input filed longer when type
 const chatTextarea = document.querySelector(".chat-input .msg");
 const chatInputContainer = document.querySelector(".chat-input");
 const minChars = 40; // Minimum characters required before adjusting heights
-
 // Getting the default styles for textarea and its container
 const textareaDefaultStyles = window.getComputedStyle(chatTextarea);
 const containerDefaultStyles = window.getComputedStyle(chatInputContainer);
-
 // Save the original size
 const originalWidth = textareaDefaultStyles.getPropertyValue("width");
 const originalHeight = textareaDefaultStyles.getPropertyValue("height");
 const originalContainerHeight =
   containerDefaultStyles.getPropertyValue("height");
-
 chatTextarea.addEventListener("input", function () {
   if (this.value.length >= minChars) {
     this.style.height = "auto";
     this.style.height = this.scrollHeight + "px";
-
     // Adjust container height based on textarea height
     chatInputContainer.style.height = this.scrollHeight + "px";
   } else {
@@ -100,16 +65,13 @@ chatTextarea.addEventListener("input", function () {
     }
   }
 });
-
 // Bigger Chat-Box
 document.addEventListener("DOMContentLoaded", function () {
   const chatBox = document.querySelector(".chat-box");
   const clientImg = document.querySelector(".logowl");
   const inputT = document.querySelector(".msg");
   const scrollButton = document.getElementById("scroll-button"); // Assuming you have an element with ID "scroll-button"
-
   let isExpanded = false;
-
   clientImg.addEventListener("click", function () {
     if (isExpanded) {
       chatBox.style.width = "600px";

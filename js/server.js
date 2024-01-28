@@ -1,6 +1,6 @@
 "use strict";
-// send msgs to server
 
+// send msgs to server
 async function sendchatInputToServer(chatInput) {
   try {
     console.log("Sending data to the server...");
@@ -23,9 +23,7 @@ async function sendchatInputToServer(chatInput) {
     console.error("Error sending data:", error);
   }
 }
-
-// Audio
-
+// send audio msgs to server
 async function sendAudioInfoToServer(userName, fileInfo) {
   try {
     console.log("Sending data to the server...");
@@ -40,7 +38,6 @@ async function sendAudioInfoToServer(userName, fileInfo) {
         time: new Date().toISOString(),
       }),
     });
-
     if (!response.ok) {
       throw new Error(`Error sending data: ${response.statusText}`);
     }
@@ -48,7 +45,6 @@ async function sendAudioInfoToServer(userName, fileInfo) {
     console.error("Error sending data:", error);
   }
 }
-
 function extractFileName(text) {
   const words = text.split(" ");
   for (const word of words) {
@@ -58,9 +54,7 @@ function extractFileName(text) {
   }
   return "";
 }
-
-// Photo
-
+// send photos to server
 async function sendImageToServer(userName, imageUrl) {
   try {
     console.log("Sending image data to the server...");
@@ -75,7 +69,6 @@ async function sendImageToServer(userName, imageUrl) {
         time: new Date().toISOString(),
       }),
     });
-
     if (!response.ok) {
       throw new Error(`Error sending image data: ${response.statusText}`);
     }
@@ -84,7 +77,7 @@ async function sendImageToServer(userName, imageUrl) {
   }
 }
 
-// handle massages from server (photo, audio, stickers....)
+// handle (GET) massages from server (photo, audio, stickers....)
 async function getTextFromServer() {
   try {
     const response = await fetch("https://db-vkyv.onrender.com/chats");
@@ -92,20 +85,16 @@ async function getTextFromServer() {
     if (data && data.length > 0) {
       data.forEach((message) => {
         const messageId = message.id;
-
         if (!processedMessageIds.has(messageId)) {
           const username = message.user;
           const time = parseMessageTime(message.time, username);
           // const textWithLinks = convertURLsToLinks(message.text);
-
           // CHECK IF ITS NOT THE USING USER AT THE MOMENT
           if (username !== myUserName) {
             const messageDiv = document.createElement("div");
             messageDiv.id = `message-${messageId}`;
-
             const clientChatDiv = document.createElement("div");
             clientChatDiv.classList.add("client-chat");
-
             const messageContent = document.createElement("div");
             const text = message.text;
             // AUDIO RECORDINGS
@@ -124,10 +113,8 @@ async function getTextFromServer() {
                   const blueImage = document.createElement("img");
                   blueImage.src = "/img/blueberry.png";
                   blueImage.classList.add("blue");
-
                   // Setting data-image-url directly on the .blue element
                   blueImage.dataset.imageUrl = message.imageUrl;
-
                   messageContent.appendChild(blueImage);
                   clientChatDiv.style.background =
                     "linear-gradient(to right, #584460, #b9fbc0)";
@@ -138,7 +125,6 @@ async function getTextFromServer() {
                   imageElement.width = 110;
                   imageElement.height = 100;
                   messageContent.appendChild(imageElement);
-
                   clientChatDiv.style.background =
                     "linear-gradient(to right, rgba(71, 98, 165, 0.541), rgba(13, 77, 145, 0.298))";
                 }
@@ -147,7 +133,6 @@ async function getTextFromServer() {
             clientChatDiv.appendChild(messageContent);
             messageDiv.appendChild(clientChatDiv);
             chatsDiv.appendChild(messageDiv);
-
             clientChatDiv.scrollIntoView({
               behavior: "smooth",
               block: "end",
@@ -161,7 +146,7 @@ async function getTextFromServer() {
     alert("There was an issue fetching data. Please try again later.");
   }
 }
-
+// Wav files Playing
 function wavHandle(username, time, text, messageContent) {
   const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${extractFileName(
     text
@@ -170,7 +155,6 @@ function wavHandle(username, time, text, messageContent) {
   messageContent.innerHTML = `<span class="username-style">${username}</span> <br> <span class="message-time">${time}</span> `;
   const audioDiv = document.createElement("div");
   audioDiv.classList.add("audio-message2");
-
   const audioPlayer = new Audio(audioFileURL);
   audioPlayer.controls = false;
   // CREAT AUDIO PLAYER WITH CUSTOM CONTROLS
@@ -192,26 +176,20 @@ function wavHandle(username, time, text, messageContent) {
   // AUDIO PROGRESS BAR
   const progressBarContainer = document.createElement("div");
   progressBarContainer.classList.add("progress-bar-container2");
-
   const progressBar = document.createElement("progress");
   progressBar.max = 100;
   progressBar.value = 0;
-
   const progressDot = document.createElement("div");
   progressDot.classList.add("progress-dot2");
-
   progressBarContainer.appendChild(progressBar);
   progressBarContainer.appendChild(progressDot);
   progressBarContainer.appendChild(playButton);
-
   audioPlayer.addEventListener("loadedmetadata", () => {
     progressBar.max = audioPlayer.duration;
   });
-
   audioPlayer.addEventListener("timeupdate", () => {
     progressBar.value = audioPlayer.currentTime;
   });
-
   audioDiv.appendChild(audioPlayer);
   audioDiv.appendChild(progressBarContainer);
   messageContent.appendChild(audioDiv);
@@ -225,16 +203,13 @@ window.onload = async () => {
 };
 
 // delete msgs from server
-
 async function deleteAllExceptFirst() {
   try {
     const response = await fetch("https://db-vkyv.onrender.com/chats");
     const data = await response.json();
-
     if (data && data.length > 1) {
       // Extract the IDs of all records except the first one
       const idsToDelete = data.slice(1).map((record) => record.id);
-
       // Send delete requests for each ID
       const deletePromises = idsToDelete.map(async (id) => {
         const deleteResponse = await fetch(
@@ -243,17 +218,14 @@ async function deleteAllExceptFirst() {
             method: "DELETE",
           }
         );
-
         if (!deleteResponse.ok) {
           throw new Error(
             `Error deleting record with ID ${id}: ${deleteResponse.statusText}`
           );
         }
       });
-
       // Wait for all delete requests to complete
       await Promise.all(deletePromises);
-
       console.log("Records deleted successfully, except the first one.");
     } else {
       console.log("No records to delete or only one record exists.");

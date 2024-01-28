@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
   createEmojiGrid("smileys-and-people");
 });
 
-//buttons id
-
+// Check witch element was clicked.
+// check buttons id
 function logElementInfo(event) {
   clickedElement = event.target; // Save event.target to the variable
   console.log("Clicked Element ID:", clickedElement.id);
@@ -96,5 +96,3 @@ document.addEventListener("DOMContentLoaded", function () {
   // Attach the click event listener to the document body
   document.body.addEventListener("click", logElementInfo);
 });
-
-

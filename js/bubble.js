@@ -26,21 +26,3 @@ function createBubble(message) {
   }
 }
 
-// fullscreen hover
-document.addEventListener("DOMContentLoaded", (event) => {
-  document.querySelectorAll(".fullscreen").forEach((item) => {
-    item.addEventListener("mouseover", () => {
-      const textElement = item.querySelector(".fullscreen-text");
-      if (textElement) {
-        textElement.style.display = "block";
-      }
-    });
-
-    item.addEventListener("mouseout", () => {
-      const textElement = item.querySelector(".fullscreen-text");
-      if (textElement) {
-        textElement.style.display = "none";
-      }
-    });
-  });
-});

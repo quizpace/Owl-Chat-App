@@ -7,7 +7,6 @@ let isRecording = false;
 let fileInfo;
 
 // Recording Button
-
 toggleRecordingButton.addEventListener("click", async () => {
   try {
     if (!isRecording) {
@@ -18,14 +17,12 @@ toggleRecordingButton.addEventListener("click", async () => {
       mediaRecorder.ondataavailable = (event) => {
         audioChunks.push(event.data);
       };
-
       mediaRecorder.onstop = () => {
         const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
         audioPlayer.src = URL.createObjectURL(audioBlob);
         uploadAudio(audioBlob);
         audioChunks = []; // Clear chunks for the next recording
       };
-
       mediaRecorder.start();
       // toggleRecordingButton.textContent = "🛑"; // Change button icon to stop
     } else {
@@ -39,17 +36,15 @@ toggleRecordingButton.addEventListener("click", async () => {
     console.error("Error toggling recording:", error);
   }
 });
-
+// Upload Audio
 async function uploadAudio(audioBlob) {
   try {
     const formData = new FormData();
     const filename = generateUniqueFilename(5) + ".wav";
     formData.append("audio", audioBlob, filename);
     console.log("Uploading file:", filename);
-
     fileInfo = filename;
     console.log("Sending To Json:", fileInfo);
-
     const response = await fetch(
       "https://audio-api-5-quizpace.onrender.com/stop-recording-upload",
       {
@@ -57,10 +52,8 @@ async function uploadAudio(audioBlob) {
         body: formData,
       }
     );
-
     if (response.ok) {
       alert("Recording stopped and uploaded successfully!");
-
       // Assuming 'chatsDiv', 'userName', 'time', and 'fileInfo' are defined
       const audioFileURL = `https://audio-api-5-quizpace.onrender.com/uploads/${fileInfo}`;
       createAudioBox(chatsDiv, audioFileURL, userName, time);
@@ -72,9 +65,7 @@ async function uploadAudio(audioBlob) {
     console.error("Error uploading recording:", error);
   }
 }
-
 // Unique File Name For Each File
-
 function generateUniqueFilename(length) {
   const characters = "abcdefghijklmnopqrstuvwxyz";
   let result = "";

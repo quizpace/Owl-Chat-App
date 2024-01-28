@@ -41,7 +41,6 @@ exampleElement.addEventListener("mouseenter", function () {
   const randomIndex = Math.floor(Math.random() * messages.length);
   const randomMessage = messages[randomIndex];
   textOverlay.querySelector("p").textContent = randomMessage;
-
   clearTimeouts();
   spiderContainer.style.display = "block";
   setTimeout(function () {
@@ -54,7 +53,6 @@ exampleElement.addEventListener("mouseenter", function () {
     }, 15000)
   ); // 15 seconds
 });
-
 exampleElement.addEventListener("mouseleave", function () {
   clearTimeouts();
   hideSpiderContainer();

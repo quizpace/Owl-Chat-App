@@ -1,4 +1,5 @@
 "use strict";
+
 // Declare global variables
 let userName = "";
 let myUserName = "";
@@ -10,11 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Display the modal on page load
   const modal = document.getElementById("myModal");
   modal.style.display = "block";
-
   // Handle the submission of the user's name
   const submitNameBtn = document.getElementById("submitNameBtn");
   const userNameInput = document.getElementById("userNameInput");
-
   submitNameBtn.addEventListener("click", function () {
     userName = userNameInput.value;
     myUserName = userNameInput.value;
@@ -28,13 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
 function sendUserDataToServer(username, time) {
   const userData = {
     user: username,
     time: time,
   };
-
   fetch("https://web-server-demo1.onrender.com/users", {
     method: "POST",
     headers: {
@@ -69,20 +66,16 @@ function getCurrentTime() {
 }
 
 // Creat users list
-
 const usersList = {};
-
 function createUsersList(userName, userId) {
   const existingUsers = document.querySelectorAll(".uList");
   let userExists = false;
-
   existingUsers.forEach((user) => {
     if (user.textContent.trim() === userName) {
       userExists = true;
       return; // Exit loop if a user with the same name is found
     }
   });
-
   if (!userExists) {
     const myUsersList = document.createElement("li");
     myUsersList.id = `user_${userId}`;
@@ -100,13 +93,11 @@ function fetchAndUpdateUsersList() {
       const existingUsernames = Array.from(existingUsers).map((user) =>
         user.textContent.trim()
       );
-
       data.forEach((user) => {
         if (!existingUsernames.includes(user.user)) {
           createUsersList(user.user, user.id);
         }
       });
-
       existingUsers.forEach((userElement) => {
         const userId = userElement.id.split("_")[1]; // Extract user ID
         const found = data.some((user) => user.id === parseInt(userId));
@@ -131,13 +122,11 @@ function updateUsernameOnServer(globalUserId, myUserName) {
       if (data.length > 0) {
         return;
       }
-
       // Username doesn't exist, proceed with creating the user
       const userData = {
         user: myUserName,
         time: getCurrentTime(),
       };
-
       fetch(`https://web-server-demo1.onrender.com/users`, {
         method: "POST",
         headers: {
@@ -168,7 +157,6 @@ function updateUsernameOnServer(globalUserId, myUserName) {
 }
 
 // Delete users list
-
 function deleteUserFromServer(userId) {
   fetch(`https://web-server-demo1.onrender.com/users/${userId}`, {
     method: "DELETE",
@@ -204,23 +192,18 @@ function deleteAllUsersExceptOne() {
     });
 }
 
-// Update the user list every 1 second
+// Update the user list.
 setInterval(fetchAndUpdateUsersList, 300);
-
 deleteAllUsersExceptOne();
 setInterval(deleteAllUsersExceptOne, 10000); // Subsequent calls every 5 seconds (adjust as needed)
-
 // Call updateUsernameOnServer every 10 seconds
 setInterval(() => {
   // Replace userId and myUserName with actual values
   updateUsernameOnServer(globalUserId, myUserName);
 }, 500); // 10 seconds interval
-
 // how many is online
-
 // Global variable to store the number of users
 let numUsers = 0;
-
 // Function to fetch the number of users from the server and update numUsers
 function checkAndUpdateUserCount() {
   fetch("https://web-server-demo1.onrender.com/users")
@@ -233,7 +216,6 @@ function checkAndUpdateUserCount() {
     .then((data) => {
       // Update numUsers with the length of the user array
       numUsers = data.length;
-
       // Update the text content of the paragraph with the new user count
       document.getElementById("userCount").textContent = `${numUsers} online`;
       document.getElementById("userCount2").textContent = `${numUsers} online`;
@@ -242,6 +224,5 @@ function checkAndUpdateUserCount() {
       console.error("Error fetching user count:", error);
     });
 }
-
 // Call the function every 5 seconds (5000 milliseconds)
 setInterval(checkAndUpdateUserCount, 2000);

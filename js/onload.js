@@ -1,11 +1,12 @@
 "use strict";
+
+// Slide EFFECT chat/emoji/users boxes
 $(document).ready(() => {
   $(".chat-btn").click(() => {
     $(".chat-box").slideToggle("slow");
   });
   $(".chat-btn").trigger("click");
 });
-
 $(document).ready(() => {
   $(".users-btn").click(() => {
     $(".users-box").slideToggle("slow");
@@ -22,7 +23,6 @@ $(document).ready(() => {
 // Call the function when the page loads
 window.onload = async () => {
   await getTextFromServer();
-
   setInterval(() => {
     getTextFromServer();
     const chatBox = document.querySelector(".chat-box");
