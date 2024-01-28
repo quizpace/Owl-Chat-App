@@ -7,7 +7,7 @@ openModalBtn.addEventListener("click", () => {
   interModal.style.display = "block";
   // Clear previous content
   document.getElementById("interModalContent").innerHTML = `
-      <iframe src="https://stellar-hummingbird-6ceec4.netlify.app/" frameborder="0" style="width: 98%; height: 100%; position: absolute; top: 0; left: 0;"></iframe>
+      <iframe src="https://tic-tac-toe-in-space.onrender.com/" frameborder="0" style="width: 98%; height: 100%; position: absolute; top: 0; left: 0;"></iframe>
     `;
 });
 
@@ -15,7 +15,7 @@ openModalBtn2.addEventListener("click", () => {
   interModal.style.display = "block";
   // Clear previous content
   document.getElementById("interModalContent").innerHTML = `
-      <iframe src="https://amazing-arithmetic-10d027.netlify.app/" frameborder="0" style="width: 98%; height: 100%; position: absolute; top: 0; left: 0;"></iframe>
+      <iframe src="https://memory-game-d4it.onrender.com/" frameborder="0" style="width: 98%; height: 100%; position: absolute; top: 0; left: 0;"></iframe>
     `;
 });
 
